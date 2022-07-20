@@ -3,11 +3,11 @@
 Implementation of different algorithms and data structures using Kotlin lang
 
 [![Build](https://github.com/ashtanko/the-algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/ashtanko/the-algorithms/actions/workflows/ci.yml)
-[![CodeFactor](https://www.codefactor.io/repository/github/ashtanko/the-algorithms/badge?s=7695146d601eed2335afea606646a11e5be21b50)](https://www.codefactor.io/repository/the-algorithms)
+[![CodeFactor](https://www.codefactor.io/repository/github/ashtanko/the-algorithms/badge)](https://www.codefactor.io/repository/github/ashtanko/the-algorithms)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Fthe-algorithms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Fthe-algorithms?ref=badge_shield)
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.7.0-blue.svg)](http://kotlinlang.org/)
-[![codecov](https://codecov.io/gh/ashtanko/the-algorithms/branch/master/graph/badge.svg?token=JEU9EIJMHA)](https://codecov.io/gh/ashtanko/the-algorithms)
+[![codecov](https://codecov.io/gh/ashtanko/the-algorithms/branch/main/graph/badge.svg?token=6vzgrCAl5c)](https://codecov.io/gh/ashtanko/the-algorithms)
 
 ## Overview
 
