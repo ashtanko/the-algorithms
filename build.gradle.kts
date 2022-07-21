@@ -13,7 +13,7 @@ group = "dev.shtanko"
 version = "1.0-SNAPSHOT"
 
 plugins {
-    kotlin("jvm") version "1.7.0"
+    kotlin("jvm") version "1.7.10"
     java
     jacoco
     idea
@@ -24,7 +24,7 @@ plugins {
     id("com.autonomousapps.dependency-analysis") version "1.0.0-rc01"
     id("info.solidsoft.pitest") version "1.7.4"
     kotlin("plugin.serialization") version "1.6.21"
-    kotlin("kapt") version "1.7.0"
+    kotlin("kapt") version "1.7.10"
     application
 }
 
@@ -44,8 +44,8 @@ buildscript {
 }
 
 dependencies {
-    implementation(kotlin("reflect", "1.7.0"))
-    implementation(kotlin("stdlib-jdk8", "1.7.0"))
+    implementation(kotlin("reflect", "1.7.10"))
+    implementation(kotlin("stdlib-jdk8", "1.7.10"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${Versions.COROUTINES}")
