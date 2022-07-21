@@ -24,40 +24,35 @@
 package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
-import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
+import org.junit.jupiter.params.provider.ArgumentsSource
 
 internal class MemoryTest {
     internal class InputArgumentsProvider : ArgumentsProvider {
-        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of()
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(BubbleSort()),
+            Arguments.of(SimpleBubbleSort()),
+            Arguments.of(InsertionSort()),
+            Arguments.of(InsertionSort2()),
+            Arguments.of(MergeSort()),
+            Arguments.of(QuickSort()),
+            Arguments.of(SelectionSort()),
+            Arguments.of(ShellSort()),
+            Arguments.of(HeapSort()),
+            Arguments.of(ArraySort()),
+            Arguments.of(PancakeSort()),
+            Arguments.of(GnomeSort()),
+        )
     }
 
     companion object {
-        // 1000_000 //uncomment for original test
+        // 1000_000 // uncomment for original test
         private const val ARRAY_SIZE = 1000
-
-        @JvmStatic
-        fun dataProvider(): List<AbstractSortStrategy> {
-            return listOf(
-                BubbleSort(),
-                SimpleBubbleSort(),
-                InsertionSort(),
-                InsertionSort2(),
-                MergeSort(),
-                QuickSort(),
-                SelectionSort(),
-                ShellSort(),
-                HeapSort(),
-                ArraySort(),
-                PancakeSort(),
-                GnomeSort()
-            )
-        }
 
         private fun getSortedArray(): IntArray {
             val array = IntArray(ARRAY_SIZE)
@@ -69,7 +64,7 @@ internal class MemoryTest {
     }
 
     @ParameterizedTest
-    @MethodSource("dataProvider")
+    @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `sorts test`(testCase: AbstractSortStrategy) {
         execute(testCase, getSortedArray())
     }
