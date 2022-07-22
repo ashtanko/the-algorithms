@@ -44,15 +44,17 @@ class InsertionSort : AbstractSortStrategy {
 /**
  * This method implements the Generic Insertion Sort
  *
- * @param arr The array to be sorted
- * Sorts the array in increasing order
- *
  * Worst-case performance       O(n^2)
  * Best-case performance        O(n)
  * Average performance          O(n^2)
  * Worst-case space complexity  O(1)
  **/
 class InsertionSort2 : AbstractSortStrategy {
+
+    /**
+     * Sorts the array in increasing order
+     * @param arr The array to be sorted
+     */
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         for (i in 1 until arr.size) {
             val x = arr[i]

@@ -23,8 +23,9 @@
 */
 package dev.shtanko.algorithms.sorts
 
+/**
+ * Kotlin stdlib sort implementation
+ */
 class ArraySort : AbstractSortStrategy {
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
-        arr.sort()
-    }
+    override fun <T : Comparable<T>> perform(arr: Array<T>) = arr.sort()
 }
