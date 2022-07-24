@@ -47,11 +47,9 @@ dependencies {
     implementation(kotlin("reflect", "1.7.10"))
     implementation(kotlin("stdlib-jdk8", "1.7.10"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${Versions.COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:${Versions.COROUTINES}")
 
-    implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("io.reactivex.rxjava3:rxjava:${Versions.RX_JAVA}")
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
     implementation("org.jetbrains.kotlinx:lincheck:${Versions.LINCHECK}")
