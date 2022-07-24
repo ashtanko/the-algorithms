@@ -23,6 +23,7 @@
 */
 package dev.shtanko.algorithms.extensions
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -35,7 +36,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class IntExtensionTest {
 
@@ -73,6 +73,42 @@ internal class IntExtensionTest {
             ),
             Arguments.of(
                 5,
+                true
+            ),
+            Arguments.of(
+                7,
+                true
+            ),
+            Arguments.of(
+                11,
+                true
+            ),
+            Arguments.of(
+                13,
+                true
+            ),
+            Arguments.of(
+                17,
+                true
+            ),
+            Arguments.of(
+                19,
+                true
+            ),
+            Arguments.of(
+                23,
+                true
+            ),
+            Arguments.of(
+                29,
+                true
+            ),
+            Arguments.of(
+                31,
+                true
+            ),
+            Arguments.of(
+                37,
                 true
             ),
         )
