@@ -37,8 +37,8 @@ fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Uni
             "Arrays of length %d Strategy %s Consumed time: %d ms",
             array.size,
             strategy::class.java.simpleName,
-            elapsed
-        )
+            elapsed,
+        ),
     )
 }
 

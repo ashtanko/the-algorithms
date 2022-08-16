@@ -23,6 +23,7 @@
 */
 package dev.shtanko.algorithms.utils
 
+import dev.shtanko.algorithms.extensions.reverse
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest

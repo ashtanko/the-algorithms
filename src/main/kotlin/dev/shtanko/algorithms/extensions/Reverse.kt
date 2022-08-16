@@ -21,16 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-object Dependencies {
+package dev.shtanko.algorithms.extensions
 
-    object JetBrains {
-        const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN_VERSION}"
+/**
+ * Reverse the subsections of the min array.
+ */
+fun IntArray.reverse(start: Int, end: Int) {
+    for (i in 0 until (end - start) / 2) {
+        val temp = this[i + start]
+        this[i + start] = this[end - i - 1]
+        this[end - i - 1] = temp
     }
+}
 
-    object Coroutines {
-        const val CORE =
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
-        const val ANDROID =
-            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
+/**
+ * Reverse char array by indexes
+ */
+fun CharArray.reverse(leftIdx: Int, rightIdx: Int) {
+    var left = leftIdx
+    var right = rightIdx
+    while (left < right) {
+        val tmp = this[left]
+        this[left++] = this[right]
+        this[right--] = tmp
     }
 }

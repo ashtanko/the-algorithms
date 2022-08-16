@@ -23,14 +23,13 @@
 */
 package dev.shtanko.algorithms.extensions
 
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.MatcherAssert.assertThat
+import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class CharTest {
 
@@ -62,13 +61,13 @@ internal class CharTest {
     internal fun `random string test`(range: CharRange, len: Int, expected: Int) {
         val randomString = range.randomString(len)
         val actual = randomString.length
-        assertThat(actual, equalTo(expected))
+        assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputVowelArgumentsProvider::class)
     internal fun `is vowel test`(c: Char, expected: Boolean) {
         val actual = c.isVowel()
-        assertThat(actual, equalTo(expected))
+        assertThat(actual).isEqualTo(expected)
     }
 }

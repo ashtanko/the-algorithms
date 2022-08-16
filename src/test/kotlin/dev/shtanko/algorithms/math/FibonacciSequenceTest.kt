@@ -23,14 +23,13 @@
 */
 package dev.shtanko.algorithms.math
 
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.MatcherAssert.assertThat
+import java.util.stream.Stream
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-import java.util.stream.Stream
 
 internal class FibonacciSequenceTest {
 
@@ -80,20 +79,20 @@ internal class FibonacciSequenceTest {
     @ArgumentsSource(InputSimpleArgumentsProvider::class)
     internal fun `simple test`(n: Int, expected: Int) {
         val actual = n.toFibonacciSequence()
-        assertThat(actual, equalTo(expected))
+        assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputIterativeArgumentsProvider::class)
     internal fun `iterative test`(n: Long, expected: Long) {
         val actual = Fibonacci.ITERATIVE.invoke(n)
-        assertThat(actual, equalTo(expected))
+        assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputRecursiveArgumentsProvider::class)
     internal fun `recursive test`(n: Long, expected: Long) {
         val actual = Fibonacci.RECURSIVE.invoke(n)
-        assertThat(actual, equalTo(expected))
+        assertThat(actual).isEqualTo(expected)
     }
 }

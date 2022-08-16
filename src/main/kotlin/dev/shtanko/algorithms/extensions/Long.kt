@@ -31,7 +31,7 @@ import dev.shtanko.algorithms.DECIMAL
 fun Long.isSuperPalindrome(): Boolean {
     var x = this
     var isSuper = false
-    for (i in 0 until 2) {
+    repeat(2) {
         isSuper = x.isPalindrome()
         x /= 2
         if (isSuper.not()) return false

@@ -48,7 +48,7 @@ internal abstract class AbstractSearchTest<out T : AbstractSearchStrategy<Int>>(
             Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 16, 3),
             Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 23, 4),
             Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 42, 5),
-            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 43, -1)
+            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 43, -1),
         )
     }
 

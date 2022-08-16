@@ -40,7 +40,7 @@ internal abstract class AbstractStringSearchTest<out T : AbstractSearchStrategy<
             Arguments.of(arrayOf("A"), "B", -1),
             Arguments.of(arrayOf("A", "B"), "A", 0),
             Arguments.of(arrayOf("A", "B"), "B", 1),
-            Arguments.of(arrayOf("A", "B"), "C", -1)
+            Arguments.of(arrayOf("A", "B"), "C", -1),
         )
     }
 

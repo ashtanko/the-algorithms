@@ -23,8 +23,7 @@
 */
 package dev.shtanko.algorithms.math
 
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.MatcherAssert.assertThat
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -61,6 +60,6 @@ internal class BinomialTest {
     @ArgumentsSource(InputArgumentsProvider::class)
     internal fun `binomial test`(n: Int, k: Int, expected: Long) {
         val actual = binomial(n, k)
-        assertThat(actual, equalTo(expected))
+        assertThat(actual).isEqualTo(expected)
     }
 }

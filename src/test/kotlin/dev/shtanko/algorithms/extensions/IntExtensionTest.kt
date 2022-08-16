@@ -25,8 +25,6 @@ package dev.shtanko.algorithms.extensions
 
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -57,59 +55,59 @@ internal class IntExtensionTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 0,
-                false
+                false,
             ),
             Arguments.of(
                 2,
-                true
+                true,
             ),
             Arguments.of(
                 3,
-                true
+                true,
             ),
             Arguments.of(
                 4,
-                false
+                false,
             ),
             Arguments.of(
                 5,
-                true
+                true,
             ),
             Arguments.of(
                 7,
-                true
+                true,
             ),
             Arguments.of(
                 11,
-                true
+                true,
             ),
             Arguments.of(
                 13,
-                true
+                true,
             ),
             Arguments.of(
                 17,
-                true
+                true,
             ),
             Arguments.of(
                 19,
-                true
+                true,
             ),
             Arguments.of(
                 23,
-                true
+                true,
             ),
             Arguments.of(
                 29,
-                true
+                true,
             ),
             Arguments.of(
                 31,
-                true
+                true,
             ),
             Arguments.of(
                 37,
-                true
+                true,
             ),
         )
     }
@@ -125,14 +123,14 @@ internal class IntExtensionTest {
     @ArgumentsSource(InputIsEvenArgumentsProvider::class)
     internal fun `is even test`(n: Int, expected: Boolean) {
         val actual = n.isEven
-        assertThat(actual, `is`(expected))
+        assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputIsEvenArgumentsProvider::class)
     internal fun `is even fun interface test`(n: Int, expected: Boolean) {
         val actual = isEven.accept(n)
-        assertThat(actual, `is`(expected))
+        assertThat(actual).isEqualTo(expected)
     }
 
     @Test

@@ -90,7 +90,7 @@ internal class PerformanceTest {
             Arguments.of(heapSortStrategy, thirtyK),
             Arguments.of(heapSortStrategy, fiftyK),
             Arguments.of(heapSortStrategy, hundredK),
-            Arguments.of(heapSortStrategy, fiveHundredK)
+            Arguments.of(heapSortStrategy, fiveHundredK),
         )
 
         private val mergeSortStrategy = MergeSort()
@@ -147,7 +147,7 @@ internal class PerformanceTest {
             InsertionSort(),
             InsertionSort2(),
             SelectionSort(),
-            StableSelectionSort()
+            StableSelectionSort(),
         )
         strategiesPerformanceTest(arr, fastStrategies, expected)
     }
@@ -157,7 +157,10 @@ internal class PerformanceTest {
     internal fun `fast strategies performance test`(n: Int, expected: Boolean) {
         val arr = n.generateRandomArray().toTypedArray()
         val fastStrategies = listOf(
-            MergeSort(), QuickSort(), ShellSort(), ShellSort()
+            MergeSort(),
+            QuickSort(),
+            ShellSort(),
+            ShellSort(),
         )
         strategiesPerformanceTest(arr, fastStrategies, expected)
     }
@@ -173,8 +176,8 @@ internal class PerformanceTest {
                 "Given arrays of length %d %s Consumed time: %d ms",
                 arr.size,
                 "Fast strategies",
-                totalTime
-            )
+                totalTime,
+            ),
         )
         assertThat(arr.isSorted()).isEqualTo(expected)
     }

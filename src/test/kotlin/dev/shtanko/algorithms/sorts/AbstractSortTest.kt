@@ -57,7 +57,7 @@ internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private v
             Arguments.of(arrayOf(22, 7, 2, -5, 8, 4), arrayOf(-5, 2, 4, 7, 8, 22)),
             Arguments.of(
                 arrayOf(61, 109, 149, 111, 34, 2, 24, 119, 122, 125, 27, 145),
-                arrayOf(2, 24, 27, 34, 61, 109, 111, 119, 122, 125, 145, 149)
+                arrayOf(2, 24, 27, 34, 61, 109, 111, 119, 122, 125, 145, 149),
             ),
         )
     }
@@ -65,7 +65,7 @@ internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private v
     internal class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(getRandomArray(), true),
-            Arguments.of(arrayOf(1, 2, 2, 1), true)
+            Arguments.of(arrayOf(1, 2, 2, 1), true),
         )
 
         private fun getRandomArray(): Array<Int> {
@@ -85,8 +85,8 @@ internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private v
             Arguments.of(arrayOf("D", "C", "B", "A"), arrayOf("A", "B", "C", "D")),
             Arguments.of(
                 arrayOf("A", "c", "B", "e", "d", "F", "y", "G"),
-                arrayOf("A", "B", "F", "G", "c", "d", "e", "y")
-            )
+                arrayOf("A", "B", "F", "G", "c", "d", "e", "y"),
+            ),
         )
     }
 
@@ -95,7 +95,7 @@ internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private v
             Arguments.of(arrayOf(TestObject.empty()), arrayOf(TestObject.empty())),
             Arguments.of(
                 arrayOf(TestObject(0, "Jake"), TestObject(3, "William")),
-                arrayOf(TestObject(0, "Jake"), TestObject(3, "William"))
+                arrayOf(TestObject(0, "Jake"), TestObject(3, "William")),
             ),
             Arguments.of(
                 arrayOf(TestObject(0, "William"), TestObject(3, "Anna")),

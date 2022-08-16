@@ -36,23 +36,23 @@ internal class QuickSortRecursiveTest {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 listOf<Int>(),
-                listOf<Int>()
+                listOf<Int>(),
             ),
             Arguments.of(
                 listOf(1),
-                listOf(1)
+                listOf(1),
             ),
             Arguments.of(
                 listOf(1, 2, 3),
-                listOf(1, 2, 3)
+                listOf(1, 2, 3),
             ),
             Arguments.of(
                 listOf(3, 2, 1),
-                listOf(1, 2, 3)
+                listOf(1, 2, 3),
             ),
             Arguments.of(
                 listOf(5, 0, 1, 5, 3, 7, 4, 2),
-                listOf(0, 1, 2, 3, 4, 5, 5, 7)
+                listOf(0, 1, 2, 3, 4, 5, 5, 7),
             ),
         )
     }

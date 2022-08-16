@@ -51,7 +51,7 @@ private val alphabet = charArrayOf(
     'w',
     'x',
     'y',
-    'z'
+    'z',
 )
 
 /**
