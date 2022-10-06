@@ -46,3 +46,8 @@ fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Uni
 fun measureTime(unit: DurationUnit, task: () -> Unit): Long {
     return unit.toTimeUnit().convert(measureNanoTime(task), TimeUnit.NANOSECONDS)
 }
+
+fun measureTime(taskName: String, task: () -> Unit) {
+    val elapsed = measureTime(DurationUnit.MILLISECONDS, task)
+    println(String.format("Task %s Consumed time: %d ms", taskName, elapsed))
+}
