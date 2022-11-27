@@ -21,14 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-package dev.shtanko.algorithms
+package dev.shtanko.algorithms.utils
 
-internal const val DECIMAL = 10
-internal const val OCTAL = 8
-internal const val HEXADECIMAL = 16
-internal const val SHUFFLE_CONST = 0xFFFF
-internal const val MOD = 1_000_000_007 // 1000000007
-internal const val E_9 = 1e9
-internal const val BYTE = 1024
-internal const val HALF_OF_BYTE = 256
-const val MILLISECOND = 1000L
+import java.text.CharacterIterator
+import java.text.StringCharacterIterator
+
+private const val WTF_IN = -999950
+private const val WTF_OUT = 999950
+private const val SIZE_CHARACTERS = "kMGTPE"
+private const val ONE_T = 1000
+
+/**
+ * Converts bytes to human-readable string
+ */
+fun Long.toHumanReadableByteCountSI(): String {
+    var bytes = this
+    if (-ONE_T < bytes && bytes < ONE_T) {
+        return "$bytes B"
+    }
+    val ci: CharacterIterator = StringCharacterIterator(SIZE_CHARACTERS)
+    while (bytes <= WTF_IN || bytes >= WTF_OUT) {
+        bytes /= ONE_T
+        ci.next()
+    }
+    return String.format("%.1f %cB", bytes / ONE_T.toDouble(), ci.current())
+}

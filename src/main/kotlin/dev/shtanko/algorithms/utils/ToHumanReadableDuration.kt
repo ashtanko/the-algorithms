@@ -21,14 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-package dev.shtanko.algorithms
+package dev.shtanko.algorithms.utils
 
-internal const val DECIMAL = 10
-internal const val OCTAL = 8
-internal const val HEXADECIMAL = 16
-internal const val SHUFFLE_CONST = 0xFFFF
-internal const val MOD = 1_000_000_007 // 1000000007
-internal const val E_9 = 1e9
-internal const val BYTE = 1024
-internal const val HALF_OF_BYTE = 256
-const val MILLISECOND = 1000L
+import dev.shtanko.algorithms.MILLISECOND
+import java.util.concurrent.TimeUnit
+
+fun Long.toHumanReadableDuration(): String {
+    val millis = TimeUnit.MILLISECONDS.convert(this, TimeUnit.NANOSECONDS)
+    val sec = TimeUnit.SECONDS.convert(this, TimeUnit.NANOSECONDS)
+    val sb = if (sec != 0L) {
+        val diff = millis - MILLISECOND * sec
+        val sbDiff = if (diff != 0L) {
+            "$diff ms"
+        } else {
+            ""
+        }
+        "$sec,$sbDiff"
+    } else {
+        "$millis ms"
+    }
+    return "Runtime: $sb"
+}

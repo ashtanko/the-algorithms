@@ -21,14 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-package dev.shtanko.algorithms
+package dev.shtanko.algorithms.utils
 
-internal const val DECIMAL = 10
-internal const val OCTAL = 8
-internal const val HEXADECIMAL = 16
-internal const val SHUFFLE_CONST = 0xFFFF
-internal const val MOD = 1_000_000_007 // 1000000007
-internal const val E_9 = 1e9
-internal const val BYTE = 1024
-internal const val HALF_OF_BYTE = 256
-const val MILLISECOND = 1000L
+import dev.shtanko.algorithms.BYTE
+import dev.shtanko.algorithms.DECIMAL
+import java.text.CharacterIterator
+import java.text.StringCharacterIterator
+import kotlin.math.abs
+
+private const val WTF = 0xfffccccccccccccL
+private const val LIM = 40
+private const val SIZE_CHARACTERS = "KMGTPE"
+
+/**
+ * Converts bytes to human-readable string
+ */
+fun Long.toHumanReadableByteCountBin(): String {
+    val bytes = this
+    val absB = if (bytes == Long.MIN_VALUE) Long.MAX_VALUE else abs(bytes)
+    if (absB < BYTE) {
+        return String.format("%d B", bytes)
+    }
+    var value = absB
+    val ci: CharacterIterator = StringCharacterIterator(SIZE_CHARACTERS)
+    var i = LIM
+    while (i >= 0 && absB > WTF shr i) {
+        value = value shr DECIMAL
+        ci.next()
+        i -= DECIMAL
+    }
+    value *= java.lang.Long.signum(bytes).toLong()
+    return String.format("%.1f %ciB", value / BYTE.toDouble(), ci.current())
+}
