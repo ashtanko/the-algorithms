@@ -23,13 +23,13 @@
 */
 package dev.shtanko.algorithms.math
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 internal class FibonacciSequenceTest {
 
@@ -93,6 +93,13 @@ internal class FibonacciSequenceTest {
     @ArgumentsSource(InputRecursiveArgumentsProvider::class)
     internal fun `recursive test`(n: Long, expected: Long) {
         val actual = Fibonacci.RECURSIVE.invoke(n)
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputSimpleArgumentsProvider::class)
+    internal fun `dp test`(n: Int, expected: Long) {
+        val actual = fibonacciAt(n)
         assertThat(actual).isEqualTo(expected)
     }
 }

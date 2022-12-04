@@ -30,6 +30,16 @@ fun Int.toFibonacciSequence(): Int {
     return (this - 1).toFibonacciSequence() + (this - 2).toFibonacciSequence()
 }
 
+fun fibonacciAt(n: Int) = run {
+    tailrec fun fibonacciAcc(n: Int, a: Long, b: Long): Long {
+        return when (n == 0) {
+            true -> b
+            false -> fibonacciAcc(n - 1, a + b, a)
+        }
+    }
+    fibonacciAcc(n, 1, 0)
+}
+
 enum class Fibonacci {
     ITERATIVE {
         override fun invoke(n: Long) = if (n < 2) {
