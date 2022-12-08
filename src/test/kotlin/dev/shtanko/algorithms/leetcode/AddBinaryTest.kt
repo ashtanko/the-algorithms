@@ -43,6 +43,26 @@ internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val str
             ),
             Arguments.of(
                 "0",
+                "",
+                "0",
+            ),
+            Arguments.of(
+                "",
+                "0",
+                "0",
+            ),
+            Arguments.of(
+                "1",
+                "",
+                "1",
+            ),
+            Arguments.of(
+                "",
+                "1",
+                "1",
+            ),
+            Arguments.of(
+                "0",
                 "1",
                 "1",
             ),
@@ -62,14 +82,14 @@ internal abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val str
                 "10101",
             ),
             Arguments.of(
-                "10101010010010101001010010100100101",
-                "101111111111111111",
-                "10101010010010101111010010100100100",
-            ),
-            Arguments.of(
                 "10101010",
                 "11001100",
                 "101110110",
+            ),
+            Arguments.of(
+                "10101010010010101001010010100100101",
+                "101111111111111111",
+                "10101010010010101111010010100100100",
             ),
         )
     }

@@ -62,7 +62,13 @@ class AddBinaryBitByBitComputation : AddBinaryStrategy {
  */
 class AddBinaryBitManipulation : AddBinaryStrategy {
     override fun perform(a: String, b: String): String {
-        if (a.isEmpty() || b.isEmpty()) return ""
+        if (a.isBlank() && b.isNotBlank()) {
+            return b
+        } else if (a.isNotBlank() && b.isBlank()) {
+            return a
+        } else if (a.isBlank() && b.isBlank()) {
+            return ""
+        }
         var x = BigInteger(a, 2)
         var y = BigInteger(b, 2)
         val zero = BigInteger("0", 2)
