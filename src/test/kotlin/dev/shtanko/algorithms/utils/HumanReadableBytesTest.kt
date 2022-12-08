@@ -90,6 +90,74 @@ class HumanReadableBytesTest {
                 Long.MAX_VALUE,
                 "8.0 EiB",
             ),
+            Arguments.of(
+                -0,
+                "0 B",
+            ),
+            Arguments.of(
+                -1,
+                "-1 B",
+            ),
+            Arguments.of(
+                -27,
+                "-27 B",
+            ),
+            Arguments.of(
+                -999,
+                "-999 B",
+            ),
+            Arguments.of(
+                -1000,
+                "-1000 B",
+            ),
+            Arguments.of(
+                -1023,
+                "-1023 B",
+            ),
+            Arguments.of(
+                -1024,
+                "-1.0 KiB",
+            ),
+            Arguments.of(
+                -1728,
+                "-1.7 KiB",
+            ),
+            Arguments.of(
+                -110592,
+                "-108.0 KiB",
+            ),
+            Arguments.of(
+                -7077888,
+                "-6.8 MiB",
+            ),
+            Arguments.of(
+                -452984832,
+                "-432.0 MiB",
+            ),
+            Arguments.of(
+                -28991029248,
+                "-27.0 GiB",
+            ),
+            Arguments.of(
+                -1855425871872,
+                "-1.7 TiB",
+            ),
+            Arguments.of(
+                -9223372036854775807,
+                "-8.0 EiB",
+            ),
+            Arguments.of(
+                -Long.MAX_VALUE,
+                "-8.0 EiB",
+            ),
+            Arguments.of(
+                -Long.MIN_VALUE,
+                "-8.0 EiB",
+            ),
+            Arguments.of(
+                Long.MIN_VALUE,
+                "-8.0 EiB",
+            ),
         )
     }
 
