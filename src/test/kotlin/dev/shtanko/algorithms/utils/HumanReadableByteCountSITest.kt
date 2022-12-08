@@ -94,6 +94,11 @@ class HumanReadableByteCountSITest {
                 Long.MAX_VALUE,
                 "9.2 EB",
             ),
+        )
+    }
+
+    private class InputNegativeArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 -0,
                 "0 B",
@@ -167,7 +172,14 @@ class HumanReadableByteCountSITest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `human readable byte count binary SI test`(bytes: Long, expected: String) {
+    fun `human readable positive byte count binary SI test`(bytes: Long, expected: String) {
+        val actual = bytes.toHumanReadableByteCountSI()
+        Assertions.assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputNegativeArgumentsProvider::class)
+    fun `human readable negative byte count binary SI test`(bytes: Long, expected: String) {
         val actual = bytes.toHumanReadableByteCountSI()
         Assertions.assertThat(actual).isEqualTo(expected)
     }

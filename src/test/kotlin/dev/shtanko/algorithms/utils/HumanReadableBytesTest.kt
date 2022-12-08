@@ -90,6 +90,11 @@ class HumanReadableBytesTest {
                 Long.MAX_VALUE,
                 "8.0 EiB",
             ),
+        )
+    }
+
+    private class InputNegativeArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 -0,
                 "0 B",
@@ -151,10 +156,6 @@ class HumanReadableBytesTest {
                 "-8.0 EiB",
             ),
             Arguments.of(
-                -Long.MIN_VALUE,
-                "-8.0 EiB",
-            ),
-            Arguments.of(
                 Long.MIN_VALUE,
                 "-8.0 EiB",
             ),
@@ -163,7 +164,14 @@ class HumanReadableBytesTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `human readable byte count binary test`(bytes: Long, expected: String) {
+    fun `human readable positive byte count binary test`(bytes: Long, expected: String) {
+        val actual = bytes.toHumanReadableByteCountBin()
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputNegativeArgumentsProvider::class)
+    fun `human readable negative byte count binary test`(bytes: Long, expected: String) {
         val actual = bytes.toHumanReadableByteCountBin()
         assertThat(actual).isEqualTo(expected)
     }
