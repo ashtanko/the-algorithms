@@ -1,7 +1,13 @@
-.PHONY: check test report treport lines
+.PHONY: check test report treport lines md all
 
 check:
 	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon
+
+md:
+	truncate -s0 README.md && cat config/main.md >> README.md && cat build/reports/detekt/detekt.md >> README.md
+
+all:
+	make check && ./gradlew build && md
 
 test:
 	./gradlew test
