@@ -23,13 +23,13 @@
 */
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 abstract class TargetSumTest<out T : TargetSum>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
@@ -43,6 +43,51 @@ abstract class TargetSumTest<out T : TargetSum>(private val strategy: T) {
                 intArrayOf(1),
                 1,
                 1,
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                1,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(0),
+                0,
+                2,
+            ),
+            Arguments.of(
+                intArrayOf(0, 0),
+                0,
+                4,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1),
+                -1,
+                3,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                1,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2),
+                2,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3),
+                4,
+                1,
+            ),
+            Arguments.of(
+                intArrayOf(1, 2, 3, 4, 5),
+                4,
+                0,
+            ),
+            Arguments.of(
+                intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+                2,
+                792,
             ),
         )
     }
