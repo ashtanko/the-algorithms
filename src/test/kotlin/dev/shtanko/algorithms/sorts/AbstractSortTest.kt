@@ -36,9 +36,10 @@ import kotlin.random.Random
 @Suppress("ArrayPrimitive")
 internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
 
-    internal class InputArrayArgumentsProvider : ArgumentsProvider {
+    private class InputArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf<Int>(), emptyArray<Int>()),
+            Arguments.of(arrayOf(0), arrayOf(0)),
             Arguments.of(arrayOf(4), arrayOf(4)),
             Arguments.of(arrayOf(-4), arrayOf(-4)),
             Arguments.of(arrayOf(4, 8), arrayOf(4, 8)),
@@ -62,7 +63,16 @@ internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private v
         )
     }
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    private class InputFloatArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(arrayOf<Float>(), emptyArray<Float>()),
+            Arguments.of(arrayOf(1f), arrayOf(1f)),
+            Arguments.of(arrayOf(5.2f, 1.3f, 0.7f, 3.8f, 2.6f), arrayOf(0.7f, 1.3f, 2.6f, 3.8f, 5.2f)),
+            Arguments.of(arrayOf(5.2f, -1.3f, -0.7f, 3.8f, 2.6f), arrayOf(-1.3f, -0.7f, 2.6f, 3.8f, 5.2f)),
+        )
+    }
+
+    private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(getRandomArray(), true),
             Arguments.of(arrayOf(1, 2, 2, 1), true),
@@ -77,20 +87,29 @@ internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private v
         }
     }
 
-    internal class InputStringArrayArgumentsProvider : ArgumentsProvider {
+    private class InputStringArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf<String>(), emptyArray<String>()),
             Arguments.of(arrayOf("A"), arrayOf("A")),
+            Arguments.of(arrayOf("a"), arrayOf("a")),
+            Arguments.of(arrayOf("aa"), arrayOf("aa")),
+            Arguments.of(arrayOf("a", "a"), arrayOf("a", "a")),
             Arguments.of(arrayOf("A", "B", "C"), arrayOf("A", "B", "C")),
             Arguments.of(arrayOf("D", "C", "B", "A"), arrayOf("A", "B", "C", "D")),
             Arguments.of(
                 arrayOf("A", "c", "B", "e", "d", "F", "y", "G"),
                 arrayOf("A", "B", "F", "G", "c", "d", "e", "y"),
             ),
+            Arguments.of(arrayOf("1", "1"), arrayOf("1", "1")),
+            Arguments.of(arrayOf("2", "1"), arrayOf("1", "2")),
+            Arguments.of(
+                arrayOf("", "Hello", "foo", "bar", "foo", "f00", "%*&^*&^&", "***"),
+                arrayOf("", "%*&^*&^&", "***", "Hello", "bar", "f00", "foo", "foo"),
+            ),
         )
     }
 
-    internal class InputObjectArrayArgumentsProvider : ArgumentsProvider {
+    private class InputObjectArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(arrayOf(TestObject.empty()), arrayOf(TestObject.empty())),
             Arguments.of(
@@ -105,12 +124,35 @@ internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private v
                 arrayOf(TestObject(0, "Jake"), TestObject(1, "Anna"), TestObject(2, "Alex")),
                 arrayOf(TestObject(2, "Alex"), TestObject(1, "Anna"), TestObject(0, "Jake")),
             ),
+            Arguments.of(
+                arrayOf(TestObject(0, "A"), TestObject(0, "A"), TestObject(0, "A")),
+                arrayOf(TestObject(0, "A"), TestObject(0, "A"), TestObject(0, "A")),
+            ),
+            Arguments.of(
+                arrayOf(TestObject(0, "C"), TestObject(0, "B"), TestObject(0, "A")),
+                arrayOf(TestObject(0, "A"), TestObject(0, "B"), TestObject(0, "C")),
+            ),
+            Arguments.of(
+                arrayOf(TestObject(2, "A"), TestObject(1, "B"), TestObject(0, "C")),
+                arrayOf(TestObject(2, "A"), TestObject(1, "B"), TestObject(0, "C")),
+            ),
+            Arguments.of(
+                arrayOf(TestObject(2, ""), TestObject(1, ""), TestObject(0, "")),
+                arrayOf(TestObject(0, ""), TestObject(1, ""), TestObject(2, "")),
+            ),
         )
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArrayArgumentsProvider::class)
     internal fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
+        strategy.perform(arr)
+        assertArrayEquals(expected, arr)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputFloatArgumentsProvider::class)
+    internal fun `float array test`(arr: Array<Float>, expected: Array<Float>) {
         strategy.perform(arr)
         assertArrayEquals(expected, arr)
     }
