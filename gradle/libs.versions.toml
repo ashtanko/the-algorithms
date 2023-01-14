@@ -1,15 +1,15 @@
 [versions]
 coroutines = "1.6.4"
-junit = "5.8.2"
-kotlin = "1.7.20"
-mockk = "1.12.3"
-detekt = "1.21.0"
-dokka = "1.7.10"
+junit = "5.9.2"
+kotlin = "1.8.0"
+mockk = "1.13.3"
+detekt = "1.22.0"
+dokka = "1.7.20"
 spotless = "6.9.1"
-dependency = "1.12.0"
-pitest = "1.7.4"
-ktlint = "0.46.1"
-assertj = "3.23.1"
+dependency = "1.18.0"
+pitest = "1.9.0"
+ktlint = "0.48.1"
+assertj = "3.24.1"
 
 [libraries]
 junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
