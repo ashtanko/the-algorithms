@@ -34,8 +34,5 @@ fun Char.isVowel(): Boolean {
     val ae = this == 'a' || this == 'e'
     val io = this == 'i' || this == 'o'
     val iou = io || this == 'u'
-    if (ae || iou) {
-        return true
-    }
-    return false
+    return ae || iou
 }

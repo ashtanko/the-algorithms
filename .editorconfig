@@ -15,12 +15,9 @@ indent_size = 4
 
 [*.{kt,kts}]
 ij_kotlin_imports_layout = *
-disabled_rules=import-ordering
 ij_kotlin_allow_trailing_comma = true
 ij_kotlin_allow_trailing_comma_on_call_site = true
-# Note that in this case 'import-ordering' rule will be active and 'indent' will be disabled
-[api/*.{kt,kts}]
-disabled_rules=indent
+ij_any_case_statement_on_separate_line = false
 
 [{Makefile,*.go}]
 indent_style = tab

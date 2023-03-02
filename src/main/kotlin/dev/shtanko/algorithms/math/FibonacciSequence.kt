@@ -58,7 +58,8 @@ enum class Fibonacci {
     },
     RECURSIVE {
         override fun invoke(n: Long): Long = if (n < 2) n else this(n - 1) + this(n - 2)
-    };
+    },
+    ;
 
     abstract operator fun invoke(n: Long): Long
 }
