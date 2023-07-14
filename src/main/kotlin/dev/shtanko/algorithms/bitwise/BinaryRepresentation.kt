@@ -41,7 +41,7 @@ fun Long.bin(): String {
     val sb = StringBuilder()
     sb.append("0")
 
-    val mostSignificantBit = BITS_COUNT - 1
+    val mostSignificantBit = BITS_COUNT - 2
     val bitMask = 1L shl mostSignificantBit
 
     var i: Long = bitMask
