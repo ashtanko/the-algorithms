@@ -24,18 +24,10 @@
 package dev.shtanko.algorithms.extensions
 
 /**
- * Reverse the subsections of the min array.
- */
-fun IntArray.reverse(start: Int, end: Int) {
-    for (i in 0 until (end - start) / 2) {
-        val temp = this[i + start]
-        this[i + start] = this[end - i - 1]
-        this[end - i - 1] = temp
-    }
-}
-
-/**
- * Reverse char array by indexes
+ * Reverses a portion of the CharArray between the specified indices.
+ *
+ * @param leftIdx The starting index (inclusive) of the portion to be reversed.
+ * @param rightIdx The ending index (inclusive) of the portion to be reversed.
  */
 fun CharArray.reverse(leftIdx: Int, rightIdx: Int) {
     var left = leftIdx
@@ -45,4 +37,16 @@ fun CharArray.reverse(leftIdx: Int, rightIdx: Int) {
         this[left++] = this[right]
         this[right--] = tmp
     }
+}
+
+/**
+ * Swaps the characters at the given indices in this CharArray.
+ *
+ * @param i the index of the first character to swap.
+ * @param i1 the index of the second character to swap.
+ */
+fun CharArray.swap(i: Int, i1: Int) {
+    val temp = this[i]
+    this[i] = this[i1]
+    this[i1] = temp
 }

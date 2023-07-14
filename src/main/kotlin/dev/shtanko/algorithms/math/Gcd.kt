@@ -24,7 +24,10 @@
 package dev.shtanko.algorithms.math
 
 /**
- * Greatest common divisor
+ * Calculates the greatest common divisor (GCD) of the two integers in the Pair.
+ *
+ * @receiver The Pair of integers.
+ * @return The greatest common divisor of the two integers.
  */
 fun Pair<Int, Int>.gcd(): Int {
     var a = first
@@ -37,6 +40,13 @@ fun Pair<Int, Int>.gcd(): Int {
     return a
 }
 
+/**
+ * Calculates the greatest common divisor (GCD) of two integers.
+ *
+ * @param a The first integer.
+ * @param b The second integer.
+ * @return The greatest common divisor of the two integers.
+ */
 fun gcd(a: Int, b: Int): Int {
     return if (b == 0) a else gcd(b, a % b)
 }

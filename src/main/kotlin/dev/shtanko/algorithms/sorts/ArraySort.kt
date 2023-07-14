@@ -24,8 +24,14 @@
 package dev.shtanko.algorithms.sorts
 
 /**
- * Kotlin stdlib sort implementation
+ * Implementation of the sorting strategy using the built-in array sort function.
  */
 class ArraySort : AbstractSortStrategy {
+    /**
+     * Performs the sorting operation on the given array using the built-in array sort function.
+     *
+     * @param arr The array to sort.
+     * @param T The type of elements in the array, must be comparable.
+     */
     override fun <T : Comparable<T>> perform(arr: Array<T>) = arr.sort()
 }

@@ -29,8 +29,19 @@ import dev.shtanko.algorithms.extensions.swap
  * Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.
  * Each iteration, insertion sort removes one element from the input data, finds the location it belongs within
  * the sorted list, and inserts it there. It repeats until no input elements remain.
+ *
+ * Worst-case performance:       O(n^2)
+ * Best-case performance:        O(n)
+ * Average performance:          O(n^2)
+ * Worst-case space complexity:  O(1)
  */
 class InsertionSort : AbstractSortStrategy {
+    /**
+     * Performs the insertion sort operation on the given array.
+     *
+     * @param arr The array to sort.
+     * @param T The type of elements in the array, must be comparable.
+     */
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         for (i in 1 until arr.size) {
             for (j in i downTo 1) {
@@ -42,18 +53,19 @@ class InsertionSort : AbstractSortStrategy {
 }
 
 /**
- * This method implements the Generic Insertion Sort
+ * Implementation of the generic insertion sort algorithm.
  *
- * Worst-case performance       O(n^2)
- * Best-case performance        O(n)
- * Average performance          O(n^2)
- * Worst-case space complexity  O(1)
- **/
+ * Worst-case performance:       O(n^2)
+ * Best-case performance:        O(n)
+ * Average performance:          O(n^2)
+ * Worst-case space complexity:  O(1)
+ */
 class InsertionSort2 : AbstractSortStrategy {
-
     /**
-     * Sorts the array in increasing order
-     * @param arr The array to be sorted
+     * Performs the insertion sort operation on the given array.
+     *
+     * @param arr The array to sort.
+     * @param T The type of elements in the array, must be comparable.
      */
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         for (i in 1 until arr.size) {

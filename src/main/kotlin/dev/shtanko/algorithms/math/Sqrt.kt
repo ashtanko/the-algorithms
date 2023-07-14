@@ -28,12 +28,23 @@ import kotlin.math.abs
 private const val EPSILON = 1e-15
 
 /**
- * Compute the square root using Newton's method
+ * Calculates the square root of the given integer.
+ *
+ * @param c The integer to calculate the square root of.
+ * @param e The tolerance value for convergence (default: EPSILON).
+ * @return The square root of the given integer.
  */
 fun sqrt(c: Int, e: Double = EPSILON): Double {
     return sqrt(c.toDouble(), e)
 }
 
+/**
+ * Calculates the square root of the given double.
+ *
+ * @param c The double to calculate the square root of.
+ * @param e The tolerance value for convergence (default: EPSILON).
+ * @return The square root of the given double.
+ */
 fun sqrt(c: Double, e: Double = EPSILON): Double {
     if (c < 0) return Double.NaN
     var t = c

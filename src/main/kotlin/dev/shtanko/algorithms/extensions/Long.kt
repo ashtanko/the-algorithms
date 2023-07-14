@@ -26,7 +26,11 @@ package dev.shtanko.algorithms.extensions
 import dev.shtanko.algorithms.DECIMAL
 
 /**
- * Check self is a super palindrome
+ * Checks if a Long number is a super palindrome.
+ * A super palindrome is defined as a number that remains a palindrome
+ * after dividing it by 2 twice.
+ *
+ * @return `true` if the number is a super palindrome, `false` otherwise.
  */
 fun Long.isSuperPalindrome(): Boolean {
     var x = this
@@ -40,14 +44,19 @@ fun Long.isSuperPalindrome(): Boolean {
 }
 
 /**
- * Check self is a palindrome
+ * Checks if a Long number is a palindrome.
+ * A palindrome is a number that reads the same forward and backward.
+ *
+ * @return `true` if the number is a palindrome, `false` otherwise.
  */
 fun Long.isPalindrome(): Boolean {
     return this == this.reverse()
 }
 
 /**
- * Reverse self
+ * Reverses the digits of a Long number.
+ *
+ * @return The reversed Long number.
  */
 fun Long.reverse(): Long {
     var ans = 0L

@@ -28,25 +28,26 @@ import dev.shtanko.algorithms.DECIMAL
 import java.text.CharacterIterator
 import java.text.StringCharacterIterator
 import java.util.Locale
-import kotlin.math.abs
 
-private const val WTF = 0xfffccccccccccccL
-private const val LIM = 40
-private const val SIZE_CHARACTERS = "KMGTPE"
+private const val BIT_MASK = 0xfffccccccccccccL
+private const val MAX_LOOP_INDEX = 40
+private const val UNITS = "KMGTPE"
 
 /**
- * Converts bytes to human-readable string
+ * Converts a long value to a human-readable byte count representation using binary prefixes.
+ *
+ * @return The human-readable byte count representation.
  */
 fun Long.toHumanReadableByteCountBin(): String {
     val bytes = this
-    val absB = if (bytes == Long.MIN_VALUE) Long.MAX_VALUE else abs(bytes)
+    val absB = if (bytes == Long.MIN_VALUE) Long.MAX_VALUE else Math.abs(bytes)
     if (absB < BYTE) {
         return String.format(Locale.getDefault(), "%d B", bytes)
     }
     var value = absB
-    val ci: CharacterIterator = StringCharacterIterator(SIZE_CHARACTERS)
-    var i = LIM
-    while (i >= 0 && absB > WTF shr i) {
+    val ci: CharacterIterator = StringCharacterIterator(UNITS)
+    var i = MAX_LOOP_INDEX
+    while (i >= 0 && absB > BIT_MASK shr i) {
         value = value shr DECIMAL
         ci.next()
         i -= DECIMAL

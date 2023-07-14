@@ -26,16 +26,25 @@ package dev.shtanko.algorithms.sorts
 import dev.shtanko.algorithms.extensions.swap
 
 /**
- * Implementation of Shell Sort
- * @link https://en.wikipedia.org/wiki/Shellsort
- * Best complexity: O(n log n)
- * Average complexity: O(n^4/3)
- * Worst complexity: O(n^4/3)
- * Space Complexity: O(1)
+ * Shell sort is an in-place comparison sort that can be seen as either a generalization of insertion sort or a
+ * variation of bubble sort. It starts by sorting pairs of elements far apart from each other and progressively
+ * reducing the gap between elements to be compared. The final iteration uses a gap of 1, which is equivalent to
+ * an insertion sort. The algorithm's time complexity depends on the chosen gap sequence.
+ *
+ * Worst-case performance:       O(n^2)
+ * Best-case performance:        O(n log n)
+ * Average performance:          Depends on the gap sequence
+ * Worst-case space complexity:  O(1)
  * Stable: No
  */
 class ShellSort : AbstractSortStrategy {
 
+    /**
+     * Performs the Shell sort operation on the given array.
+     *
+     * @param arr The array to sort.
+     * @param T The type of elements in the array, must be comparable.
+     */
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         val n = arr.size
         var h = 1

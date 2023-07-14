@@ -23,5 +23,10 @@
 */
 package dev.shtanko.algorithms.extensions
 
+/**
+ * Checks if a Double value is even.
+ *
+ * @return `true` if the Double value is even, `false` otherwise.
+ */
 val Double.isEven: Boolean
     get() = this % 2 == 0.0

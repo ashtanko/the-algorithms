@@ -23,6 +23,18 @@
 */
 package dev.shtanko.algorithms.search
 
+/**
+ * Functional interface representing an abstract search strategy.
+ *
+ * @param T The type of elements in the array.
+ */
 fun interface AbstractSearchStrategy<T> {
+    /**
+     * Performs the search operation on the given array to find the index of the specified element.
+     *
+     * @param arr The array to search.
+     * @param element The element to search for.
+     * @return The index of the element in the array, or -1 if the element is not found.
+     */
     fun perform(arr: Array<T>, element: T): Int
 }

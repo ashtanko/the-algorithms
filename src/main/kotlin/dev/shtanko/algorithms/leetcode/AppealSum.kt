@@ -28,12 +28,28 @@ private const val LIMIT = 26
 /**
  * 2262. Total Appeal of A String
  * @link https://leetcode.com/problems/total-appeal-of-a-string/
+ * Functional interface representing an appeal sum operation on a String.
  */
 fun interface AppealSum {
+    /**
+     * Performs an appeal sum operation on the given String.
+     *
+     * @param s The input String to perform the appeal sum on.
+     * @return The result of the appeal sum operation.
+     */
     fun perform(s: String): Long
 }
 
+/**
+ * Implementation of the AppealSum interface using dynamic programming.
+ */
 class AppealSumDP : AppealSum {
+    /**
+     * Performs the appeal sum operation on the given String using dynamic programming.
+     *
+     * @param s The input String to perform the appeal sum on.
+     * @return The result of the appeal sum operation.
+     */
     override fun perform(s: String): Long {
         var cur: Long = 0
         val prev = LongArray(LIMIT)

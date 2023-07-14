@@ -6,7 +6,7 @@ Implementation of different algorithms and data structures using Kotlin lang
 [![CodeFactor](https://www.codefactor.io/repository/github/ashtanko/the-algorithms/badge)](https://www.codefactor.io/repository/github/ashtanko/the-algorithms)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Fthe-algorithms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Fthe-algorithms?ref=badge_shield)
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
-[![Kotlin Version](https://img.shields.io/badge/kotlin-1.7.20-blue.svg)](http://kotlinlang.org/)
+[![Kotlin Version](https://img.shields.io/badge/kotlin-1.9.0-blue.svg)](http://kotlinlang.org/)
 [![codecov](https://codecov.io/gh/ashtanko/the-algorithms/branch/main/graph/badge.svg?token=6vzgrCAl5c)](https://codecov.io/gh/ashtanko/the-algorithms)
 
 ## Overview
@@ -35,38 +35,38 @@ optimizations.
 
 ## Metrics
 
-* 208 number of properties
+* 210 number of properties
 
-* 210 number of functions
+* 216 number of functions
 
-* 154 number of classes
+* 157 number of classes
 
 * 7 number of packages
 
-* 72 number of kt files
+* 73 number of kt files
 
 ## Complexity Report
 
-* 5,122 lines of code (loc)
+* 5,927 lines of code (loc)
 
-* 2,770 source lines of code (sloc)
+* 3,054 source lines of code (sloc)
 
-* 2,014 logical lines of code (lloc)
+* 2,281 logical lines of code (lloc)
 
-* 1,944 comment lines of code (cloc)
+* 2,448 comment lines of code (cloc)
 
-* 389 cyclomatic complexity (mcc)
+* 397 cyclomatic complexity (mcc)
 
-* 263 cognitive complexity
+* 275 cognitive complexity
 
 * 0 number of total code smells
 
-* 70% comment source ratio
+* 80% comment source ratio
 
-* 193 mcc per 1,000 lloc
+* 174 mcc per 1,000 lloc
 
 * 0 code smells per 1,000 lloc
 
 ## Findings (0)
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-12-08 08:13:22 UTC
+generated with [detekt version 1.23.0](https://detekt.dev/) on 2023-07-14 22:23:31 UTC

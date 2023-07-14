@@ -27,23 +27,27 @@ import java.text.CharacterIterator
 import java.text.StringCharacterIterator
 import java.util.Locale
 
-private const val WTF_IN = -999950
-private const val WTF_OUT = 999950
-private const val SIZE_CHARACTERS = "kMGTPE"
-private const val ONE_T = 1000
+private const val THOUSAND = 1000
+private const val BOUNDARY = 999950
+private const val UNITS = "kMGTPE"
 
 /**
- * Converts bytes to human-readable string
+ * Converts a long value to a human-readable byte count representation using SI prefixes.
+ *
+ * @return The human-readable byte count representation.
  */
 fun Long.toHumanReadableByteCountSI(): String {
     var bytes = this
-    if (-ONE_T < bytes && bytes < ONE_T) {
+
+    if (-THOUSAND < bytes && bytes < THOUSAND) {
         return "$bytes B"
     }
-    val ci: CharacterIterator = StringCharacterIterator(SIZE_CHARACTERS)
-    while (bytes <= WTF_IN || bytes >= WTF_OUT) {
-        bytes /= ONE_T
+
+    val ci: CharacterIterator = StringCharacterIterator(UNITS)
+    while (bytes <= -BOUNDARY || bytes >= BOUNDARY) {
+        bytes /= THOUSAND
         ci.next()
     }
-    return String.format(Locale.getDefault(), "%.1f %cB", bytes / ONE_T.toDouble(), ci.current())
+
+    return String.format(Locale.getDefault(), "%.1f %cB", bytes / THOUSAND.toDouble(), ci.current())
 }

@@ -23,6 +23,12 @@
 */
 package dev.shtanko.algorithms.math
 
+/**
+ * Calculates the Fibonacci number at the given index using recursion.
+ *
+ * @receiver The index of the Fibonacci number.
+ * @return The Fibonacci number at the given index.
+ */
 fun Int.toFibonacciSequence(): Int {
     if (this <= 1) {
         return this
@@ -30,6 +36,12 @@ fun Int.toFibonacciSequence(): Int {
     return (this - 1).toFibonacciSequence() + (this - 2).toFibonacciSequence()
 }
 
+/**
+ * Calculates the Fibonacci number at the given index using iteration.
+ *
+ * @param n The index of the Fibonacci number.
+ * @return The Fibonacci number at the given index.
+ */
 fun fibonacciAt(n: Int) = run {
     tailrec fun fibonacciAcc(n: Int, a: Long, b: Long): Long {
         return when (n == 0) {
@@ -40,6 +52,9 @@ fun fibonacciAt(n: Int) = run {
     fibonacciAcc(n, 1, 0)
 }
 
+/**
+ * Enum class representing different strategies for calculating Fibonacci numbers.
+ */
 enum class Fibonacci {
     ITERATIVE {
         override fun invoke(n: Long) = if (n < 2) {
@@ -61,5 +76,11 @@ enum class Fibonacci {
     },
     ;
 
+    /**
+     * Calculates the Fibonacci number at the given index using the specified strategy.
+     *
+     * @param n The index of the Fibonacci number.
+     * @return The Fibonacci number at the given index.
+     */
     abstract operator fun invoke(n: Long): Long
 }

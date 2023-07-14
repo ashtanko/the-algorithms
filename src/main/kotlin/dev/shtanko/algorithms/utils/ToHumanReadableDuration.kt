@@ -26,6 +26,11 @@ package dev.shtanko.algorithms.utils
 import dev.shtanko.algorithms.MILLISECOND
 import java.util.concurrent.TimeUnit
 
+/**
+ * Converts the given duration in nanoseconds to a human-readable format.
+ *
+ * @return a string representing the duration in a human-readable format.
+ */
 fun Long.toHumanReadableDuration(): String {
     val millis = TimeUnit.MILLISECONDS.convert(this, TimeUnit.NANOSECONDS)
     val sec = TimeUnit.SECONDS.convert(this, TimeUnit.NANOSECONDS)

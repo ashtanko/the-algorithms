@@ -55,7 +55,9 @@ private val alphabet = charArrayOf(
 )
 
 /**
- * Check is a string binary.
+ * Checks if a String represents a binary number (contains only '0' and '1' characters).
+ *
+ * @return `true` if the String represents a binary number, `false` otherwise.
  */
 fun String.isBinary(): Boolean {
     if (this.isBlank()) return false
@@ -66,7 +68,9 @@ fun String.isBinary(): Boolean {
 }
 
 /**
- * @return common prefix of two strings
+ * Finds the common prefix of two Strings in a Pair.
+ *
+ * @return The common prefix String.
  */
 fun Pair<String, String>.commonPrefix(): String {
     val (left, right) = this
@@ -78,8 +82,9 @@ fun Pair<String, String>.commonPrefix(): String {
 }
 
 /**
- * Count zeroes in binary string
- * @return int array of zeroes
+ * Counts the number of occurrences of '0' and '1' characters in a String.
+ *
+ * @return An IntArray with the count of '0's and '1's respectively.
  */
 fun String.countZeroesOnes(): IntArray {
     val c = IntArray(2)
@@ -89,6 +94,11 @@ fun String.countZeroesOnes(): IntArray {
     return c
 }
 
+/**
+ * Gets the number representation of a String based on the position of each character in the alphabet.
+ *
+ * @return The number representation of the String.
+ */
 fun String.getNumberOfLetter(): Int {
     val sb = StringBuilder()
     for (c in this) {
@@ -97,6 +107,11 @@ fun String.getNumberOfLetter(): Int {
     return sb.toString().removeZeroesInBegin().toInt()
 }
 
+/**
+ * Removes leading zeroes from a String, preserving a single '0' if the String contains all zeroes.
+ *
+ * @return The modified String without leading zeroes.
+ */
 fun String.removeZeroesInBegin(): String {
     if (this.isEmpty()) {
         return ""
@@ -113,10 +128,20 @@ fun String.removeZeroesInBegin(): String {
     return this.toInt().toString()
 }
 
+/**
+ * Checks if a String consists of all zeroes.
+ *
+ * @return `true` if the String consists of all zeroes, `false` otherwise.
+ */
 fun String.isAllZeroes(): Boolean {
     return this.none { it.isZero().not() }
 }
 
+/**
+ * Checks if a Char is equal to '0'.
+ *
+ * @return `true` if the Char is '0', `false` otherwise.
+ */
 fun Char.isZero(): Boolean {
     return this == '0'
 }

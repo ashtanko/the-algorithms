@@ -23,7 +23,26 @@
 */
 package dev.shtanko.algorithms.sorts
 
+/**
+ * Recursive Quick Sort is a sorting algorithm that works by selecting a pivot element from the array and
+ * partitioning the other elements into two sub-arrays, according to whether they are less than or greater
+ * than the pivot.
+ * It then recursively sorts the sub-arrays. This implementation uses a functional approach with Kotlin's
+ * extension functions.
+ *
+ * Worst-case performance:       O(n^2)
+ * Best-case performance:        O(n log n)
+ * Average performance:          O(n log n)
+ * Worst-case space complexity:  O(log n)
+ */
 class QuickSortRecursive : AbstractSortStrategy {
+
+    /**
+     * Performs the recursive quick sort operation on the given array.
+     *
+     * @param arr The array to sort.
+     * @param T The type of elements in the array, must be comparable.
+     */
     override fun <T : Comparable<T>> perform(arr: Array<T>) {
         val sorted = arr.toList().quickSort()
         for (i in sorted.indices) {
@@ -32,6 +51,12 @@ class QuickSortRecursive : AbstractSortStrategy {
     }
 }
 
+/**
+ * Extension function that performs the quick sort operation on a list.
+ *
+ * @return A new list with elements sorted in ascending order.
+ * @param T The type of elements in the list, must be comparable.
+ */
 fun <T : Comparable<T>> List<T>.quickSort(): List<T> = when {
     size < 2 -> this
     else -> {

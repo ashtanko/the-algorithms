@@ -30,6 +30,25 @@ import kotlin.system.measureNanoTime
 import kotlin.time.DurationUnit
 import kotlin.time.toTimeUnit
 
+/**
+ * Measures the execution time of a task using the specified `unit` for the result.
+ *
+ * @param unit The desired time unit for the result.
+ * @param task The task to measure the execution time of.
+ * @return The elapsed time in the specified time unit.
+ */
+fun measureTime(unit: DurationUnit, task: () -> Unit): Long {
+    return unit.toTimeUnit().convert(measureNanoTime(task), TimeUnit.NANOSECONDS)
+}
+
+/**
+ * Measures the execution time of a task and prints the result.
+ * The task is associated with a strategy and an array length.
+ *
+ * @param strategy The strategy associated with the task.
+ * @param array The array associated with the task.
+ * @param task The task to measure the execution time of.
+ */
 fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Unit) {
     val elapsed = measureTime(DurationUnit.MILLISECONDS, task)
     println(
@@ -43,10 +62,12 @@ fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Uni
     )
 }
 
-fun measureTime(unit: DurationUnit, task: () -> Unit): Long {
-    return unit.toTimeUnit().convert(measureNanoTime(task), TimeUnit.NANOSECONDS)
-}
-
+/**
+ * Measures the execution time of a task and prints the result.
+ *
+ * @param taskName The name of the task.
+ * @param task The task to measure the execution time of.
+ */
 fun measureTime(taskName: String, task: () -> Unit) {
     val elapsed = measureTime(DurationUnit.MILLISECONDS, task)
     println(String.format(Locale.getDefault(), "Task %s Consumed time: %d ms", taskName, elapsed))

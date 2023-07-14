@@ -23,6 +23,15 @@
 */
 package dev.shtanko.algorithms.sorts
 
+/**
+ * Interface representing an abstract sorting strategy.
+ */
 interface AbstractSortStrategy {
+    /**
+     * Performs the sorting operation on the given array.
+     *
+     * @param arr The array to sort.
+     * @param T The type of elements in the array, must be comparable.
+     */
     fun <T : Comparable<T>> perform(arr: Array<T>)
 }

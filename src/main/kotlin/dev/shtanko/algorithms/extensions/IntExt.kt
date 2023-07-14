@@ -26,15 +26,39 @@ package dev.shtanko.algorithms.extensions
 import kotlin.math.sqrt
 import kotlin.random.Random
 
+/**
+ * Functional interface representing a predicate that accepts an Int and returns a Boolean.
+ */
 fun interface IntPredicate {
+    /**
+     * Evaluates the predicate for the given Int value.
+     *
+     * @param i The Int value to evaluate.
+     * @return `true` if the predicate accepts the value, `false` otherwise.
+     */
     fun accept(i: Int): Boolean
 }
 
+/**
+ * Checks if an Int value is even.
+ *
+ * @return `true` if the Int value is even, `false` otherwise.
+ */
 val isEven = IntPredicate { it % 2 == 0 }
 
+/**
+ * Checks if an Int value is even.
+ *
+ * @return `true` if the Int value is even, `false` otherwise.
+ */
 val Int.isEven: Boolean
     get() = this % 2 == 0
 
+/**
+ * Generates an IntArray of the specified size with random values.
+ *
+ * @return The generated IntArray.
+ */
 fun Int.generateRandomArray(): IntArray {
     val array = IntArray(this)
     for (i in 0 until this) {
@@ -43,10 +67,20 @@ fun Int.generateRandomArray(): IntArray {
     return array
 }
 
+/**
+ * Checks if an Int value is less than zero.
+ *
+ * @return `true` if the Int value is less than zero, `false` otherwise.
+ */
 fun Int.lessThanZero(): Boolean {
     return this < 0
 }
 
+/**
+ * Checks if an Int value is a prime number.
+ *
+ * @return `true` if the Int value is a prime number, `false` otherwise.
+ */
 fun Int.isPrime(): Boolean {
     if (this < 2) return false
     val r = sqrt(this.toDouble()).toInt()

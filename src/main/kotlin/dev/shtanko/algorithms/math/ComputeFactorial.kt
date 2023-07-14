@@ -24,9 +24,15 @@
 package dev.shtanko.algorithms.math
 
 /**
+ * Computes the factorial of the given input using tail recursion.
  * Factorial, in mathematics, the product of all positive integers less than or equal to a given positive integer
  * and denoted by that integer and an exclamation point. Thus, factorial seven is written 7!,
  * meaning 1 × 2 × 3 × 4 × 5 × 6 × 7. Factorial zero is defined as equal to 1.
+ *
+ * @param input The input number to compute the factorial of.
+ * @param temp The temporary variable to store the intermediate result (default: 1).
+ * @return The factorial of the input number.
+ * @throws IllegalArgumentException if the input is a negative number.
  */
 tailrec fun computeFactorial(input: Int, temp: Long = 1L): Long =
     when {

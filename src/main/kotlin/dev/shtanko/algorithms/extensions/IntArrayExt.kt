@@ -23,51 +23,16 @@
 */
 package dev.shtanko.algorithms.extensions
 
-fun <T> Array<T>.swap(i: Int, j: Int) {
-    val tmp = this[i]
-    this[i] = this[j]
-    this[j] = tmp
-}
-
-fun IntArray.swap(i: Int, j: Int) {
-    val tmp = this[i]
-    this[i] = this[j]
-    this[j] = tmp
-}
-
-fun <T> Array<T>.reverse() {
-    val n = this.size
-    for (i in 0 until n / 2)
-        this.swap(i, n - 1 - i)
-}
-
-fun <T> Array<T>.reverse2() {
-    var i = 0
-    var j = size - 1
-    while (i < j) {
-        swap(i, j)
-        i++
-        j--
+/**
+ * Reverses a portion of the IntArray between the specified start and end indices (inclusive).
+ *
+ * @param start The starting index of the portion to be reversed.
+ * @param end The ending index of the portion to be reversed.
+ */
+fun IntArray.reverse(start: Int, end: Int) {
+    for (i in 0 until (end - start) / 2) {
+        val temp = this[i + start]
+        this[i + start] = this[end - i - 1]
+        this[end - i - 1] = temp
     }
-}
-
-fun <T> Array<T>.flip(left: Int, right: Int) {
-    var l = left
-    var r = right
-    while (l <= r) {
-        swap(l++, r--)
-    }
-}
-
-fun CharArray.swap(i: Int, j: Int) {
-    val tmp = this[i]
-    this[i] = this[j]
-    this[j] = tmp
-}
-
-fun IntArray.second(): Int {
-    if (isEmpty()) {
-        throw NoSuchElementException("Array is empty.")
-    }
-    return this[1]
 }
