@@ -127,8 +127,8 @@ fun isValidInput(input: String): Boolean = arrayOf("a", "s", "d", "w").contains(
  * Waits for user input from the console.
  */
 fun waitForInput(): String {
-    println("Direction?  ")
-    return readLine().orEmpty()
+    println("Direction? (a - shift left, s - shift down, d - shift right, w - shift up)")
+    return readlnOrNull().orEmpty()
 }
 
 /**
