@@ -32,8 +32,8 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class StringExtTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+class StringExtTest {
+    class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("1", true),
             Arguments.of("0", true),
@@ -49,7 +49,7 @@ internal class StringExtTest {
         )
     }
 
-    internal class InputPrefixArgumentsProvider : ArgumentsProvider {
+    class InputPrefixArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "",
@@ -74,7 +74,7 @@ internal class StringExtTest {
         )
     }
 
-    internal class CountZeroesArgumentsProvider : ArgumentsProvider {
+    class CountZeroesArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "",
@@ -107,7 +107,7 @@ internal class StringExtTest {
         )
     }
 
-    internal class IntArgumentsProvider : ArgumentsProvider {
+    class IntArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "b",
@@ -136,7 +136,7 @@ internal class StringExtTest {
         )
     }
 
-    internal class RemoveZeroesArgumentsProvider : ArgumentsProvider {
+    class RemoveZeroesArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 "0",
@@ -167,7 +167,7 @@ internal class StringExtTest {
 
     @ParameterizedTest
     @ArgumentsSource(CountZeroesArgumentsProvider::class)
-    internal fun `count zeroes ones test`(str: String, expected: IntArray) {
+    fun `count zeroes ones test`(str: String, expected: IntArray) {
         val actual = str.countZeroesOnes()
         assertArrayEquals(actual, expected)
         assertThat(actual).isEqualTo(expected)
@@ -175,28 +175,28 @@ internal class StringExtTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is binary test`(str: String, expected: Boolean) {
+    fun `is binary test`(str: String, expected: Boolean) {
         val actual = str.isBinary()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputPrefixArgumentsProvider::class)
-    internal fun `common prefix test`(left: String, right: String, expected: String) {
+    fun `common prefix test`(left: String, right: String, expected: String) {
         val actual = (left to right).commonPrefix()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(IntArgumentsProvider::class)
-    internal fun `int or string test`(s: String, expected: Int) {
+    fun `int or string test`(s: String, expected: Int) {
         val actual = s.getNumberOfLetter()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(RemoveZeroesArgumentsProvider::class)
-    internal fun `remove zeroes in begin test`(s: String, expected: String) {
+    fun `remove zeroes in begin test`(s: String, expected: String) {
         val actual = s.removeZeroesInBegin()
         assertThat(actual).isEqualTo(expected)
     }

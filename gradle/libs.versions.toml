@@ -1,15 +1,21 @@
 [versions]
 coroutines = "1.6.4"
-junit = "5.9.2"
-kotlin = "1.8.10"
-mockk = "1.13.3"
-detekt = "1.22.0"
-dokka = "1.7.20"
+# https://junit.org/junit5/
+junit = "5.10.0-RC1"
+kotlin = "1.9.0"
+# https://mockk.io/
+mockk = "1.13.5"
+# https://github.com/detekt/detekt
+detekt = "1.23.0"
+#https://github.com/Kotlin/dokka
+dokka = "1.8.20"
 spotless = "6.9.1"
 dependency = "1.18.0"
 pitest = "1.9.0"
-ktlint = "0.48.1"
-assertj = "3.24.1"
+#https://github.com/pinterest/ktlint
+ktlint = "0.50.0"
+#https://mvnrepository.com/artifact/org.assertj/assertj-core
+assertj = "3.24.2"
 
 [libraries]
 junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }

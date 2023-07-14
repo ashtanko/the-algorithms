@@ -32,8 +32,8 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class MemoryTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+class MemoryTest {
+    class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(BubbleSort()),
             Arguments.of(SimpleBubbleSort()),
@@ -65,7 +65,7 @@ internal class MemoryTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `sorts test`(testCase: AbstractSortStrategy) {
+    fun `sorts test`(testCase: AbstractSortStrategy) {
         execute(testCase, getSortedArray())
     }
 

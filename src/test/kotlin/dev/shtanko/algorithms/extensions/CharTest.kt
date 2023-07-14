@@ -31,9 +31,9 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class CharTest {
+class CharTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of('a'..'z', 0, 0),
             Arguments.of('a'..'z', 6, 6),
@@ -42,7 +42,7 @@ internal class CharTest {
         )
     }
 
-    internal class InputVowelArgumentsProvider : ArgumentsProvider {
+    class InputVowelArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of('a', true),
             Arguments.of('e', true),
@@ -58,7 +58,7 @@ internal class CharTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `random string test`(range: CharRange, len: Int, expected: Int) {
+    fun `random string test`(range: CharRange, len: Int, expected: Int) {
         val randomString = range.randomString(len)
         val actual = randomString.length
         assertThat(actual).isEqualTo(expected)
@@ -66,7 +66,7 @@ internal class CharTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputVowelArgumentsProvider::class)
-    internal fun `is vowel test`(c: Char, expected: Boolean) {
+    fun `is vowel test`(c: Char, expected: Boolean) {
         val actual = c.isVowel()
         assertThat(actual).isEqualTo(expected)
     }

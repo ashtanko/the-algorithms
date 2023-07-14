@@ -25,6 +25,7 @@ package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.generateRandomArray
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.Locale
 import java.util.stream.Stream
 import kotlin.system.measureTimeMillis
 import org.assertj.core.api.Assertions.assertThat
@@ -35,9 +36,9 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class PerformanceTest {
+class PerformanceTest {
 
-    internal class SlowSortsArgumentsProvider : ArgumentsProvider {
+    class SlowSortsArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(BubbleSort(), hundred),
             Arguments.of(BubbleSort(), fiveHundred),
@@ -73,7 +74,7 @@ internal class PerformanceTest {
         private val eightHundred = 800.generateRandomArray()
     }
 
-    internal class FastSortsArgumentsProvider : ArgumentsProvider {
+    class FastSortsArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(mergeSortStrategy, thirtyK),
             Arguments.of(mergeSortStrategy, fiftyK),
@@ -124,19 +125,19 @@ internal class PerformanceTest {
 
     @ParameterizedTest
     @ArgumentsSource(SlowSortsArgumentsProvider::class)
-    internal fun `slow sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
+    fun `slow sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
         executionTimeReport(strategy, arr)
     }
 
     @ParameterizedTest
     @ArgumentsSource(FastSortsArgumentsProvider::class)
-    internal fun `fast sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
+    fun `fast sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
         executionTimeReport(strategy, arr)
     }
 
     @ParameterizedTest
     @ArgumentsSource(SlowScopeStrategiesInputArgumentsProvider::class)
-    internal fun `slow strategies performance test`(n: Int, expected: Boolean) {
+    fun `slow strategies performance test`(n: Int, expected: Boolean) {
         val arr = n.generateRandomArray().toTypedArray()
         val fastStrategies = listOf(
             BubbleSort(),
@@ -154,7 +155,7 @@ internal class PerformanceTest {
 
     @ParameterizedTest
     @ArgumentsSource(FastScopeStrategiesInputArgumentsProvider::class)
-    internal fun `fast strategies performance test`(n: Int, expected: Boolean) {
+    fun `fast strategies performance test`(n: Int, expected: Boolean) {
         val arr = n.generateRandomArray().toTypedArray()
         val fastStrategies = listOf(
             MergeSort(),
@@ -173,6 +174,7 @@ internal class PerformanceTest {
         }
         println(
             String.format(
+                Locale.getDefault(),
                 "Given arrays of length %d %s Consumed time: %d ms",
                 arr.size,
                 "Fast strategies",

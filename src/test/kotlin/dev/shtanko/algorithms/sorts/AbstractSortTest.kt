@@ -34,7 +34,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
 @Suppress("ArrayPrimitive")
-internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
+abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
 
     private class InputArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -145,21 +145,21 @@ internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputArrayArgumentsProvider::class)
-    internal fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
+    fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
         strategy.perform(arr)
         assertArrayEquals(expected, arr)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputFloatArgumentsProvider::class)
-    internal fun `float array test`(arr: Array<Float>, expected: Array<Float>) {
+    fun `float array test`(arr: Array<Float>, expected: Array<Float>) {
         strategy.perform(arr)
         assertArrayEquals(expected, arr)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is sorted test`(arr: Array<Int>, expected: Boolean) {
+    fun `is sorted test`(arr: Array<Int>, expected: Boolean) {
         strategy.perform(arr)
         val actual = arr.isSorted()
         assertEquals(expected, actual)
@@ -167,14 +167,14 @@ internal abstract class AbstractSortTest<out T : AbstractSortStrategy>(private v
 
     @ParameterizedTest
     @ArgumentsSource(InputStringArrayArgumentsProvider::class)
-    internal fun `string array test`(arr: Array<String>, expected: Array<String>) {
+    fun `string array test`(arr: Array<String>, expected: Array<String>) {
         strategy.perform(arr)
         assertArrayEquals(expected, arr)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputObjectArrayArgumentsProvider::class)
-    internal fun `object test`(arr: Array<TestObject>, expected: Array<TestObject>) {
+    fun `object test`(arr: Array<TestObject>, expected: Array<TestObject>) {
         strategy.perform(arr)
         assertArrayEquals(expected, arr)
     }

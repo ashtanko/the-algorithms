@@ -31,8 +31,8 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class QuickSortRecursiveTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+class QuickSortRecursiveTest {
+    class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 listOf<Int>(),
@@ -59,7 +59,7 @@ internal class QuickSortRecursiveTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `quick sort test`(list: List<Int>, expected: List<Int>) {
+    fun `quick sort test`(list: List<Int>, expected: List<Int>) {
         val actual = list.quickSort()
         assertEquals(expected, actual)
     }

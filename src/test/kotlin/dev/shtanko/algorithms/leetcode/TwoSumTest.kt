@@ -32,7 +32,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
+abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -83,7 +83,7 @@ internal abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy:
     }
 }
 
-internal class TwoSumBruteForceTest : TwoSumTest<TwoSumBruteForce>(TwoSumBruteForce())
-internal class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumTwoPassHashTable>(TwoSumTwoPassHashTable())
-internal class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumOnePassHashTable>(TwoSumOnePassHashTable())
-internal class TwoSumOneHashMapTest : TwoSumTest<TwoSumOneHashMap>(TwoSumOneHashMap())
+class TwoSumBruteForceTest : TwoSumTest<TwoSumBruteForce>(TwoSumBruteForce())
+class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumTwoPassHashTable>(TwoSumTwoPassHashTable())
+class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumOnePassHashTable>(TwoSumOnePassHashTable())
+class TwoSumOneHashMapTest : TwoSumTest<TwoSumOneHashMap>(TwoSumOneHashMap())

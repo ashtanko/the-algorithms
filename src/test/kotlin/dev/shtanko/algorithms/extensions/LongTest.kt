@@ -31,8 +31,8 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class LongTest {
-    internal class InputArgumentsProvider : ArgumentsProvider {
+class LongTest {
+    class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 4L,
@@ -65,7 +65,7 @@ internal class LongTest {
         )
     }
 
-    internal class ToReverseInputArgumentsProvider : ArgumentsProvider {
+    class ToReverseInputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 1L,
@@ -90,7 +90,7 @@ internal class LongTest {
         )
     }
 
-    internal class InputPalindromeArgumentsProvider : ArgumentsProvider {
+    class InputPalindromeArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 0L,
@@ -113,21 +113,21 @@ internal class LongTest {
 
     @ParameterizedTest
     @ArgumentsSource(ToReverseInputArgumentsProvider::class)
-    internal fun `reverse long test`(n: Long, expected: Long) {
+    fun `reverse long test`(n: Long, expected: Long) {
         val actual = n.reverse()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputPalindromeArgumentsProvider::class)
-    internal fun `is palindrome test`(n: Long, expected: Boolean) {
+    fun `is palindrome test`(n: Long, expected: Boolean) {
         val actual = n.isSuperPalindrome()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `is super palindrome test`(n: Long, expected: Boolean) {
+    fun `is super palindrome test`(n: Long, expected: Boolean) {
         val actual = n.isSuperPalindrome()
         assertThat(actual).isEqualTo(expected)
     }

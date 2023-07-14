@@ -31,7 +31,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal abstract class AbstractStringSearchTest<out T : AbstractSearchStrategy<String>>(private val strategy: T) {
+abstract class AbstractStringSearchTest<out T : AbstractSearchStrategy<String>>(private val strategy: T) {
 
     private class InputStringArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -46,7 +46,7 @@ internal abstract class AbstractStringSearchTest<out T : AbstractSearchStrategy<
 
     @ParameterizedTest
     @ArgumentsSource(InputStringArrayArgumentsProvider::class)
-    internal fun `string array test`(arr: Array<String>, element: String, expected: Int) {
+    fun `string array test`(arr: Array<String>, element: String, expected: Int) {
         val actual = strategy.perform(arr, element)
         assertEquals(expected, actual)
     }

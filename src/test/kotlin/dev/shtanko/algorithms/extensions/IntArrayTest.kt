@@ -31,9 +31,9 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class IntArrayTest {
+class IntArrayTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(intArrayOf(), 0, 0, intArrayOf()),
             Arguments.of(intArrayOf(1), 0, 0, intArrayOf(1)),
@@ -45,7 +45,7 @@ internal class IntArrayTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `reverse int array test`(arr: IntArray, start: Int, end: Int, expected: IntArray) {
+    fun `reverse int array test`(arr: IntArray, start: Int, end: Int, expected: IntArray) {
         arr.reverse(start, end)
         assertThat(arr).isEqualTo(expected)
     }

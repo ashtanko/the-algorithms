@@ -6,7 +6,7 @@ Implementation of different algorithms and data structures using Kotlin lang
 [![CodeFactor](https://www.codefactor.io/repository/github/ashtanko/the-algorithms/badge)](https://www.codefactor.io/repository/github/ashtanko/the-algorithms)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Fthe-algorithms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Fthe-algorithms?ref=badge_shield)
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
-[![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.20-blue.svg)](http://kotlinlang.org/)
+[![Kotlin Version](https://img.shields.io/badge/kotlin-1.9.0-blue.svg)](http://kotlinlang.org/)
 [![codecov](https://codecov.io/gh/ashtanko/the-algorithms/branch/main/graph/badge.svg?token=6vzgrCAl5c)](https://codecov.io/gh/ashtanko/the-algorithms)
 
 ## Overview

@@ -31,9 +31,9 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class FibonacciSequenceTest {
+class FibonacciSequenceTest {
 
-    internal class InputSimpleArgumentsProvider : ArgumentsProvider {
+    class InputSimpleArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(0, 0),
             Arguments.of(1, 1),
@@ -49,7 +49,7 @@ internal class FibonacciSequenceTest {
         )
     }
 
-    internal class InputIterativeArgumentsProvider : ArgumentsProvider {
+    class InputIterativeArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(0, 0),
             Arguments.of(1, 1),
@@ -62,7 +62,7 @@ internal class FibonacciSequenceTest {
         )
     }
 
-    internal class InputRecursiveArgumentsProvider : ArgumentsProvider {
+    class InputRecursiveArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(0, 0),
             Arguments.of(1, 1),
@@ -77,28 +77,28 @@ internal class FibonacciSequenceTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputSimpleArgumentsProvider::class)
-    internal fun `simple test`(n: Int, expected: Int) {
+    fun `simple test`(n: Int, expected: Int) {
         val actual = n.toFibonacciSequence()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputIterativeArgumentsProvider::class)
-    internal fun `iterative test`(n: Long, expected: Long) {
+    fun `iterative test`(n: Long, expected: Long) {
         val actual = Fibonacci.ITERATIVE.invoke(n)
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputRecursiveArgumentsProvider::class)
-    internal fun `recursive test`(n: Long, expected: Long) {
+    fun `recursive test`(n: Long, expected: Long) {
         val actual = Fibonacci.RECURSIVE.invoke(n)
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputSimpleArgumentsProvider::class)
-    internal fun `dp test`(n: Int, expected: Long) {
+    fun `dp test`(n: Int, expected: Long) {
         val actual = fibonacciAt(n)
         assertThat(actual).isEqualTo(expected)
     }

@@ -3,7 +3,7 @@ import java.util.Locale
 
 val projectJvmTarget = "11"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
-val ktlint: Configuration by configurations.creating
+val ktLint: Configuration by configurations.creating
 val isK2Enabled = true
 val k2CompilerArg = if (isK2Enabled) listOf("-Xuse-k2") else emptyList()
 
@@ -39,22 +39,22 @@ application {
 val outputDir = "${project.buildDir}/reports/ktlint/"
 val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
 
-val ktlintCheck by tasks.creating(JavaExec::class) {
+val ktLintCheck by tasks.creating(JavaExec::class) {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
 
     description = "Check Kotlin code style."
-    classpath = ktlint
+    classpath = ktLint
     mainClass.set("com.pinterest.ktlint.Main")
     args = listOf("src/**/*.kt")
 }
 
-val ktlintFormat by tasks.creating(JavaExec::class) {
+val ktLintFormat by tasks.creating(JavaExec::class) {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
 
     description = "Fix Kotlin code style deviations."
-    classpath = ktlint
+    classpath = ktLint
     mainClass.set("com.pinterest.ktlint.Main")
     args = listOf("-F", "src/**/*.kt")
 }
@@ -198,7 +198,7 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.coroutines)
-    ktlint(libs.ktlint)
+    ktLint(libs.ktlint)
 
     testImplementation(libs.mockk)
     testImplementation(libs.junit)

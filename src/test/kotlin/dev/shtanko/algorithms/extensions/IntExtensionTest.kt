@@ -35,9 +35,9 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class IntExtensionTest {
+class IntExtensionTest {
 
-    internal class InputIsEvenArgumentsProvider : ArgumentsProvider {
+    class InputIsEvenArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(2, true),
             Arguments.of(3, false),
@@ -51,7 +51,7 @@ internal class IntExtensionTest {
         )
     }
 
-    internal class InputPrimeArgumentsProvider : ArgumentsProvider {
+    class InputPrimeArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 0,
@@ -114,37 +114,37 @@ internal class IntExtensionTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputPrimeArgumentsProvider::class)
-    internal fun `is prime test`(num: Int, expected: Boolean) {
+    fun `is prime test`(num: Int, expected: Boolean) {
         val actual = num.isPrime()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputIsEvenArgumentsProvider::class)
-    internal fun `is even test`(n: Int, expected: Boolean) {
+    fun `is even test`(n: Int, expected: Boolean) {
         val actual = n.isEven
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @ArgumentsSource(InputIsEvenArgumentsProvider::class)
-    internal fun `is even fun interface test`(n: Int, expected: Boolean) {
+    fun `is even fun interface test`(n: Int, expected: Boolean) {
         val actual = isEven.accept(n)
         assertThat(actual).isEqualTo(expected)
     }
 
     @Test
-    internal fun `random array test`() {
+    fun `random array test`() {
         assertEquals(3, 3.generateRandomArray().size)
     }
 
     @Test
-    internal fun `less than zero test`() {
+    fun `less than zero test`() {
         assertTrue((-1).lessThanZero())
     }
 
     @Test
-    internal fun `more than zero test`() {
+    fun `more than zero test`() {
         assertFalse(1.lessThanZero())
     }
 }

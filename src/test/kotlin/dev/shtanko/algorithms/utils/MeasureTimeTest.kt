@@ -28,7 +28,7 @@ import kotlin.time.ExperimentalTime
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class MeasureTimeTest {
+class MeasureTimeTest {
 
     @ExperimentalTime
     @Test

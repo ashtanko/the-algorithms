@@ -23,12 +23,12 @@
 */
 package dev.shtanko.algorithms.search
 
-internal class LinearSearchTest : AbstractSearchTest<LinearSearch<Int>>(LinearSearch())
-internal class LinearSearchStringTest : AbstractStringSearchTest<LinearSearch<String>>(LinearSearch())
+class LinearSearchTest : AbstractSearchTest<LinearSearch<Int>>(LinearSearch())
+class LinearSearchStringTest : AbstractStringSearchTest<LinearSearch<String>>(LinearSearch())
 
-internal class BinarySearchTest : AbstractSearchTest<BinarySearch<Int>>(BinarySearch())
-internal class BinarySearchStringTest : AbstractStringSearchTest<BinarySearch<String>>(BinarySearch())
+class BinarySearchTest : AbstractSearchTest<BinarySearch<Int>>(BinarySearch())
+class BinarySearchStringTest : AbstractStringSearchTest<BinarySearch<String>>(BinarySearch())
 
-internal class BinaryRecursiveSearchTest : AbstractSearchTest<BinaryRecursiveSearch<Int>>(BinaryRecursiveSearch())
-internal class BinaryRecursiveStringSearchTest :
+class BinaryRecursiveSearchTest : AbstractSearchTest<BinaryRecursiveSearch<Int>>(BinaryRecursiveSearch())
+class BinaryRecursiveStringSearchTest :
     AbstractStringSearchTest<BinaryRecursiveSearch<String>>(BinaryRecursiveSearch())

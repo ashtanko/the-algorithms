@@ -31,9 +31,9 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-internal class BinomialTest {
+class BinomialTest {
 
-    internal class InputArgumentsProvider : ArgumentsProvider {
+    class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(0, 1, 0),
             Arguments.of(1, 1, 1),
@@ -58,7 +58,7 @@ internal class BinomialTest {
 
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    internal fun `binomial test`(n: Int, k: Int, expected: Long) {
+    fun `binomial test`(n: Int, k: Int, expected: Long) {
         val actual = binomial(n, k)
         assertThat(actual).isEqualTo(expected)
     }

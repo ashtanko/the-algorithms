@@ -45,9 +45,10 @@ class ShellSort : AbstractSortStrategy {
 
         while (h >= 1) {
             for (i in h until n) {
-                for (j in i downTo h step h) {
-                    if (arr[j - h] < arr[j]) break
+                var j = i
+                while (j >= h && arr[j - h] > arr[j]) {
                     arr.swap(j, j - h)
+                    j -= h
                 }
             }
             h /= GAP

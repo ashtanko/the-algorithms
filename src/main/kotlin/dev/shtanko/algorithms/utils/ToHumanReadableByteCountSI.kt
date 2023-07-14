@@ -25,6 +25,7 @@ package dev.shtanko.algorithms.utils
 
 import java.text.CharacterIterator
 import java.text.StringCharacterIterator
+import java.util.Locale
 
 private const val WTF_IN = -999950
 private const val WTF_OUT = 999950
@@ -44,5 +45,5 @@ fun Long.toHumanReadableByteCountSI(): String {
         bytes /= ONE_T
         ci.next()
     }
-    return String.format("%.1f %cB", bytes / ONE_T.toDouble(), ci.current())
+    return String.format(Locale.getDefault(), "%.1f %cB", bytes / ONE_T.toDouble(), ci.current())
 }

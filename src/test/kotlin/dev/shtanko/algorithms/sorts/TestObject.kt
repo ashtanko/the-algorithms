@@ -23,7 +23,7 @@
 */
 package dev.shtanko.algorithms.sorts
 
-internal data class TestObject(val id: Int, val name: String) : Comparable<TestObject> {
+data class TestObject(val id: Int, val name: String) : Comparable<TestObject> {
 
     companion object {
         fun empty(): TestObject {
