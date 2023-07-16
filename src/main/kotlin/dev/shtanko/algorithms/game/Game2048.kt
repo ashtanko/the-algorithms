@@ -238,7 +238,7 @@ fun display(grid: Array<IntArray>) {
 /**
  * Transposes a grid (rows become columns, and columns become rows).
  */
-fun Array<IntArray>.transpose(): Array<IntArray> =
+private fun Array<IntArray>.transpose(): Array<IntArray> =
     Array(size) { row -> IntArray(size) { col -> this[col][row] } }
 
 /**
