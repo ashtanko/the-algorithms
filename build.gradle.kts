@@ -81,9 +81,9 @@ spotless {
                 mapOf(
                     "dir" to ".",
                     "include" to listOf("**/*.kt"),
-                    "exclude" to listOf("**/build/**", "**/spotless/*.kt")
-                )
-            )
+                    "exclude" to listOf("**/build/**", "**/spotless/*.kt"),
+                ),
+            ),
         )
         trimTrailingWhitespace()
         indentWithSpaces()
