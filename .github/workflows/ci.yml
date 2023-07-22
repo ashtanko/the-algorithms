@@ -55,7 +55,7 @@ jobs:
         run: ./gradlew jacocoTestReport
 
       - name: Check build dirs
-        run: ls -la && ls -la build && ls -la build/reports
+        run: ls -la && ls -la build && ls -la build/reports && ls -la build/jacoco
 
       - name: Upload jacoco report
         uses: actions/upload-artifact@v3
@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-test-exec-file
-          path: ./build/jacoco/text.exec
+          path: build/jacoco/test.exec
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.4
@@ -81,7 +81,7 @@ jobs:
       - name: Copy jacoco coverage files
         run: cp -a ./build/reports/jacoco/ .qodana/coverage-data && ls -la
       - name: Copy jacoco test files
-        run: cp -a ./build/jacoco/text.exec .qodana/coverage-data && ls -la
+        run: cp -a ./build/jacoco/test.exec .qodana/coverage-data && ls -la
       - name: Copy test coverage files
         run: cp -a ./build/reports/tests/ .qodana/coverage-data && ls -la
       - name: 'Qodana Scan'
