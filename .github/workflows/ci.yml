@@ -61,9 +61,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
-          path: |
-            "${{ github.workspace }}/**/build/reports/jacoco"
-            "${{ github.workspace }}/**/build/jacoco/text.exec"
+          path: "${{ github.workspace }}/**/build/reports/jacoco"
+
+      - name: Upload jacoco test exec file
+        uses: actions/upload-artifact@v3
+        with:
+          name: jacoco-test-exec-file
+          path: "${{ github.workspace }}/**/build/jacoco/text.exec"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.4
