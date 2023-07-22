@@ -57,17 +57,22 @@ jobs:
       - name: Jacoco test report
         run: ./gradlew jacocoTestReport
 
+      - name: Check build dirs
+        run: ls -la && echo "${{ github.workspace }}"
+
       - name: Upload jacoco report
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
           path: "${{ github.workspace }}/**/build/reports/jacoco"
+          run: ls -la
 
       - name: Upload jacoco test exec file
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-test-exec-file
-          path: "${{ github.workspace }}/**/build/jacoco/text.exec"
+          path: "${{ github.workspace }}/build/jacoco/text.exec"
+          run: ls -la
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.4
@@ -88,13 +93,13 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
           fetch-depth: 0  # a full history is required for pull request analysis
       - name: Prepare dirs
-        run: ls -ls && mkdir .qodana && mkdir .qodana/coverage-data && ls -ls
+        run: ls -la && mkdir .qodana && mkdir .qodana/coverage-data && ls -la
       - name: Copy jacoco coverage files
-        run: cp -a ./build/reports/jacoco/ .qodana/coverage-data && ls -ls
+        run: cp -a ./build/reports/jacoco/ .qodana/coverage-data && ls -la
       - name: Copy jacoco test files
-        run: cp -a ./build/jacoco/text.exec .qodana/coverage-data && ls -ls
+        run: cp -a ./build/jacoco/text.exec .qodana/coverage-data && ls -la
       - name: Copy test coverage files
-        run: cp -a ./build/reports/tests/ .qodana/coverage-data && ls -ls
+        run: cp -a ./build/reports/tests/ .qodana/coverage-data && ls -la
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2023.2
         env:
