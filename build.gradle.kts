@@ -1,7 +1,7 @@
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import java.util.Locale
 
-val projectJvmTarget = "11"
+val projectJvmTarget = "17"
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 val ktLint: Configuration by configurations.creating
 val isK2Enabled = true

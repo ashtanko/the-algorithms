@@ -58,21 +58,19 @@ jobs:
         run: ./gradlew jacocoTestReport
 
       - name: Check build dirs
-        run: ls -la && echo "${{ github.workspace }}"
+        run: ls -la && && ls -la build && ls -la build/reports
 
       - name: Upload jacoco report
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
           path: "${{ github.workspace }}/**/build/reports/jacoco"
-          run: ls -la
 
       - name: Upload jacoco test exec file
         uses: actions/upload-artifact@v3
         with:
           name: jacoco-test-exec-file
-          path: "${{ github.workspace }}/build/jacoco/text.exec"
-          run: ls -la
+          path: ./build/jacoco/text.exec
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.4
@@ -80,19 +78,8 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./build/reports/jacoco/report.xml
           verbose: true
-  qodana:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      contents: write
-      pull-requests: write
-      checks: write
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
-          fetch-depth: 0  # a full history is required for pull request analysis
-      - name: Prepare dirs
+
+      - name: Prepare qodana dirs
         run: ls -la && mkdir .qodana && mkdir .qodana/coverage-data && ls -la
       - name: Copy jacoco coverage files
         run: cp -a ./build/reports/jacoco/ .qodana/coverage-data && ls -la
@@ -104,3 +91,29 @@ jobs:
         uses: JetBrains/qodana-action@v2023.2
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }} # read the steps about it below
+
+#
+#  qodana:
+#    runs-on: ubuntu-latest
+#    needs: build
+#    permissions:
+#      contents: write
+#      pull-requests: write
+#      checks: write
+#    steps:
+#      - uses: actions/checkout@v3
+#        with:
+#          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
+#          fetch-depth: 0  # a full history is required for pull request analysis
+#      - name: Prepare dirs
+#        run: ls -la && mkdir .qodana && mkdir .qodana/coverage-data && ls -la
+#      - name: Copy jacoco coverage files
+#        run: cp -a ./build/reports/jacoco/ .qodana/coverage-data && ls -la
+#      - name: Copy jacoco test files
+#        run: cp -a ./build/jacoco/text.exec .qodana/coverage-data && ls -la
+#      - name: Copy test coverage files
+#        run: cp -a ./build/reports/tests/ .qodana/coverage-data && ls -la
+#      - name: 'Qodana Scan'
+#        uses: JetBrains/qodana-action@v2023.2
+#        env:
+#          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }} # read the steps about it below
