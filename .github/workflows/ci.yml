@@ -86,6 +86,11 @@ jobs:
         run: cp -a ./build/jacoco/test.exec .qodana/coverage-data && ls -la
       - name: Check qodana coverage files
         run: ls -la && ls -la .qodana/coverage-data
+      - name: Upload .qodana/coverage-data
+        uses: actions/upload-artifact@v3
+        with:
+          name: qodana-coverage-data
+          path: .qodana/coverage-data
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2023.2
         env:
