@@ -28,9 +28,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Spotless Apply
-        run: ./gradlew spotlessApply
-
       - name: Cache gradle dependencies
         uses: actions/cache@v3.0.8
         with:
@@ -58,7 +55,7 @@ jobs:
         run: ./gradlew jacocoTestReport
 
       - name: Check build dirs
-        run: ls -la && && ls -la build && ls -la build/reports
+        run: ls -la && ls -la build && ls -la build/reports
 
       - name: Upload jacoco report
         uses: actions/upload-artifact@v3
