@@ -78,12 +78,12 @@ jobs:
 
       - name: Prepare qodana dirs
         run: ls -la && mkdir .qodana && mkdir .qodana/coverage-data && ls -la
-      - name: Copy jacoco coverage files
-        run: cp -a ./build/reports/jacoco/ .qodana/coverage-data && ls -la
+      - name: Copy jacoco coverage report
+        run: cp -a ./build/reports/jacoco/report.xml .qodana/coverage-data && ls -la
+      - name: Copy jacoco coverage report test
+        run: cp -a ./build/reports/jacoco/test .qodana/coverage-data && ls -la
       - name: Copy jacoco test files
         run: cp -a ./build/jacoco/test.exec .qodana/coverage-data && ls -la
-      - name: Copy test coverage files
-        run: cp -a ./build/reports/tests/ .qodana/coverage-data && ls -la
       - name: Check qodana coverage files
         run: ls -la && ls -la .qodana/coverage-data
       - name: 'Qodana Scan'
