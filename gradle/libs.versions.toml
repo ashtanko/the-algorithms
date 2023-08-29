@@ -1,5 +1,5 @@
 [versions]
-coroutines = "1.6.4"
+coroutines = "1.7.2"
 # https://junit.org/junit5/
 junit = "5.10.0-RC1"
 kotlin = "1.9.0"
