@@ -60,14 +60,16 @@ jobs:
       - name: Generate Test Coverage Xml Report
         run: ./gradlew koverXmlReport
 
-      - name: Coveralls GitHub Action
+      - name: Coveralls Parallel
         uses: coverallsapp/github-action@v2
         with:
           parallel: true
-          flag-name: Unit
+          flag-name: run-${{ join(matrix.*, '-') }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           file: ./build/reports/jacoco/test/jacocoTestReport.xml
-          debug: true
+          debug: false
+          measure: true
+          format: jacoco
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3.1.4
