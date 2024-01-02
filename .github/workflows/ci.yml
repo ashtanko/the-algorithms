@@ -64,6 +64,7 @@ jobs:
         uses: coverallsapp/github-action@v2
         with:
           parallel: true
+          flag-name: Unit
           github-token: ${{ secrets.GITHUB_TOKEN }}
           file: ./build/reports/jacoco/test/jacocoTestReport.xml
           debug: true
