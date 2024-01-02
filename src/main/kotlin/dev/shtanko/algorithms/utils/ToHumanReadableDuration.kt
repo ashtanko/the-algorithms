@@ -38,12 +38,7 @@ fun Long.toHumanReadableDuration(): String {
     val sb =
         if (sec != 0L) {
             val diff = millis - MILLISECOND * sec
-            val sbDiff =
-                if (diff != 0L) {
-                    "$diff ms"
-                } else {
-                    ""
-                }
+            val sbDiff = "$diff ms"
             "$sec,$sbDiff"
         } else {
             "$millis ms"
