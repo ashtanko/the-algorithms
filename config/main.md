@@ -11,7 +11,7 @@ Implementation of different algorithms and data structures using Kotlin lang
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashtanko%2Fthe-algorithms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashtanko%2Fthe-algorithms?ref=badge_shield)
 [![CodeStyle](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
-[![Kotlin Version](https://img.shields.io/badge/kotlin-1.9.0-blue.svg)](http://kotlinlang.org/)
+[![Kotlin Version](https://img.shields.io/badge/kotlin-1.9.21-blue.svg)](http://kotlinlang.org/)
 
 [![codacy test coverage](https://app.codacy.com/project/badge/Coverage/3eecbb4a701d426eb5d1d2dcbb9d7679)](https://app.codacy.com/gh/ashtanko/the-algorithms/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
 [![codeclimate test coverage](https://api.codeclimate.com/v1/badges/1a2a2ecaee3023a36b87/test_coverage)](https://codeclimate.com/github/ashtanko/the-algorithms/test_coverage)
