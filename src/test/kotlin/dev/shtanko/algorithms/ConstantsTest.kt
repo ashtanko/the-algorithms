@@ -22,34 +22,24 @@
  * SOFTWARE.
 */
 
-package dev.shtanko.algorithms.utils
+package dev.shtanko.algorithms
 
-import java.text.CharacterIterator
-import java.text.StringCharacterIterator
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
-private const val THOUSAND = 1000
-private const val BOUNDARY = 999_950
-private const val UNITS = "kMGTPE"
-
-/**
- * Converts a long value to a human-readable byte count representation using SI prefixes.
- *
- * @return The human-readable byte count representation.
- */
-fun Long.toHumanReadableByteCountSi(formatter: ByteFormatter = BinByteFormatter()): String {
-    var bytes = this
-
-    if (-THOUSAND < bytes && bytes < THOUSAND) {
-        return "$bytes B"
+class ConstantsTest {
+    @Test
+    fun `constants test`() {
+        assertEquals(10, DECIMAL)
+        assertEquals(8, OCTAL)
+        assertEquals(16, HEXADECIMAL)
+        assertEquals(65535, SHUFFLE)
+        assertEquals(1_000_000_007, MOD)
+        assertEquals(1_000_000_000.0, BILLION)
+        assertEquals(0.00001, EPSILON)
+        assertEquals(1024, BYTE)
+        assertEquals(1000L, MILLISECOND)
+        assertEquals("%.1f %cB", BIN_FORMAT)
+        assertEquals("%.1f %ciB", SI_FORMAT)
     }
-
-    val ci: CharacterIterator = StringCharacterIterator(UNITS)
-    while (bytes <= -BOUNDARY || bytes >= BOUNDARY) {
-        bytes /= THOUSAND
-        ci.next()
-    }
-    val kBytes = bytes / THOUSAND.toDouble()
-    val current = ci.current()
-
-    return formatter.invoke(kBytes, current)
 }

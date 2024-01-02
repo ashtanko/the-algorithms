@@ -24,32 +24,22 @@
 
 package dev.shtanko.algorithms.utils
 
-import java.text.CharacterIterator
-import java.text.StringCharacterIterator
+import dev.shtanko.algorithms.BIN_FORMAT
+import dev.shtanko.algorithms.SI_FORMAT
+import java.util.Locale
 
-private const val THOUSAND = 1000
-private const val BOUNDARY = 999_950
-private const val UNITS = "kMGTPE"
+fun interface ByteFormatter {
+    operator fun invoke(bytes: Double, current: Char): String
+}
 
-/**
- * Converts a long value to a human-readable byte count representation using SI prefixes.
- *
- * @return The human-readable byte count representation.
- */
-fun Long.toHumanReadableByteCountSi(formatter: ByteFormatter = BinByteFormatter()): String {
-    var bytes = this
-
-    if (-THOUSAND < bytes && bytes < THOUSAND) {
-        return "$bytes B"
+class BinByteFormatter : ByteFormatter {
+    override fun invoke(bytes: Double, current: Char): String {
+        return String.format(Locale.getDefault(), BIN_FORMAT, bytes, current)
     }
+}
 
-    val ci: CharacterIterator = StringCharacterIterator(UNITS)
-    while (bytes <= -BOUNDARY || bytes >= BOUNDARY) {
-        bytes /= THOUSAND
-        ci.next()
+class SiByteFormatter : ByteFormatter {
+    override fun invoke(bytes: Double, current: Char): String {
+        return String.format(Locale.getDefault(), SI_FORMAT, bytes, current)
     }
-    val kBytes = bytes / THOUSAND.toDouble()
-    val current = ci.current()
-
-    return formatter.invoke(kBytes, current)
 }

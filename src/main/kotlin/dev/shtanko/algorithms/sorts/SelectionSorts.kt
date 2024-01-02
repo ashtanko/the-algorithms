@@ -24,6 +24,7 @@
 
 package dev.shtanko.algorithms.sorts
 
+import dev.shtanko.algorithms.extensions.findMinimumIndex
 import dev.shtanko.algorithms.extensions.swap
 
 /**
@@ -46,12 +47,7 @@ class SelectionSort : AbstractSortStrategy {
      */
     override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         for (i in arr.indices) {
-            var min = i
-            for (j in i + 1 until arr.size) {
-                if (arr[j] < arr[min]) {
-                    min = j
-                }
-            }
+            val min = arr.findMinimumIndex(i)
             if (min != i) {
                 arr.swap(min, i)
             }
@@ -78,7 +74,7 @@ class StableSelectionSort : AbstractSortStrategy {
      */
     override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         for (i in arr.indices) {
-            var min = i
+            var min = arr.findMinimumIndex(i)
             for (j in i + 1 until arr.size) {
                 if (arr[j] < arr[min]) {
                     min = j

@@ -103,4 +103,34 @@ class ArrayExtensionTest {
         val array = intArrayOf(1, 2)
         assertEquals(2, array.second())
     }
+
+    @Test
+    fun testFindMinimumIndex() {
+        val array1 = arrayOf(4, 2, 8, 1, 5)
+        assertEquals(3, array1.findMinimumIndex(0))
+
+        val array2 = arrayOf("banana", "apple", "orange", "grape")
+        assertEquals(1, array2.findMinimumIndex(0))
+
+        val array3 = emptyArray<Int>()
+        assertEquals(0, array3.findMinimumIndex(0))
+    }
+
+    @Test
+    fun testFindMinimumIndexWithEmptyArray() {
+        val emptyArray = emptyArray<Int>()
+        assertEquals(0, emptyArray.findMinimumIndex(0))
+    }
+
+    @Test
+    fun testFindMinimumIndexWithSingleElementArray() {
+        val singleElementArray = arrayOf(42)
+        assertEquals(0, singleElementArray.findMinimumIndex(0))
+    }
+
+    @Test
+    fun testFindMinimumIndexWithDescendingOrder() {
+        val descendingArray = arrayOf(9, 7, 5, 3, 1)
+        assertEquals(4, descendingArray.findMinimumIndex(0))
+    }
 }

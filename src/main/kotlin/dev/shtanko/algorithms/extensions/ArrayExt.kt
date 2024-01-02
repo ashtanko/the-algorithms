@@ -106,3 +106,20 @@ fun IntArray.second(): Int {
     }
     return this[1]
 }
+
+/**
+ * Extension function for finding the index of the minimum element in the array starting from a given index.
+ *
+ * @param i The starting index.
+ * @return The index of the minimum element.
+ * @param T The type of elements in the array, must be comparable.
+ */
+fun <T : Comparable<T>> Array<T>.findMinimumIndex(i: Int): Int {
+    var min = i
+    for (j in i + 1 until this.size) {
+        if (this[j] < this[min]) {
+            min = j
+        }
+    }
+    return min
+}
