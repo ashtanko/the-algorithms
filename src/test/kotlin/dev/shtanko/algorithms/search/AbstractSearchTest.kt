@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.search
 
-import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,8 +31,20 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 @Suppress("ArrayPrimitive")
 abstract class AbstractSearchTest<out T : AbstractSearchStrategy<Int>>(private val strategy: T) {
+    @ParameterizedTest
+    @ArgumentsSource(InputIntArrayArgumentsProvider::class)
+    fun `int array test`(
+        arr: Array<Int>,
+        element: Int,
+        expected: Int
+    ) {
+        val actual = strategy(arr, element)
+        assertEquals(expected, actual)
+    }
 
     private class InputIntArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -50,12 +62,5 @@ abstract class AbstractSearchTest<out T : AbstractSearchStrategy<Int>>(private v
             Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 42, 5),
             Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 43, -1),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputIntArrayArgumentsProvider::class)
-    fun `int array test`(arr: Array<Int>, element: Int, expected: Int) {
-        val actual = strategy.perform(arr, element)
-        assertEquals(expected, actual)
     }
 }

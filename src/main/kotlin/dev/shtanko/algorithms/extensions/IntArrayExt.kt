@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
 /**
@@ -29,7 +30,10 @@ package dev.shtanko.algorithms.extensions
  * @param start The starting index of the portion to be reversed.
  * @param end The ending index of the portion to be reversed.
  */
-fun IntArray.reverse(start: Int, end: Int) {
+fun IntArray.reverse(
+    start: Int,
+    end: Int,
+) {
     for (i in 0 until (end - start) / 2) {
         val temp = this[i + start]
         this[i + start] = this[end - i - 1]

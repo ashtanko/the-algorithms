@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.swap
@@ -37,20 +38,19 @@ import dev.shtanko.algorithms.extensions.swap
  * Worst-case space complexity:  O(1)
  */
 class HeapSort : AbstractSortStrategy {
-
     /**
      * Performs the heap sort operation on the given array.
      *
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
-        val n = arr.size
-        for (i in n / 2 - 1 downTo 0) {
-            heapify(arr, n, i)
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
+        val size = arr.size
+        for (i in size / 2 - 1 downTo 0) {
+            heapify(arr, size, i)
         }
 
-        for (i in n - 1 downTo 0) {
+        for (i in size - 1 downTo 0) {
             arr.swap(0, i)
             heapify(arr, i, 0)
         }
@@ -60,26 +60,30 @@ class HeapSort : AbstractSortStrategy {
      * Performs heapify operation on the array.
      *
      * @param arr The array to heapify.
-     * @param n The size of the heap.
+     * @param size The size of the heap.
      * @param i The index of the current element in the heap.
      * @param T The type of elements in the array, must be comparable.
      */
-    private fun <T : Comparable<T>> heapify(arr: Array<T>, n: Int, i: Int) {
+    private fun <T : Comparable<T>> heapify(
+        arr: Array<T>,
+        size: Int,
+        i: Int,
+    ) {
         var largest = i
         val l = 2 * i + 1
         val r = 2 * i + 2
 
-        if (l < n && arr[l] > arr[largest]) {
+        if (l < size && arr[l] > arr[largest]) {
             largest = l
         }
 
-        if (r < n && arr[r] > arr[largest]) {
+        if (r < size && arr[r] > arr[largest]) {
             largest = r
         }
 
         if (largest != i) {
             arr.swap(i, largest)
-            heapify(arr, n, largest)
+            heapify(arr, size, largest)
         }
     }
 }

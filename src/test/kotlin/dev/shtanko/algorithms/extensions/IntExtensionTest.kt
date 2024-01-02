@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -35,7 +35,44 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 class IntExtensionTest {
+    @ParameterizedTest
+    @ArgumentsSource(InputPrimeArgumentsProvider::class)
+    fun `is prime test`(num: Int, expected: Boolean) {
+        val actual = num.isPrime()
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputIsEvenArgumentsProvider::class)
+    fun `is even test`(n: Int, expected: Boolean) {
+        val actual = n.isEven
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputIsEvenArgumentsProvider::class)
+    fun `is even fun interface test`(n: Int, expected: Boolean) {
+        val actual = isEven.accept(n)
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `random array test`() {
+        assertEquals(3, 3.generateRandomArray().size)
+    }
+
+    @Test
+    fun `less than zero test`() {
+        assertTrue((-1).lessThanZero())
+    }
+
+    @Test
+    fun `more than zero test`() {
+        assertFalse(1.lessThanZero())
+    }
 
     class InputIsEvenArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -110,41 +147,5 @@ class IntExtensionTest {
                 true,
             ),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputPrimeArgumentsProvider::class)
-    fun `is prime test`(num: Int, expected: Boolean) {
-        val actual = num.isPrime()
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputIsEvenArgumentsProvider::class)
-    fun `is even test`(n: Int, expected: Boolean) {
-        val actual = n.isEven
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputIsEvenArgumentsProvider::class)
-    fun `is even fun interface test`(n: Int, expected: Boolean) {
-        val actual = isEven.accept(n)
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @Test
-    fun `random array test`() {
-        assertEquals(3, 3.generateRandomArray().size)
-    }
-
-    @Test
-    fun `less than zero test`() {
-        assertTrue((-1).lessThanZero())
-    }
-
-    @Test
-    fun `more than zero test`() {
-        assertFalse(1.lessThanZero())
     }
 }

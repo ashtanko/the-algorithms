@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
 /**
@@ -29,7 +30,10 @@ package dev.shtanko.algorithms.extensions
  * @param i The index of the first element to swap.
  * @param j The index of the second element to swap.
  */
-fun <T> Array<T>.swap(i: Int, j: Int) {
+fun <T> Array<T>.swap(
+    i: Int,
+    j: Int,
+) {
     val tmp = this[i]
     this[i] = this[j]
     this[j] = tmp
@@ -41,7 +45,10 @@ fun <T> Array<T>.swap(i: Int, j: Int) {
  * @param i The index of the first element to swap.
  * @param j The index of the second element to swap.
  */
-fun IntArray.swap(i: Int, j: Int) {
+fun IntArray.swap(
+    i: Int,
+    j: Int,
+) {
     val tmp = this[i]
     this[i] = this[j]
     this[j] = tmp
@@ -52,8 +59,9 @@ fun IntArray.swap(i: Int, j: Int) {
  */
 fun <T> Array<T>.reverse() {
     val n = this.size
-    for (i in 0 until n / 2)
+    for (i in 0 until n / 2) {
         this.swap(i, n - 1 - i)
+    }
 }
 
 /**
@@ -75,7 +83,10 @@ fun <T> Array<T>.reverse2() {
  * @param left The starting index (inclusive) of the portion to flip.
  * @param right The ending index (inclusive) of the portion to flip.
  */
-fun <T> Array<T>.flip(left: Int, right: Int) {
+fun <T> Array<T>.flip(
+    left: Int,
+    right: Int,
+) {
     var l = left
     var r = right
     while (l <= r) {

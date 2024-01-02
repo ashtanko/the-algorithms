@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.math
 
 /**
@@ -42,34 +43,38 @@ fun Int.toFibonacciSequence(): Int {
  * @param n The index of the Fibonacci number.
  * @return The Fibonacci number at the given index.
  */
-fun fibonacciAt(n: Int) = run {
-    tailrec fun fibonacciAcc(n: Int, a: Long, b: Long): Long {
-        return when (n == 0) {
+fun fibonacciAt(n: Int) =
+    run {
+        tailrec fun fibonacciAcc(
+            n: Int,
+            a: Long,
+            b: Long,
+        ): Long = when (n == 0) {
             true -> b
             false -> fibonacciAcc(n - 1, a + b, a)
         }
+        fibonacciAcc(n, 1, 0)
     }
-    fibonacciAcc(n, 1, 0)
-}
 
 /**
  * Enum class representing different strategies for calculating Fibonacci numbers.
  */
 enum class Fibonacci {
     ITERATIVE {
-        override fun invoke(n: Long) = if (n < 2) {
-            n
-        } else {
-            var n1 = 0L
-            var n2 = 1L
-            var i = n
-            do {
-                val sum = n1 + n2
-                n1 = n2
-                n2 = sum
-            } while (i-- > 1)
-            n1
-        }
+        override fun invoke(n: Long) =
+            if (n < 2) {
+                n
+            } else {
+                var n1 = 0L
+                var n2 = 1L
+                var i = n
+                do {
+                    val sum = n1 + n2
+                    n1 = n2
+                    n2 = sum
+                } while (i-- > 1)
+                n1
+            }
     },
     RECURSIVE {
         override fun invoke(n: Long): Long = if (n < 2) n else this(n - 1) + this(n - 2)

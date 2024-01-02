@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
 import kotlin.math.sqrt
@@ -72,9 +73,7 @@ fun Int.generateRandomArray(): IntArray {
  *
  * @return `true` if the Int value is less than zero, `false` otherwise.
  */
-fun Int.lessThanZero(): Boolean {
-    return this < 0
-}
+fun Int.lessThanZero(): Boolean = this < 0
 
 /**
  * Checks if an Int value is a prime number.
@@ -82,8 +81,14 @@ fun Int.lessThanZero(): Boolean {
  * @return `true` if the Int value is a prime number, `false` otherwise.
  */
 fun Int.isPrime(): Boolean {
-    if (this < 2) return false
+    if (this < 2) {
+        return false
+    }
     val r = sqrt(this.toDouble()).toInt()
-    for (d in 2..r) if (this % d == 0) return false
+    for (d in 2..r) {
+        if (this % d == 0) {
+            return false
+        }
+    }
     return true
 }

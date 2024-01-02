@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.leetcode
 
 /**
@@ -35,7 +36,10 @@ fun interface TwoSumStrategy {
      * @param target the target sum.
      * @return an array of indices representing the two numbers that add up to the target sum.
      */
-    fun perform(nums: IntArray, target: Int): IntArray
+    operator fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): IntArray
 }
 
 /**
@@ -43,8 +47,11 @@ fun interface TwoSumStrategy {
  * Time complexity: O(n^2).
  * Space complexity: O(1).
  */
-class TwoSumBruteForce : TwoSumStrategy {
-    override fun perform(nums: IntArray, target: Int): IntArray {
+data object TwoSumBruteForce : TwoSumStrategy {
+    override operator fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): IntArray {
         for (i in nums.indices) {
             for (j in i + 1 until nums.size) {
                 if (nums[j] == target - nums[i]) {
@@ -62,8 +69,11 @@ class TwoSumBruteForce : TwoSumStrategy {
  * Time complexity: O(n).
  * Space complexity: O(n).
  */
-class TwoSumTwoPassHashTable : TwoSumStrategy {
-    override fun perform(nums: IntArray, target: Int): IntArray {
+data object TwoSumTwoPassHashTable : TwoSumStrategy {
+    override operator fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): IntArray {
         val map: MutableMap<Int, Int> = HashMap()
         for (i in nums.indices) {
             map[nums[i]] = i
@@ -71,7 +81,7 @@ class TwoSumTwoPassHashTable : TwoSumStrategy {
         for (i in nums.indices) {
             val complement = target - nums[i]
             if (map.containsKey(complement) && map[complement] != i) {
-                return intArrayOf(i, map[complement]!!)
+                return intArrayOf(i, map.getOrDefault(complement, 0))
             }
         }
         return intArrayOf()
@@ -84,13 +94,16 @@ class TwoSumTwoPassHashTable : TwoSumStrategy {
  * Time complexity: O(n).
  * Space complexity: O(n).
  */
-class TwoSumOnePassHashTable : TwoSumStrategy {
-    override fun perform(nums: IntArray, target: Int): IntArray {
+data object TwoSumOnePassHashTable : TwoSumStrategy {
+    override operator fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): IntArray {
         val map: MutableMap<Int, Int> = HashMap()
         for (i in nums.indices) {
             val complement = target - nums[i]
             if (map.containsKey(complement)) {
-                return intArrayOf(map[complement]!!, i)
+                return intArrayOf(map.getOrDefault(complement, 0), i)
             }
             map[nums[i]] = i
         }
@@ -103,8 +116,11 @@ class TwoSumOnePassHashTable : TwoSumStrategy {
  * Time complexity: O(n).
  * Space complexity: O(n).
  */
-class TwoSumOneHashMap : TwoSumStrategy {
-    override fun perform(nums: IntArray, target: Int): IntArray {
+data object TwoSumOneHashMap : TwoSumStrategy {
+    override operator fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): IntArray {
         val map: MutableMap<Int, Int> = HashMap()
         nums.forEachIndexed { index, i ->
             map[i]?.let { return intArrayOf(it, index) }

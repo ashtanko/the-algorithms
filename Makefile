@@ -1,4 +1,4 @@
-.PHONY: default check test report treport lines md all
+.PHONY: default check test report treport lines md all kover diktat
 
 check:
 	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon
@@ -23,5 +23,11 @@ treport:
 
 lines:
 	find . -name '*.kt' | xargs wc -l
+
+kover:
+	./gradlew koverHtmlReport
+
+diktat:
+	./gradlew diktatCheck
 
 .DEFAULT_GOAL := default

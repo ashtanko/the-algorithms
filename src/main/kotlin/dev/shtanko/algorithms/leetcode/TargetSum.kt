@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.leetcode
 
 import kotlin.math.abs
@@ -30,7 +31,10 @@ import kotlin.math.abs
  * @link https://leetcode.com/problems/target-sum/
  */
 fun interface TargetSum {
-    fun findTargetSumWays(nums: IntArray, target: Int): Int
+    operator fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): Int
 }
 
 /**
@@ -41,12 +45,20 @@ fun interface TargetSum {
 class TargetSumBruteForce : TargetSum {
     private var count = 0
 
-    override fun findTargetSumWays(nums: IntArray, target: Int): Int {
+    override fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): Int {
         calculate(nums, 0, 0, target)
         return count
     }
 
-    private fun calculate(nums: IntArray, i: Int, sum: Int, target: Int) {
+    private fun calculate(
+        nums: IntArray,
+        i: Int,
+        sum: Int,
+        target: Int,
+    ) {
         if (i == nums.size) {
             if (sum == target) {
                 count++
@@ -66,14 +78,23 @@ class TargetSumBruteForce : TargetSum {
 class TargetSumMemoization : TargetSum {
     private var total = 0
 
-    override fun findTargetSumWays(nums: IntArray, target: Int): Int {
+    override fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): Int {
         total = nums.sum()
 
         val memo = Array(nums.size) { IntArray(2 * total + 1) { Int.MIN_VALUE } }
         return calculate(nums, 0, 0, target, memo)
     }
 
-    private fun calculate(nums: IntArray, i: Int, sum: Int, target: Int, memo: Array<IntArray>): Int {
+    private fun calculate(
+        nums: IntArray,
+        i: Int,
+        sum: Int,
+        target: Int,
+        memo: Array<IntArray>,
+    ): Int {
         return if (i == nums.size) {
             if (sum == target) {
                 1
@@ -97,8 +118,11 @@ class TargetSumMemoization : TargetSum {
  * Time complexity: O(t⋅n)
  * Space complexity: O(t⋅n)
  */
-class TwoDDynamicProgramming : TargetSum {
-    override fun findTargetSumWays(nums: IntArray, target: Int): Int {
+data object TwoDdynamicProgramming : TargetSum {
+    override fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): Int {
         val total: Int = nums.sum()
         val dp = Array(nums.size) { IntArray(2 * total + 1) }
         dp[0][nums[0] + total] = 1
@@ -121,8 +145,11 @@ class TwoDDynamicProgramming : TargetSum {
  * Time complexity: O(t⋅n)
  * Space complexity: O(t)
  */
-class OneDDynamicProgramming : TargetSum {
-    override fun findTargetSumWays(nums: IntArray, target: Int): Int {
+data object OneDdynamicProgramming : TargetSum {
+    override fun invoke(
+        nums: IntArray,
+        target: Int,
+    ): Int {
         val total: Int = nums.sum()
         var dp = IntArray(2 * total + 1)
         dp[nums[0] + total] = 1

@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.utils.measureTime
-import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -32,7 +32,21 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 class MemoryTest {
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `sorts test`(testCase: AbstractSortStrategy) {
+        execute(testCase, getSortedArray())
+    }
+
+    private fun execute(strategy: AbstractSortStrategy, array: IntArray) {
+        measureTime(strategy, array) {
+            strategy.invoke(array.toTypedArray())
+        }
+        assertTrue(array.isSorted())
+    }
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(BubbleSort()),
@@ -61,18 +75,5 @@ class MemoryTest {
             }
             return array
         }
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `sorts test`(testCase: AbstractSortStrategy) {
-        execute(testCase, getSortedArray())
-    }
-
-    private fun execute(strategy: AbstractSortStrategy, array: IntArray) {
-        measureTime(strategy, array) {
-            strategy.perform(array.toTypedArray())
-        }
-        assertTrue(array.isSorted())
     }
 }

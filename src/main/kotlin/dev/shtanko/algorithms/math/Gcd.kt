@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.math
 
 /**
@@ -47,6 +48,7 @@ fun Pair<Int, Int>.gcd(): Int {
  * @param b The second integer.
  * @return The greatest common divisor of the two integers.
  */
-fun gcd(a: Int, b: Int): Int {
-    return if (b == 0) a else gcd(b, a % b)
-}
+fun gcd(
+    a: Int,
+    b: Int,
+): Int = if (b == 0) a else gcd(b, a % b)

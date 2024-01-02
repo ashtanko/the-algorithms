@@ -21,10 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
-import java.util.stream.Stream
-import kotlin.random.Random
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -33,8 +32,47 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
+import kotlin.random.Random
+
 @Suppress("ArrayPrimitive")
 abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
+    @ParameterizedTest
+    @ArgumentsSource(InputArrayArgumentsProvider::class)
+    fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
+        strategy.invoke(arr)
+        assertArrayEquals(expected, arr)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputFloatArgumentsProvider::class)
+    fun `float array test`(arr: Array<Float>, expected: Array<Float>) {
+        strategy.invoke(arr)
+        assertArrayEquals(expected, arr)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `is sorted test`(arr: Array<Int>, expected: Boolean) {
+        strategy.invoke(arr)
+        val actual = arr.isSorted()
+        assertEquals(expected, actual)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputStringArrayArgumentsProvider::class)
+    fun `string array test`(arr: Array<String>, expected: Array<String>) {
+        strategy.invoke(arr)
+        assertArrayEquals(expected, arr)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputObjectArrayArgumentsProvider::class)
+    fun `object test`(arr: Array<TestObject>, expected: Array<TestObject>) {
+        strategy.invoke(arr)
+        assertArrayEquals(expected, arr)
+    }
 
     private class InputArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -146,41 +184,5 @@ abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strate
                 arrayOf(TestObject(0, ""), TestObject(1, ""), TestObject(2, "")),
             ),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArrayArgumentsProvider::class)
-    fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
-        strategy.perform(arr)
-        assertArrayEquals(expected, arr)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputFloatArgumentsProvider::class)
-    fun `float array test`(arr: Array<Float>, expected: Array<Float>) {
-        strategy.perform(arr)
-        assertArrayEquals(expected, arr)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `is sorted test`(arr: Array<Int>, expected: Boolean) {
-        strategy.perform(arr)
-        val actual = arr.isSorted()
-        assertEquals(expected, actual)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputStringArrayArgumentsProvider::class)
-    fun `string array test`(arr: Array<String>, expected: Array<String>) {
-        strategy.perform(arr)
-        assertArrayEquals(expected, arr)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputObjectArrayArgumentsProvider::class)
-    fun `object test`(arr: Array<TestObject>, expected: Array<TestObject>) {
-        strategy.perform(arr)
-        assertArrayEquals(expected, arr)
     }
 }

@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.search
 
 /**
@@ -35,7 +36,6 @@ package dev.shtanko.algorithms.search
  * @param T The type of elements in the array, must be comparable.
  */
 class BinaryRecursiveSearch<T : Comparable<T>> : AbstractSearchStrategy<T> {
-
     /**
      * Performs the binary search operation on the given array to find the index of the specified element.
      *
@@ -43,9 +43,10 @@ class BinaryRecursiveSearch<T : Comparable<T>> : AbstractSearchStrategy<T> {
      * @param element The element to search for.
      * @return The index of the element in the array, or -1 if the element is not found.
      */
-    override fun perform(arr: Array<T>, element: T): Int {
-        return arr.search(0, arr.size - 1, element)
-    }
+    override operator fun invoke(
+        arr: Array<T>,
+        element: T,
+    ): Int = arr.search(0, arr.size - 1, element)
 
     /**
      * Recursive helper function to perform the binary search.
@@ -55,7 +56,11 @@ class BinaryRecursiveSearch<T : Comparable<T>> : AbstractSearchStrategy<T> {
      * @param element The element to search for.
      * @return The index of the element in the array, or -1 if the element is not found.
      */
-    private fun Array<T>.search(low: Int, high: Int, element: T): Int {
+    private fun Array<T>.search(
+        low: Int,
+        high: Int,
+        element: T,
+    ): Int {
         if (high >= low) {
             val mid = low.plus(high).div(2)
 

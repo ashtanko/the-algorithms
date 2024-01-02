@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,7 +31,29 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 class LongExtTest {
+    @ParameterizedTest
+    @ArgumentsSource(ToReverseInputArgumentsProvider::class)
+    fun `reverse long test`(n: Long, expected: Long) {
+        val actual = n.reverse()
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputPalindromeArgumentsProvider::class)
+    fun `is palindrome test`(n: Long, expected: Boolean) {
+        val actual = n.isSuperPalindrome()
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `is super palindrome test`(n: Long, expected: Boolean) {
+        val actual = n.isSuperPalindrome()
+        assertThat(actual).isEqualTo(expected)
+    }
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -109,26 +131,5 @@ class LongExtTest {
                 false,
             ),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(ToReverseInputArgumentsProvider::class)
-    fun `reverse long test`(n: Long, expected: Long) {
-        val actual = n.reverse()
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputPalindromeArgumentsProvider::class)
-    fun `is palindrome test`(n: Long, expected: Boolean) {
-        val actual = n.isSuperPalindrome()
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `is super palindrome test`(n: Long, expected: Boolean) {
-        val actual = n.isSuperPalindrome()
-        assertThat(actual).isEqualTo(expected)
     }
 }

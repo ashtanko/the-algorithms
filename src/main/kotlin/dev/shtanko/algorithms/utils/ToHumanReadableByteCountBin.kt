@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.utils
 
 import dev.shtanko.algorithms.BYTE
@@ -28,8 +29,9 @@ import dev.shtanko.algorithms.DECIMAL
 import java.text.CharacterIterator
 import java.text.StringCharacterIterator
 import java.util.Locale
+import kotlin.math.abs
 
-private const val BIT_MASK = 0xfffccccccccccccL
+private const val BIT_MASK = 0xf_ffc_ccc_ccc_ccc_ccL
 private const val MAX_LOOP_INDEX = 40
 private const val UNITS = "KMGTPE"
 
@@ -40,7 +42,7 @@ private const val UNITS = "KMGTPE"
  */
 fun Long.toHumanReadableByteCountBin(): String {
     val bytes = this
-    val absB = if (bytes == Long.MIN_VALUE) Long.MAX_VALUE else Math.abs(bytes)
+    val absB = if (bytes == Long.MIN_VALUE) Long.MAX_VALUE else abs(bytes)
     if (absB < BYTE) {
         return String.format(Locale.getDefault(), "%d B", bytes)
     }
@@ -52,6 +54,7 @@ fun Long.toHumanReadableByteCountBin(): String {
         ci.next()
         i -= DECIMAL
     }
-    value *= java.lang.Long.signum(bytes).toLong()
+    value *= java.lang.Long.signum(bytes)
+        .toLong()
     return String.format(Locale.getDefault(), "%.1f %ciB", value / BYTE.toDouble(), ci.current())
 }

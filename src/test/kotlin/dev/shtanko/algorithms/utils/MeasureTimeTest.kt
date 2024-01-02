@@ -21,15 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.utils
 
-import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class MeasureTimeTest {
+import kotlin.time.DurationUnit
+import kotlin.time.ExperimentalTime
 
+class MeasureTimeTest {
     @ExperimentalTime
     @Test
     fun `simple test`() {

@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.swap
@@ -38,14 +39,13 @@ import dev.shtanko.algorithms.extensions.swap
  * Stable: No
  */
 class ShellSort : AbstractSortStrategy {
-
     /**
      * Performs the Shell sort operation on the given array.
      *
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         val n = arr.size
         var h = 1
         while (h < n / GAP) {

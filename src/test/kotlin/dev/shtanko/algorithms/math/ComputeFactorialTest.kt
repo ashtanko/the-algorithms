@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.math
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -33,7 +33,22 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 class ComputeFactorialTest {
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `factorial test`(n: Int, expected: Long) {
+        val actual = computeFactorial(n)
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `calculate factorial for negative number, should throw error`() {
+        assertThrows<java.lang.IllegalStateException> {
+            computeFactorial(-1)
+        }
+    }
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -74,34 +89,20 @@ class ComputeFactorialTest {
             ),
             Arguments.of(
                 9,
-                362880,
+                362_880,
             ),
             Arguments.of(
                 10,
-                3628800,
+                3_628_800,
             ),
             Arguments.of(
                 11,
-                39916800,
+                39_916_800,
             ),
             Arguments.of(
                 12,
-                479001600,
+                479_001_600,
             ),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `factorial test`(n: Int, expected: Long) {
-        val actual = computeFactorial(n)
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @Test
-    fun `calculate factorial for negative number, should throw error`() {
-        assertThrows<java.lang.IllegalStateException> {
-            computeFactorial(-1)
-        }
     }
 }

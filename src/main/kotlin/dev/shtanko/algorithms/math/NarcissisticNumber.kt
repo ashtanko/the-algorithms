@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.math
 
 import dev.shtanko.algorithms.DECIMAL
@@ -42,8 +43,7 @@ fun interface NarcissisticNumber {
 /**
  * Implementation of the NarcissisticNumber interface.
  */
-class NarcissisticNumberImpl : NarcissisticNumber {
-
+data object NarcissisticNumberImpl : NarcissisticNumber {
     /**
      * Checks whether the given number is an Armstrong number.
      *

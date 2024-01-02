@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.leetcode
 
 private const val LIMIT = 26
@@ -37,20 +38,20 @@ fun interface AppealSum {
      * @param s The input String to perform the appeal sum on.
      * @return The result of the appeal sum operation.
      */
-    fun perform(s: String): Long
+    operator fun invoke(s: String): Long
 }
 
 /**
  * Implementation of the AppealSum interface using dynamic programming.
  */
-class AppealSumDP : AppealSum {
+data object AppealSumDp : AppealSum {
     /**
      * Performs the appeal sum operation on the given String using dynamic programming.
      *
      * @param s The input String to perform the appeal sum on.
      * @return The result of the appeal sum operation.
      */
-    override fun perform(s: String): Long {
+    override operator fun invoke(s: String): Long {
         var cur: Long = 0
         val prev = LongArray(LIMIT)
         return s.mapIndexed { index, c ->

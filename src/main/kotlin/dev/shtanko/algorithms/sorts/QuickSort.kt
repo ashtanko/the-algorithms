@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.swap
@@ -46,14 +47,13 @@ import dev.shtanko.algorithms.extensions.swap
  * Worst-case space complexity:  O(log n)
  */
 class QuickSort : AbstractSortStrategy {
-
     /**
      * Performs the quick sort operation on the given array.
      *
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         sort(arr, 0, arr.size - 1)
     }
 
@@ -65,15 +65,23 @@ class QuickSort : AbstractSortStrategy {
      * @param high The high index of the current range.
      * @param T The type of elements in the array, must be comparable.
      */
-    private fun <T : Comparable<T>> sort(arr: Array<T>, low: Int, high: Int) {
-        if (arr.isEmpty()) return
+    private fun <T : Comparable<T>> sort(
+        arr: Array<T>,
+        low: Int,
+        high: Int,
+    ) {
+        if (arr.isEmpty()) {
+            return
+        }
 
         val divideIndex = partition(arr, low, high)
 
-        if (low < divideIndex - 1) { // Sorting left half
+        if (low < divideIndex - 1) {
+            // Sorting left half
             sort(arr, low, divideIndex - 1)
         }
-        if (divideIndex < high) { // Sorting right half
+        if (divideIndex < high) {
+            // Sorting right half
             sort(arr, divideIndex, high)
         }
     }
@@ -87,14 +95,22 @@ class QuickSort : AbstractSortStrategy {
      * @return The index of the pivot element after partitioning.
      * @param T The type of elements in the array, must be comparable.
      */
-    private fun <T : Comparable<T>> partition(array: Array<T>, low: Int, high: Int): Int {
+    private fun <T : Comparable<T>> partition(
+        array: Array<T>,
+        low: Int,
+        high: Int,
+    ): Int {
         var left = low
         var right = high
-        val pivot = array[(left + right) / 2] // Pivot point
+        val pivot = array[(left + right) / 2]  // Pivot point
         while (left <= right) {
-            while (array[left] < pivot) left++ // Find the elements on the left that should be on the right
+            while (array[left] < pivot) {
+                left++
+            }  // Find the elements on the left that should be on the right
 
-            while (array[right] > pivot) right-- // Find the elements on the right that should be on the left
+            while (array[right] > pivot) {
+                right--
+            }  // Find the elements on the right that should be on the left
 
             // Swap elements, and move left and right indices
             if (left <= right) {

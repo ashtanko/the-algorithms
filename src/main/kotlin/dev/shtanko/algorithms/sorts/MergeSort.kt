@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 /**
@@ -39,14 +40,13 @@ package dev.shtanko.algorithms.sorts
  * Worst-case space complexity:  O(n)
  */
 class MergeSort : AbstractSortStrategy {
-
     /**
      * Performs the merge sort operation on the given array.
      *
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         val aux = arr.clone()
         sort(arr, aux, 0, arr.size - 1)
     }
@@ -60,8 +60,15 @@ class MergeSort : AbstractSortStrategy {
      * @param high The high index of the current range.
      * @param T The type of elements in the array, must be comparable.
      */
-    private fun <T : Comparable<T>> sort(arr: Array<T>, aux: Array<T>, low: Int, high: Int) {
-        if (high <= low) return
+    private fun <T : Comparable<T>> sort(
+        arr: Array<T>,
+        aux: Array<T>,
+        low: Int,
+        high: Int,
+    ) {
+        if (high <= low) {
+            return
+        }
         val mid = (low + high) / 2
         sort(arr, aux, low, mid)
         sort(arr, aux, mid + 1, high)
@@ -78,7 +85,13 @@ class MergeSort : AbstractSortStrategy {
      * @param high The high index of the current range.
      * @param T The type of elements in the array, must be comparable.
      */
-    private fun <T : Comparable<T>> merge(arr: Array<T>, aux: Array<T>, low: Int, mid: Int, high: Int) {
+    private fun <T : Comparable<T>> merge(
+        arr: Array<T>,
+        aux: Array<T>,
+        low: Int,
+        mid: Int,
+        high: Int,
+    ) {
         System.arraycopy(arr, low, aux, low, high - low + 1)
 
         var i = low

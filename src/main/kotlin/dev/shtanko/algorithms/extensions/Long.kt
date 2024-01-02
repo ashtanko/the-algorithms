@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
 import dev.shtanko.algorithms.DECIMAL
@@ -38,7 +39,9 @@ fun Long.isSuperPalindrome(): Boolean {
     repeat(2) {
         isSuper = x.isPalindrome()
         x /= 2
-        if (isSuper.not()) return false
+        if (isSuper.not()) {
+            return false
+        }
     }
     return isSuper
 }
@@ -49,9 +52,7 @@ fun Long.isSuperPalindrome(): Boolean {
  *
  * @return `true` if the number is a palindrome, `false` otherwise.
  */
-fun Long.isPalindrome(): Boolean {
-    return this == this.reverse()
-}
+fun Long.isPalindrome(): Boolean = this == this.reverse()
 
 /**
  * Reverses the digits of a Long number.

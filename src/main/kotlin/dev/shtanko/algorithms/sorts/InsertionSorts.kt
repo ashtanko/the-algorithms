@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.swap
@@ -42,10 +43,12 @@ class InsertionSort : AbstractSortStrategy {
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         for (i in 1 until arr.size) {
             for (j in i downTo 1) {
-                if (arr[j - 1] < arr[j]) break
+                if (arr[j - 1] < arr[j]) {
+                    break
+                }
                 arr.swap(j, j - 1)
             }
         }
@@ -67,7 +70,7 @@ class InsertionSort2 : AbstractSortStrategy {
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         for (i in 1 until arr.size) {
             val x = arr[i]
             var j = i

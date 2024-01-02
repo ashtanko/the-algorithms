@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.utils
 
 import java.text.CharacterIterator
@@ -28,7 +29,7 @@ import java.text.StringCharacterIterator
 import java.util.Locale
 
 private const val THOUSAND = 1000
-private const val BOUNDARY = 999950
+private const val BOUNDARY = 999_950
 private const val UNITS = "kMGTPE"
 
 /**
@@ -36,7 +37,7 @@ private const val UNITS = "kMGTPE"
  *
  * @return The human-readable byte count representation.
  */
-fun Long.toHumanReadableByteCountSI(): String {
+fun Long.toHumanReadableByteCountSi(): String {
     var bytes = this
 
     if (-THOUSAND < bytes && bytes < THOUSAND) {

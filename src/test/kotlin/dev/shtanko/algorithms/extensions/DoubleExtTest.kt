@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
 import org.assertj.core.api.Assertions.assertThat
@@ -29,7 +30,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class DoubleExtTest {
-
     @DisplayName("Test only even numbers")
     @ParameterizedTest(name = "For example, value {0} is even.")
     @ValueSource(doubles = [2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0, 100.0])

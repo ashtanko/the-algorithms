@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 /**
@@ -36,14 +37,13 @@ package dev.shtanko.algorithms.sorts
  * Worst-case space complexity:  O(log n)
  */
 class QuickSortRecursive : AbstractSortStrategy {
-
     /**
      * Performs the recursive quick sort operation on the given array.
      *
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         val sorted = arr.toList().quickSort()
         for (i in sorted.indices) {
             arr[i] = sorted[i]
@@ -57,11 +57,12 @@ class QuickSortRecursive : AbstractSortStrategy {
  * @return A new list with elements sorted in ascending order.
  * @param T The type of elements in the list, must be comparable.
  */
-fun <T : Comparable<T>> List<T>.quickSort(): List<T> = when {
-    size < 2 -> this
-    else -> {
-        val pivot = first()
-        val (smaller, greater) = drop(1).partition { it <= pivot }
-        smaller.quickSort() + pivot + greater.quickSort()
+fun <T : Comparable<T>> List<T>.quickSort(): List<T> =
+    when {
+        size < 2 -> this
+        else -> {
+            val pivot = first()
+            val (smaller, greater) = drop(1).partition { it <= pivot }
+            smaller.quickSort() + pivot + greater.quickSort()
+        }
     }
-}

@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.utils
 
 import dev.shtanko.algorithms.sorts.AbstractSortStrategy
@@ -37,9 +38,10 @@ import kotlin.time.toTimeUnit
  * @param task The task to measure the execution time of.
  * @return The elapsed time in the specified time unit.
  */
-fun measureTime(unit: DurationUnit, task: () -> Unit): Long {
-    return unit.toTimeUnit().convert(measureNanoTime(task), TimeUnit.NANOSECONDS)
-}
+fun measureTime(
+    unit: DurationUnit,
+    task: () -> Unit,
+): Long = unit.toTimeUnit().convert(measureNanoTime(task), TimeUnit.NANOSECONDS)
 
 /**
  * Measures the execution time of a task and prints the result.
@@ -49,7 +51,11 @@ fun measureTime(unit: DurationUnit, task: () -> Unit): Long {
  * @param array The array associated with the task.
  * @param task The task to measure the execution time of.
  */
-fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Unit) {
+fun measureTime(
+    strategy: AbstractSortStrategy,
+    array: IntArray,
+    task: () -> Unit,
+) {
     val elapsed = measureTime(DurationUnit.MILLISECONDS, task)
     println(
         String.format(
@@ -68,7 +74,10 @@ fun measureTime(strategy: AbstractSortStrategy, array: IntArray, task: () -> Uni
  * @param taskName The name of the task.
  * @param task The task to measure the execution time of.
  */
-fun measureTime(taskName: String, task: () -> Unit) {
+fun measureTime(
+    taskName: String,
+    task: () -> Unit,
+) {
     val elapsed = measureTime(DurationUnit.MILLISECONDS, task)
     println(String.format(Locale.getDefault(), "Task %s Consumed time: %d ms", taskName, elapsed))
 }

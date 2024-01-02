@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.utils
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,7 +31,15 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 class HumanReadableDurationTest {
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `to human readable duration test`(duration: Long, expected: String) {
+        val actual = duration.toHumanReadableDuration()
+        assertThat(actual).isEqualTo(expected)
+    }
 
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -40,36 +48,29 @@ class HumanReadableDurationTest {
                 "Runtime: 0 ms",
             ),
             Arguments.of(
-                1000000L,
+                1_000_000L,
                 "Runtime: 1 ms",
             ),
             Arguments.of(
-                2000000L,
+                2_000_000L,
                 "Runtime: 2 ms",
             ),
             Arguments.of(
-                12000000,
+                12_000_000,
                 "Runtime: 12 ms",
             ),
             Arguments.of(
-                56000000,
+                56_000_000,
                 "Runtime: 56 ms",
             ),
             Arguments.of(
-                65700000000,
+                65_700_000_000,
                 "Runtime: 65,700 ms",
             ),
             Arguments.of(
-                99900000000,
+                99_900_000_000,
                 "Runtime: 99,900 ms",
             ),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `to human readable duration test`(duration: Long, expected: String) {
-        val actual = duration.toHumanReadableDuration()
-        assertThat(actual).isEqualTo(expected)
     }
 }

@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.utils
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,7 +31,22 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class HumanReadableByteCountSITest {
+import java.util.stream.Stream
+
+class HumanReadableByteCountSitest {
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `human readable positive byte count binary SI test`(bytes: Long, expected: String) {
+        val actual = bytes.toHumanReadableByteCountSi()
+        Assertions.assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputNegativeArgumentsProvider::class)
+    fun `human readable negative byte count binary SI test`(bytes: Long, expected: String) {
+        val actual = bytes.toHumanReadableByteCountSi()
+        Assertions.assertThat(actual).isEqualTo(expected)
+    }
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -67,27 +82,27 @@ class HumanReadableByteCountSITest {
                 "1.7 kB",
             ),
             Arguments.of(
-                110592,
+                110_592,
                 "110.6 kB",
             ),
             Arguments.of(
-                7077888,
+                7_077_888,
                 "7.1 MB",
             ),
             Arguments.of(
-                452984832,
+                452_984_832,
                 "453.0 MB",
             ),
             Arguments.of(
-                28991029248,
+                28_991_029_248,
                 "29.0 GB",
             ),
             Arguments.of(
-                1855425871872,
+                1_855_425_871_872,
                 "1.9 TB",
             ),
             Arguments.of(
-                9223372036854775807,
+                9_223_372_036_854_775_807,
                 "9.2 EB",
             ),
             Arguments.of(
@@ -132,27 +147,27 @@ class HumanReadableByteCountSITest {
                 "-1.7 kB",
             ),
             Arguments.of(
-                -110592,
+                -110_592,
                 "-110.6 kB",
             ),
             Arguments.of(
-                -7077888,
+                -7_077_888,
                 "-7.1 MB",
             ),
             Arguments.of(
-                -452984832,
+                -452_984_832,
                 "-453.0 MB",
             ),
             Arguments.of(
-                -28991029248,
+                -28_991_029_248,
                 "-29.0 GB",
             ),
             Arguments.of(
-                -1855425871872,
+                -1_855_425_871_872,
                 "-1.9 TB",
             ),
             Arguments.of(
-                -9223372036854775807,
+                -9_223_372_036_854_775_807,
                 "-9.2 EB",
             ),
             Arguments.of(
@@ -168,19 +183,5 @@ class HumanReadableByteCountSITest {
                 "-9.2 EB",
             ),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `human readable positive byte count binary SI test`(bytes: Long, expected: String) {
-        val actual = bytes.toHumanReadableByteCountSI()
-        Assertions.assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputNegativeArgumentsProvider::class)
-    fun `human readable negative byte count binary SI test`(bytes: Long, expected: String) {
-        val actual = bytes.toHumanReadableByteCountSI()
-        Assertions.assertThat(actual).isEqualTo(expected)
     }
 }

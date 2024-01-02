@@ -1,21 +1,18 @@
 [versions]
-coroutines = "1.7.2"
-# https://junit.org/junit5/
-junit = "5.10.0-RC1"
-kotlin = "1.9.0"
-# https://mockk.io/
-mockk = "1.13.5"
-# https://github.com/detekt/detekt
-detekt = "1.23.0"
-#https://github.com/Kotlin/dokka
-dokka = "1.8.20"
-spotless = "6.9.1"
-dependency = "1.18.0"
-pitest = "1.9.0"
-#https://github.com/pinterest/ktlint
-ktlint = "0.50.0"
-#https://mvnrepository.com/artifact/org.assertj/assertj-core
-assertj = "3.24.2"
+coroutines = "1.7.3"        # https://github.com/Kotlin/kotlinx.coroutines
+junit = "5.8.0"            # https://junit.org/junit5/
+kotlin = "1.9.21"           # https://github.com/JetBrains/kotlin
+mockk = "1.13.8"            # https://mockk.io/
+detekt = "1.23.4"           # https://github.com/detekt/detekt
+dokka = "1.8.20"            # https://github.com/Kotlin/dokka
+spotless = "6.23.3"         # https://github.com/diffplug/spotless
+dependency = "1.28.0"       # https://github.com/autonomousapps/dependency-analysis-gradle-plugin
+pitest = "1.15.0"           # https://plugins.gradle.org/plugin/info.solidsoft.pitest
+pinterestKtlint = "0.49.0"  # https://github.com/pinterest/ktlint
+ktlint = "12.0.3"           # https://github.com/JLLeitschuh/ktlint-gradle
+assertj = "3.24.2"          # https://mvnrepository.com/artifact/org.assertj/assertj-core
+kover = "0.7.5"             # https://github.com/Kotlin/kotlinx-kover
+diktat = "2.0.0"            # https://github.com/saveourtool/diktat
 
 [libraries]
 junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
@@ -27,7 +24,7 @@ kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref =
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 detekt_formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
-ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
+pinterestKtlint = { module = "com.pinterest:ktlint", version.ref = "pinterestKtlint" }
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
@@ -39,3 +36,6 @@ dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependency" }
 pitest = { id = "info.solidsoft.pitest", version.ref = "pitest" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+diktat = { id = "com.saveourtool.diktat", version.ref = "diktat" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }

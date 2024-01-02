@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -32,7 +32,48 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 class StringExtTest {
+    @ParameterizedTest
+    @ArgumentsSource(CountZeroesArgumentsProvider::class)
+    fun `count zeroes ones test`(str: String, expected: IntArray) {
+        val actual = str.countZeroesOnes()
+        assertArrayEquals(actual, expected)
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `is binary test`(str: String, expected: Boolean) {
+        val actual = str.isBinary()
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputPrefixArgumentsProvider::class)
+    fun `common prefix test`(
+        left: String,
+        right: String,
+        expected: String
+    ) {
+        val actual = (left to right).commonPrefix()
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(IntArgumentsProvider::class)
+    fun `int or string test`(s: String, expected: Int) {
+        val actual = s.getNumberOfLetter()
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(RemoveZeroesArgumentsProvider::class)
+    fun `remove zeroes in begin test`(s: String, expected: String) {
+        val actual = s.removeZeroesInBegin()
+        assertThat(actual).isEqualTo(expected)
+    }
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("1", true),
@@ -163,41 +204,5 @@ class StringExtTest {
                 "1",
             ),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(CountZeroesArgumentsProvider::class)
-    fun `count zeroes ones test`(str: String, expected: IntArray) {
-        val actual = str.countZeroesOnes()
-        assertArrayEquals(actual, expected)
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `is binary test`(str: String, expected: Boolean) {
-        val actual = str.isBinary()
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputPrefixArgumentsProvider::class)
-    fun `common prefix test`(left: String, right: String, expected: String) {
-        val actual = (left to right).commonPrefix()
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(IntArgumentsProvider::class)
-    fun `int or string test`(s: String, expected: Int) {
-        val actual = s.getNumberOfLetter()
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(RemoveZeroesArgumentsProvider::class)
-    fun `remove zeroes in begin test`(s: String, expected: String) {
-        val actual = s.removeZeroesInBegin()
-        assertThat(actual).isEqualTo(expected)
     }
 }

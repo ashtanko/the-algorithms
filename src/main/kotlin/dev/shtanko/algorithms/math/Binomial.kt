@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.math
 
 /**
@@ -34,7 +35,10 @@ package dev.shtanko.algorithms.math
  * @param k The number of items to choose.
  * @return The binomial coefficient.
  */
-fun binomial(n: Int, k: Int): Long {
+fun binomial(
+    n: Int,
+    k: Int,
+): Long {
     var j = n - k + 1
     var binomial = 1L
     for (i in 1 until k + 1) {

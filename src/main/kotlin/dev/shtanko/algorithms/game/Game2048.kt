@@ -21,12 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.game
 
 import kotlin.random.Random
 
 /**
  * Represents the game over message.
+ *
+ * @property message
  */
 @JvmInline
 value class GameMessage(val message: String) {
@@ -64,16 +67,19 @@ fun run2048(grid: Array<IntArray>): GameMessage {
 
 /**
  * Checks if the grid contains the SOLVED value.
+ * @return
  */
 fun isGridSolved(grid: Array<IntArray>): Boolean = grid.any { row -> SOLVED in row }
 
 /**
  * Checks if the grid is full (no empty cells).
+ * @return
  */
 fun isGridFull(grid: Array<IntArray>): Boolean = grid.all { row -> 0 !in row }
 
 /**
  * Spawns a new number in the grid at an empty cell.
+ * @return
  */
 fun spawnNumber(grid: Array<IntArray>): Array<IntArray> {
     val coordinates = locateSpawnCoordinates(grid)
@@ -84,12 +90,15 @@ fun spawnNumber(grid: Array<IntArray>): Array<IntArray> {
 
 /**
  * Locates the coordinates of an empty cell in the grid.
+ * @return
  */
 fun locateSpawnCoordinates(grid: Array<IntArray>): Pair<Int, Int> {
     val emptyCells = arrayListOf<Pair<Int, Int>>()
     grid.forEachIndexed { x, row ->
         row.forEachIndexed { y, cell ->
-            if (cell == 0) emptyCells.add(Pair(x, y))
+            if (cell == 0) {
+                emptyCells.add(Pair(x, y))
+            }
         }
     }
 
@@ -98,13 +107,19 @@ fun locateSpawnCoordinates(grid: Array<IntArray>): Pair<Int, Int> {
 
 /**
  * Generates a random number (2 or 4) based on the RANDOM probability.
+ * @return
  */
 fun generateNumber(): Int = if (Random.nextDouble() > RANDOM) 2 else 4
 
 /**
  * Updates the grid by placing a new number at the specified coordinates.
+ * @return
  */
-fun updateGrid(grid: Array<IntArray>, at: Pair<Int, Int>, value: Int): Array<IntArray> {
+fun updateGrid(
+    grid: Array<IntArray>,
+    at: Pair<Int, Int>,
+    value: Int,
+): Array<IntArray> {
     val updatedGrid = grid.copyOf()
     updatedGrid[at.first][at.second] = value
     return updatedGrid
@@ -120,11 +135,13 @@ fun waitForValidInput(): String {
 
 /**
  * Checks if the user input is valid.
+ * @return
  */
 fun isValidInput(input: String): Boolean = arrayOf("a", "s", "d", "w").contains(input)
 
 /**
  * Waits for user input from the console.
+ * @return
  */
 fun waitForInput(): String {
     println("Direction? (a - shift left, s - shift down, d - shift right, w - shift up)")
@@ -133,29 +150,36 @@ fun waitForInput(): String {
 
 /**
  * Manipulates the grid based on the user input.
+ * @return
  */
-fun manipulateGrid(grid: Array<IntArray>, input: String): Array<IntArray> = when (input) {
-    "a" -> shiftCellsLeft(grid)
-    "s" -> shiftCellsDown(grid)
-    "d" -> shiftCellsRight(grid)
-    "w" -> shiftCellsUp(grid)
-    else -> throw IllegalArgumentException("Expected one of [a, s, d, w]")
-}
+fun manipulateGrid(
+    grid: Array<IntArray>,
+    input: String,
+): Array<IntArray> =
+    when (input) {
+        "a" -> shiftCellsLeft(grid)
+        "s" -> shiftCellsDown(grid)
+        "d" -> shiftCellsRight(grid)
+        "w" -> shiftCellsUp(grid)
+        else -> throw IllegalArgumentException("Expected one of [a, s, d, w]")
+    }
 
 /**
  * Shifts the cells in the grid to the left.
+ * @return
  */
-fun shiftCellsLeft(grid: Array<IntArray>): Array<IntArray> =
-    grid.map(::mergeAndOrganizeCells).toTypedArray()
+fun shiftCellsLeft(grid: Array<IntArray>): Array<IntArray> = grid.map(::mergeAndOrganizeCells).toTypedArray()
 
 /**
  * Shifts the cells in the grid to the right.
+ * @return
  */
 fun shiftCellsRight(grid: Array<IntArray>): Array<IntArray> =
     grid.map { row -> mergeAndOrganizeCells(row.reversed().toIntArray()).reversed().toIntArray() }.toTypedArray()
 
 /**
  * Shifts the cells in the grid upwards.
+ * @return
  */
 fun shiftCellsUp(grid: Array<IntArray>): Array<IntArray> {
     val transposedGrid = grid.transpose()
@@ -165,6 +189,7 @@ fun shiftCellsUp(grid: Array<IntArray>): Array<IntArray> {
 
 /**
  * Shifts the cells in the grid downwards.
+ * @return
  */
 fun shiftCellsDown(grid: Array<IntArray>): Array<IntArray> {
     val transposedGrid = grid.transpose()
@@ -176,16 +201,27 @@ fun shiftCellsDown(grid: Array<IntArray>): Array<IntArray> {
 
 /**
  * Merges and organizes the cells in a row.
+ * @return
  */
 fun mergeAndOrganizeCells(row: IntArray): IntArray = organize(merge(row.copyOf()))
 
 /**
  * Merges adjacent cells in a row.
  */
-fun merge(row: IntArray, idxToMatch: Int = 0, idxToCompare: Int = 1): IntArray {
-    if (idxToMatch >= row.size) return row
-    if (idxToCompare >= row.size) return merge(row, idxToMatch + 1, idxToMatch + 2)
-    if (row[idxToMatch] == 0) return merge(row, idxToMatch + 1, idxToMatch + 2)
+fun merge(
+    row: IntArray,
+    idxToMatch: Int = 0,
+    idxToCompare: Int = 1,
+): IntArray {
+    if (idxToMatch >= row.size) {
+        return row
+    }
+    if (idxToCompare >= row.size) {
+        return merge(row, idxToMatch + 1, idxToMatch + 2)
+    }
+    if (row[idxToMatch] == 0) {
+        return merge(row, idxToMatch + 1, idxToMatch + 2)
+    }
 
     return if (row[idxToMatch] == row[idxToCompare]) {
         row[idxToMatch] *= 2
@@ -203,10 +239,20 @@ fun merge(row: IntArray, idxToMatch: Int = 0, idxToCompare: Int = 1): IntArray {
 /**
  * Organizes the cells in a row by moving them towards the beginning.
  */
-fun organize(row: IntArray, idxToMatch: Int = 0, idxToCompare: Int = 1): IntArray {
-    if (idxToMatch >= row.size) return row
-    if (idxToCompare >= row.size) return organize(row, idxToMatch + 1, idxToMatch + 2)
-    if (row[idxToMatch] != 0) return organize(row, idxToMatch + 1, idxToMatch + 2)
+fun organize(
+    row: IntArray,
+    idxToMatch: Int = 0,
+    idxToCompare: Int = 1,
+): IntArray {
+    if (idxToMatch >= row.size) {
+        return row
+    }
+    if (idxToCompare >= row.size) {
+        return organize(row, idxToMatch + 1, idxToMatch + 2)
+    }
+    if (row[idxToMatch] != 0) {
+        return organize(row, idxToMatch + 1, idxToMatch + 2)
+    }
 
     return if (row[idxToCompare] != 0) {
         row[idxToMatch] = row[idxToCompare]
@@ -221,11 +267,12 @@ fun organize(row: IntArray, idxToMatch: Int = 0, idxToCompare: Int = 1): IntArra
  * Displays the grid in a user-friendly format.
  */
 fun display(grid: Array<IntArray>) {
-    val prettyPrintableGrid = grid.map { row ->
-        row.joinToString("|") { cell ->
-            if (cell == 0) "    " else "%4d".format(cell)
+    val prettyPrintableGrid =
+        grid.map { row ->
+            row.joinToString("|") { cell ->
+                if (cell == 0) "    " else "%4d".format(cell)
+            }
         }
-    }
 
     println("New Grid:")
     prettyPrintableGrid.forEach { row ->
@@ -245,12 +292,13 @@ private fun Array<IntArray>.transpose(): Array<IntArray> =
  * Entry point of the program.
  */
 fun main() {
-    val grid = arrayOf(
-        intArrayOf(0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0),
-    )
+    val grid =
+        arrayOf(
+            intArrayOf(0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0),
+        )
 
     val gameOverMessage = run2048(grid)
     println(gameOverMessage)

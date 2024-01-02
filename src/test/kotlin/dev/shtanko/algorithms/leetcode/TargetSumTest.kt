@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,7 +31,19 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 abstract class TargetSumTest<out T : TargetSum>(private val strategy: T) {
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `find target sum ways test`(
+        nums: IntArray,
+        target: Int,
+        expected: Int
+    ) {
+        val actual = strategy(nums, target)
+        assertThat(actual).isEqualTo(expected)
+    }
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -91,16 +103,9 @@ abstract class TargetSumTest<out T : TargetSum>(private val strategy: T) {
             ),
         )
     }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `find target sum ways test`(nums: IntArray, target: Int, expected: Int) {
-        val actual = strategy.findTargetSumWays(nums, target)
-        assertThat(actual).isEqualTo(expected)
-    }
 }
 
 class TargetSumBruteForceTest : TargetSumTest<TargetSum>(TargetSumBruteForce())
 class TargetSumMemoizationTest : TargetSumTest<TargetSum>(TargetSumMemoization())
-class TwoDDynamicProgrammingTest : TargetSumTest<TargetSum>(TwoDDynamicProgramming())
-class OneDDynamicProgrammingTest : TargetSumTest<TargetSum>(OneDDynamicProgramming())
+class TwoDdynamicProgrammingTest : TargetSumTest<TargetSum>(TwoDdynamicProgramming)
+class OneDdynamicProgrammingTest : TargetSumTest<TargetSum>(OneDdynamicProgramming)

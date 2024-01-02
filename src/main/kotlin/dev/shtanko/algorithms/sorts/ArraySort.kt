@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 /**
@@ -33,5 +34,5 @@ class ArraySort : AbstractSortStrategy {
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) = arr.sort()
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) = arr.sort()
 }

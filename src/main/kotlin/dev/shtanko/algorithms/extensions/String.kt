@@ -21,38 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
 import kotlin.math.min
 
-private val alphabet = charArrayOf(
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z',
-)
+private val alphabet =
+    charArrayOf(
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'g',
+        'h',
+        'i',
+        'j',
+        'k',
+        'l',
+        'm',
+        'n',
+        'o',
+        'p',
+        'q',
+        'r',
+        's',
+        't',
+        'u',
+        'v',
+        'w',
+        'x',
+        'y',
+        'z',
+    )
 
 /**
  * Checks if a String represents a binary number (contains only '0' and '1' characters).
@@ -60,10 +62,13 @@ private val alphabet = charArrayOf(
  * @return `true` if the String represents a binary number, `false` otherwise.
  */
 fun String.isBinary(): Boolean {
-    if (this.isBlank()) return false
-    val set = toSet().toMutableSet().apply {
-        removeAll(listOf('0', '1'))
+    if (this.isBlank()) {
+        return false
     }
+    val set =
+        toSet().toMutableSet().apply {
+            removeAll(listOf('0', '1'))
+        }
     return set.isEmpty()
 }
 
@@ -76,7 +81,9 @@ fun Pair<String, String>.commonPrefix(): String {
     val (left, right) = this
     val min = min(left.length, right.length)
     for (i in 0 until min) {
-        if (left[i] != right[i]) return left.substring(0, i)
+        if (left[i] != right[i]) {
+            return left.substring(0, i)
+        }
     }
     return left.substring(0, min)
 }
@@ -119,7 +126,11 @@ fun String.removeZeroesInBegin(): String {
     if (this.length == 1 && this == "0") {
         return this
     }
-    if (this.toCharArray().first().isZero().not()) {
+    if (this.toCharArray()
+            .first()
+            .isZero()
+            .not()
+    ) {
         return this
     }
     if (this.isAllZeroes()) {
@@ -133,15 +144,11 @@ fun String.removeZeroesInBegin(): String {
  *
  * @return `true` if the String consists of all zeroes, `false` otherwise.
  */
-fun String.isAllZeroes(): Boolean {
-    return this.none { it.isZero().not() }
-}
+fun String.isAllZeroes(): Boolean = this.none { it.isZero().not() }
 
 /**
  * Checks if a Char is equal to '0'.
  *
  * @return `true` if the Char is '0', `false` otherwise.
  */
-fun Char.isZero(): Boolean {
-    return this == '0'
-}
+fun Char.isZero(): Boolean = this == '0'

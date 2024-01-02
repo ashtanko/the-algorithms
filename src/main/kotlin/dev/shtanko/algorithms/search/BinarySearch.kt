@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.search
 
 /**
@@ -38,7 +39,6 @@ package dev.shtanko.algorithms.search
  * @param T The type of elements in the array, must be comparable.
  */
 class BinarySearch<T : Comparable<T>> : AbstractSearchStrategy<T> {
-
     /**
      * Performs the binary search operation on the given array to find the index of the specified element.
      *
@@ -46,7 +46,10 @@ class BinarySearch<T : Comparable<T>> : AbstractSearchStrategy<T> {
      * @param element The element to search for.
      * @return The index of the element in the array, or -1 if the element is not found.
      */
-    override fun perform(arr: Array<T>, element: T): Int {
+    override operator fun invoke(
+        arr: Array<T>,
+        element: T,
+    ): Int {
         var lo = 0
         var hi = arr.size - 1
         while (lo <= hi) {

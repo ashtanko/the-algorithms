@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
@@ -29,7 +30,6 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 
 class ArrayExtensionTest {
-
     @Test
     fun `simple swap test`() {
         val arr = arrayOf(4, 8)

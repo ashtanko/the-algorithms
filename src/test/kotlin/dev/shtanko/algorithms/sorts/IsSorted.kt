@@ -21,13 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
-fun IntArray.isSorted(): Boolean {
-    return this.asSequence().zipWithNext { a, b -> a <= b }.all { it }
-}
+fun IntArray.isSorted(): Boolean = this.asSequence().zipWithNext { a, b -> a <= b }.all { it }
 
 @Suppress("ArrayPrimitive")
-fun Array<Int>.isSorted(): Boolean {
-    return this.asSequence().zipWithNext { a, b -> a <= b }.all { it }
-}
+fun Array<Int>.isSorted(): Boolean = this.asSequence().zipWithNext { a, b -> a <= b }.all { it }

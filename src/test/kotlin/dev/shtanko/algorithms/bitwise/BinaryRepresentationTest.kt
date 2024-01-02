@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.bitwise
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,7 +31,15 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 class BinaryRepresentationTest {
+    @ParameterizedTest
+    @ArgumentsSource(LongArgs::class)
+    fun `long to bin string test`(n: Long, expected: String) {
+        val actual = n.bin()
+        assertThat(actual).isEqualTo(expected)
+    }
     private class LongArgs : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -59,7 +67,7 @@ class BinaryRepresentationTest {
                 "00000000000000000000000011101010",
             ),
             Arguments.of(
-                2342354676L,
+                2_342_354_676L,
                 "00001011100111010111111011110100",
             ),
             Arguments.of(
@@ -71,12 +79,5 @@ class BinaryRepresentationTest {
                 "00000000000000000000000000000000",
             ),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(LongArgs::class)
-    fun `long to bin string test`(n: Long, expected: String) {
-        val actual = n.bin()
-        assertThat(actual).isEqualTo(expected)
     }
 }

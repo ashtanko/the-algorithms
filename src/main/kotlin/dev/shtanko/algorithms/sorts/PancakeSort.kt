@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.flip
@@ -37,14 +38,13 @@ import dev.shtanko.algorithms.extensions.flip
  * Worst-case space complexity:  O(1)
  */
 class PancakeSort : AbstractSortStrategy {
-
     /**
      * Performs the pancake sort operation on the given array.
      *
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         for (i in arr.indices) {
             var max = arr[0]
             var index = 0

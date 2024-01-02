@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.math
 
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -28,7 +29,6 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class NewtonMethodTest {
-
     @Test
     fun `calculate sqrt newton method test one`() {
         assertTrue(sqrt(-2.0).isNaN())

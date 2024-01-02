@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.swap
@@ -39,14 +40,13 @@ import dev.shtanko.algorithms.extensions.swap
  * Worst-case space complexity:  O(1)
  */
 class BubbleSort : AbstractSortStrategy {
-
     /**
      * Performs the bubble sort operation on the given array.
      *
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         var exchanged: Boolean
 
         do {
@@ -72,14 +72,13 @@ class BubbleSort : AbstractSortStrategy {
  * Worst-case space complexity:  O(1)
  */
 class SimpleBubbleSort : AbstractSortStrategy {
-
     /**
      * Performs the simple bubble sort operation on the given array.
      *
      * @param arr The array to sort.
      * @param T The type of elements in the array, must be comparable.
      */
-    override fun <T : Comparable<T>> perform(arr: Array<T>) {
+    override fun <T : Comparable<T>> invoke(arr: Array<T>) {
         for (i in 0 until arr.size - 1) {
             for (j in i + 1 until arr.size) {
                 if (arr[i] > arr[j]) {

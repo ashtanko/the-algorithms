@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,7 +31,27 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
+import java.util.stream.Stream
+
 class CharExtTest {
+    @ParameterizedTest
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `random string test`(
+        range: CharRange,
+        len: Int,
+        expected: Int
+    ) {
+        val randomString = range.randomString(len)
+        val actual = randomString.length
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(InputVowelArgumentsProvider::class)
+    fun `is vowel test`(c: Char, expected: Boolean) {
+        val actual = c.isVowel()
+        assertThat(actual).isEqualTo(expected)
+    }
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
@@ -54,20 +74,5 @@ class CharExtTest {
             Arguments.of('z', false),
             Arguments.of('x', false),
         )
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputArgumentsProvider::class)
-    fun `random string test`(range: CharRange, len: Int, expected: Int) {
-        val randomString = range.randomString(len)
-        val actual = randomString.length
-        assertThat(actual).isEqualTo(expected)
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(InputVowelArgumentsProvider::class)
-    fun `is vowel test`(c: Char, expected: Boolean) {
-        val actual = c.isVowel()
-        assertThat(actual).isEqualTo(expected)
     }
 }

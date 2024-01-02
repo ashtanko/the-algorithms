@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.search
 
 class LinearSearchTest : AbstractSearchTest<LinearSearch<Int>>(LinearSearch())

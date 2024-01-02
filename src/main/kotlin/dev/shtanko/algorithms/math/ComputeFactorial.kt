@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.math
 
 /**
@@ -34,7 +35,10 @@ package dev.shtanko.algorithms.math
  * @return The factorial of the input number.
  * @throws IllegalArgumentException if the input is a negative number.
  */
-tailrec fun computeFactorial(input: Int, temp: Long = 1L): Long =
+tailrec fun computeFactorial(
+    input: Int,
+    temp: Long = 1L,
+): Long =
     when {
         input < 0 -> error("Factorial is not defined for negative numbers")
         input == 0 -> temp

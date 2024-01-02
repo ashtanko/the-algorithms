@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.search
 
 /**
@@ -36,7 +37,6 @@ package dev.shtanko.algorithms.search
  * @param T The type of elements in the array.
  */
 class LinearSearch<T> : AbstractSearchStrategy<T> {
-
     /**
      * Performs the linear search operation on the given array to find the index of the specified element.
      *
@@ -44,7 +44,10 @@ class LinearSearch<T> : AbstractSearchStrategy<T> {
      * @param element The element to search for.
      * @return The index of the element in the array, or -1 if the element is not found.
      */
-    override fun perform(arr: Array<T>, element: T): Int {
+    override operator fun invoke(
+        arr: Array<T>,
+        element: T,
+    ): Int {
         for ((i, a) in arr.withIndex()) {
             if (a == element) {
                 return i

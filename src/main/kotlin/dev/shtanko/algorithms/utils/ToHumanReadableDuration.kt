@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.utils
 
 import dev.shtanko.algorithms.MILLISECOND
@@ -34,16 +35,18 @@ import java.util.concurrent.TimeUnit
 fun Long.toHumanReadableDuration(): String {
     val millis = TimeUnit.MILLISECONDS.convert(this, TimeUnit.NANOSECONDS)
     val sec = TimeUnit.SECONDS.convert(this, TimeUnit.NANOSECONDS)
-    val sb = if (sec != 0L) {
-        val diff = millis - MILLISECOND * sec
-        val sbDiff = if (diff != 0L) {
-            "$diff ms"
+    val sb =
+        if (sec != 0L) {
+            val diff = millis - MILLISECOND * sec
+            val sbDiff =
+                if (diff != 0L) {
+                    "$diff ms"
+                } else {
+                    ""
+                }
+            "$sec,$sbDiff"
         } else {
-            ""
+            "$millis ms"
         }
-        "$sec,$sbDiff"
-    } else {
-        "$millis ms"
-    }
     return "Runtime: $sb"
 }

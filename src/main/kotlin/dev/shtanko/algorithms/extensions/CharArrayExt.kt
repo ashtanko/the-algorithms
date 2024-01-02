@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+
 package dev.shtanko.algorithms.extensions
 
 /**
@@ -29,7 +30,10 @@ package dev.shtanko.algorithms.extensions
  * @param leftIdx The starting index (inclusive) of the portion to be reversed.
  * @param rightIdx The ending index (inclusive) of the portion to be reversed.
  */
-fun CharArray.reverse(leftIdx: Int, rightIdx: Int) {
+fun CharArray.reverse(
+    leftIdx: Int,
+    rightIdx: Int,
+) {
     var left = leftIdx
     var right = rightIdx
     while (left < right) {
@@ -45,7 +49,10 @@ fun CharArray.reverse(leftIdx: Int, rightIdx: Int) {
  * @param i the index of the first character to swap.
  * @param i1 the index of the second character to swap.
  */
-fun CharArray.swap(i: Int, i1: Int) {
+fun CharArray.swap(
+    i: Int,
+    i1: Int,
+) {
     val temp = this[i]
     this[i] = this[i1]
     this[i1] = temp
