@@ -24,6 +24,7 @@
 
 package dev.shtanko.algorithms.search
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,15 +32,13 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-import java.util.stream.Stream
-
 abstract class AbstractStringSearchTest<out T : AbstractSearchStrategy<String>>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputStringArrayArgumentsProvider::class)
     fun `string array test`(
         arr: Array<String>,
         element: String,
-        expected: Int
+        expected: Int,
     ) {
         val actual = strategy(arr, element)
         assertEquals(expected, actual)

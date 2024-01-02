@@ -25,6 +25,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -32,15 +33,13 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-import java.util.stream.Stream
-
 abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `add binary test`(
         a: String,
         b: String,
-        expected: String
+        expected: String,
     ) {
         measureTime("Add binary a: $a b: $b") {
             val actual = strategy(a, b)
@@ -109,8 +108,5 @@ abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T)
     }
 }
 
-class AddBinaryBitByBitComputationTest :
-    AddBinaryTest<AddBinaryBitByBitComputation>(AddBinaryBitByBitComputation)
-
-class AddBinaryBitManipulationTest :
-    AddBinaryTest<AddBinaryBitManipulation>(AddBinaryBitManipulation)
+class AddBinaryBitByBitComputationTest : AddBinaryTest<AddBinaryStrategy>(addBinaryBitByBitComputation)
+class AddBinaryBitManipulationTest : AddBinaryTest<AddBinaryStrategy>(addBinaryBitManipulation)

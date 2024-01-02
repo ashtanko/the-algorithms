@@ -24,14 +24,13 @@
 
 package dev.shtanko.algorithms.utils
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-
-import java.util.stream.Stream
 
 class HumanReadableByteCountSitest {
     @ParameterizedTest
@@ -47,6 +46,7 @@ class HumanReadableByteCountSitest {
         val actual = bytes.toHumanReadableByteCountSi()
         Assertions.assertThat(actual).isEqualTo(expected)
     }
+
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(

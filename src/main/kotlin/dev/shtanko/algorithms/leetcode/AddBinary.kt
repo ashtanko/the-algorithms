@@ -42,42 +42,34 @@ fun interface AddBinaryStrategy {
  * Time complexity: O(max(N,M)), where N and M are lengths of the input strings a and b.
  * Space complexity: O(max(N,M)) to keep the answer.
  */
-data object AddBinaryBitByBitComputation : AddBinaryStrategy {
-    override operator fun invoke(
-        a: String,
-        b: String,
-    ): String {
-        val sb = StringBuilder()
-        var i: Int = a.lastIndex
-        var j: Int = b.lastIndex
-        var carry = 0
-        while (i >= 0 || j >= 0) {
-            var sum = carry
-            if (j >= 0) {
-                sum += b[j--] - '0'
-            }
-            if (i >= 0) {
-                sum += a[i--] - '0'
-            }
-            sb.append(sum % 2)
-            carry = sum / 2
+val addBinaryBitByBitComputation = AddBinaryStrategy { a: String, b: String ->
+    val sb = StringBuilder()
+    var i: Int = a.lastIndex
+    var j: Int = b.lastIndex
+    var carry = 0
+    while (i >= 0 || j >= 0) {
+        var sum = carry
+        if (j >= 0) {
+            sum += b[j--] - '0'
         }
-        if (carry != 0) {
-            sb.append(carry)
+        if (i >= 0) {
+            sum += a[i--] - '0'
         }
-        return sb.reverse().toString()
+        sb.append(sum % 2)
+        carry = sum / 2
     }
+    if (carry != 0) {
+        sb.append(carry)
+    }
+    sb.reverse().toString()
 }
 
 /**
  * Time complexity : O(N+M), where N and M are lengths of the input strings a and b.
  * Space complexity: O(max(N,M)) to keep the answer.
  */
-data object AddBinaryBitManipulation : AddBinaryStrategy {
-    override operator fun invoke(
-        a: String,
-        b: String,
-    ): String = when {
+val addBinaryBitManipulation = AddBinaryStrategy { a: String, b: String ->
+    when {
         a.isBlank() && b.isNotBlank() -> b
         a.isNotBlank() && b.isBlank() -> a
         a.isBlank() && b.isBlank() -> ""

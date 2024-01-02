@@ -71,7 +71,7 @@ object MinDistanceLcs : MinDistance {
  * Time complexity : O(m*n).
  * Space complexity : O(m*n).
  */
-object MinDistanceLcsmemo : MinDistance {
+object MinDistanceLcsMemo : MinDistance {
     override operator fun invoke(
         word1: String,
         word2: String,
@@ -112,26 +112,21 @@ object MinDistanceLcsmemo : MinDistance {
  * Time complexity : O(m*n).
  * Space complexity : O(m*n).
  */
-data object MinDistanceLcsdp : MinDistance {
-    override operator fun invoke(
-        word1: String,
-        word2: String,
-    ): Int {
-        val dp = Array(word1.length + 1) { IntArray(word2.length + 1) }
-        for (i in 0..word1.length) {
-            for (j in 0..word2.length) {
-                if (i == 0 || j == 0) {
-                    continue
-                }
-                if (word1[i - 1] == word2[j - 1]) {
-                    dp[i][j] = 1 + dp[i - 1][j - 1]
-                } else {
-                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
-                }
+val minDistanceLcsDp = MinDistance { word1: String, word2: String ->
+    val dp = Array(word1.length + 1) { IntArray(word2.length + 1) }
+    for (i in 0..word1.length) {
+        for (j in 0..word2.length) {
+            if (i == 0 || j == 0) {
+                continue
+            }
+            if (word1[i - 1] == word2[j - 1]) {
+                dp[i][j] = 1 + dp[i - 1][j - 1]
+            } else {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
             }
         }
-        return word1.length + word2.length - 2 * dp[word1.length][word2.length]
     }
+    word1.length + word2.length - 2 * dp[word1.length][word2.length]
 }
 
 /**
@@ -139,31 +134,26 @@ data object MinDistanceLcsdp : MinDistance {
  * Time complexity : O(m*n).
  * Space complexity : O(m*n).
  */
-object MinDistanceDp : MinDistance {
-    override operator fun invoke(
-        word1: String,
-        word2: String,
-    ): Int {
-        val dp =
-            Array(word1.length + 1) {
-                IntArray(
-                    word2.length + 1,
-                )
-            }
-        for (i in 0..word1.length) {
-            for (j in 0..word2.length) {
-                if (i == 0 || j == 0) {
-                    dp[i][j] = i + j
-                } else if (word1[i - 1] == word2[j - 1]) {
-                    dp[i][j] =
-                            dp[i - 1][j - 1]
-                } else {
-                    dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1])
-                }
+val minDistanceDp = MinDistance { word1: String, word2: String ->
+    val dp =
+        Array(word1.length + 1) {
+            IntArray(
+                word2.length + 1,
+            )
+        }
+    for (i in 0..word1.length) {
+        for (j in 0..word2.length) {
+            if (i == 0 || j == 0) {
+                dp[i][j] = i + j
+            } else if (word1[i - 1] == word2[j - 1]) {
+                dp[i][j] =
+                    dp[i - 1][j - 1]
+            } else {
+                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1])
             }
         }
-        return dp[word1.length][word2.length]
     }
+    dp[word1.length][word2.length]
 }
 
 /**
@@ -171,25 +161,20 @@ object MinDistanceDp : MinDistance {
  * Time complexity : O(m*n).
  * Space complexity : O(n).
  */
-object MinDistance1Ddp : MinDistance {
-    override operator fun invoke(
-        word1: String,
-        word2: String,
-    ): Int {
-        var dp = IntArray(word2.length + 1)
-        for (i in 0..word1.length) {
-            val temp = IntArray(word2.length + 1)
-            for (j in 0..word2.length) {
-                if (i == 0 || j == 0) {
-                    temp[j] = i + j
-                } else if (word1[i - 1] == word2[j - 1]) {
-                    temp[j] = dp[j - 1]
-                } else {
-                    temp[j] = 1 + min(dp[j], temp[j - 1])
-                }
+val minDistance1Ddp = MinDistance { word1: String, word2: String ->
+    var dp = IntArray(word2.length + 1)
+    for (i in 0..word1.length) {
+        val temp = IntArray(word2.length + 1)
+        for (j in 0..word2.length) {
+            if (i == 0 || j == 0) {
+                temp[j] = i + j
+            } else if (word1[i - 1] == word2[j - 1]) {
+                temp[j] = dp[j - 1]
+            } else {
+                temp[j] = 1 + min(dp[j], temp[j - 1])
             }
-            dp = temp
         }
-        return dp[word2.length]
+        dp = temp
     }
+    dp[word2.length]
 }

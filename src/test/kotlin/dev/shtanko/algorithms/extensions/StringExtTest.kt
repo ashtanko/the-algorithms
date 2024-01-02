@@ -24,6 +24,7 @@
 
 package dev.shtanko.algorithms.extensions
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -31,8 +32,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-
-import java.util.stream.Stream
 
 class StringExtTest {
     @ParameterizedTest
@@ -55,7 +54,7 @@ class StringExtTest {
     fun `common prefix test`(
         left: String,
         right: String,
-        expected: String
+        expected: String,
     ) {
         val actual = (left to right).commonPrefix()
         assertThat(actual).isEqualTo(expected)
@@ -74,6 +73,7 @@ class StringExtTest {
         val actual = s.removeZeroesInBegin()
         assertThat(actual).isEqualTo(expected)
     }
+
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of("1", true),

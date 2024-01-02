@@ -24,6 +24,7 @@
 
 package dev.shtanko.algorithms.math
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,15 +32,13 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-import java.util.stream.Stream
-
 class Gcdtest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `gcd pair test`(
         a: Int,
         b: Int,
-        expected: Int
+        expected: Int,
     ) {
         val actual = (a to b).gcd()
         assertEquals(expected, actual)
@@ -50,11 +49,12 @@ class Gcdtest {
     fun `gcd recursive test`(
         a: Int,
         b: Int,
-        expected: Int
+        expected: Int,
     ) {
         val actual = gcd(a, b)
         assertEquals(expected, actual)
     }
+
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(54, 24, 6),

@@ -24,6 +24,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -31,19 +32,18 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-import java.util.stream.Stream
-
 abstract class MinDistanceTest<out T : MinDistance>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `min distance test`(
         word1: String,
         word2: String,
-        expected: Int
+        expected: Int,
     ) {
         val actual = strategy(word1, word2)
         assertThat(actual).isEqualTo(expected)
     }
+
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -70,8 +70,8 @@ abstract class MinDistanceTest<out T : MinDistance>(private val strategy: T) {
     }
 }
 
-class MinDistanceLcstest : MinDistanceTest<MinDistance>(MinDistanceLcs)
-class MinDistanceLcsmemoTest : MinDistanceTest<MinDistance>(MinDistanceLcsmemo)
-class MinDistanceLcsdptest : MinDistanceTest<MinDistance>(MinDistanceLcsdp)
-class MinDistanceDptest : MinDistanceTest<MinDistance>(MinDistanceDp)
-class MinDistance1Ddptest : MinDistanceTest<MinDistance>(MinDistance1Ddp)
+class MinDistanceLcsTest : MinDistanceTest<MinDistance>(MinDistanceLcs)
+class MinDistanceLcsMemoTest : MinDistanceTest<MinDistance>(MinDistanceLcsMemo)
+class MinDistanceLcsDpTest : MinDistanceTest<MinDistance>(minDistanceLcsDp)
+class MinDistanceDpTest : MinDistanceTest<MinDistance>(minDistanceDp)
+class MinDistance1DdpTest : MinDistanceTest<MinDistance>(minDistance1Ddp)

@@ -25,6 +25,7 @@
 package dev.shtanko.algorithms.leetcode
 
 import dev.shtanko.algorithms.utils.measureTime
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
@@ -32,21 +33,20 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-import java.util.stream.Stream
-
 abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `two sum test`(
         array: IntArray,
         target: Int,
-        expected: IntArray
+        expected: IntArray,
     ) {
         measureTime("Two sum array ${array.toList()}") {
             val actual = strategy(array, target)
             assertThat(actual).isEqualTo(expected)
         }
     }
+
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
@@ -88,7 +88,7 @@ abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
     }
 }
 
-class TwoSumBruteForceTest : TwoSumTest<TwoSumBruteForce>(TwoSumBruteForce)
-class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumTwoPassHashTable>(TwoSumTwoPassHashTable)
-class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumOnePassHashTable>(TwoSumOnePassHashTable)
-class TwoSumOneHashMapTest : TwoSumTest<TwoSumOneHashMap>(TwoSumOneHashMap)
+class TwoSumBruteForceTest : TwoSumTest<TwoSumStrategy>(twoSumBruteForce)
+class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumStrategy>(twoSumTwoPassHashTable)
+class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumStrategy>(twoSumOnePassHashTable)
+class TwoSumOneHashMapTest : TwoSumTest<TwoSumStrategy>(twoSumOneHashMap)

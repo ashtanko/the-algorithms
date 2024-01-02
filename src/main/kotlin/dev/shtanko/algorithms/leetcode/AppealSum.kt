@@ -42,22 +42,17 @@ fun interface AppealSum {
 }
 
 /**
- * Implementation of the AppealSum interface using dynamic programming.
+ * Performs the appeal sum operation on the given String using dynamic programming.
+ *
+ * @param s The input String to perform the appeal sum on.
+ * @return The result of the appeal sum operation.
  */
-data object AppealSumDp : AppealSum {
-    /**
-     * Performs the appeal sum operation on the given String using dynamic programming.
-     *
-     * @param s The input String to perform the appeal sum on.
-     * @return The result of the appeal sum operation.
-     */
-    override operator fun invoke(s: String): Long {
-        var cur: Long = 0
-        val prev = LongArray(LIMIT)
-        return s.mapIndexed { index, c ->
-            cur += index + 1 - prev[c - 'a']
-            prev[c - 'a'] = index.toLong() + 1
-            cur
-        }.sum()
-    }
+val appealSumDp = AppealSum { s: String ->
+    var cur: Long = 0
+    val prev = LongArray(LIMIT)
+    s.mapIndexed { index, c ->
+        cur += index + 1 - prev[c - 'a']
+        prev[c - 'a'] = index.toLong() + 1
+        cur
+    }.sum()
 }

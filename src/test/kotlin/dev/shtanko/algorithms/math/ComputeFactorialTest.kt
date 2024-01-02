@@ -24,6 +24,7 @@
 
 package dev.shtanko.algorithms.math
 
+import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -32,8 +33,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-
-import java.util.stream.Stream
 
 class ComputeFactorialTest {
     @ParameterizedTest
@@ -49,6 +48,7 @@ class ComputeFactorialTest {
             computeFactorial(-1)
         }
     }
+
     private class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(

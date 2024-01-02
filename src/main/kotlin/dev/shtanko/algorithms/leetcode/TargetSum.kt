@@ -75,7 +75,7 @@ class TargetSumBruteForce : TargetSum {
  * Time complexity: O(t⋅n)
  * Space complexity: O(t⋅n)
  */
-class TargetSumMemoization : TargetSum {
+data object TargetSumMemoization : TargetSum {
     private var total = 0
 
     override fun invoke(
@@ -118,26 +118,21 @@ class TargetSumMemoization : TargetSum {
  * Time complexity: O(t⋅n)
  * Space complexity: O(t⋅n)
  */
-data object TwoDdynamicProgramming : TargetSum {
-    override fun invoke(
-        nums: IntArray,
-        target: Int,
-    ): Int {
-        val total: Int = nums.sum()
-        val dp = Array(nums.size) { IntArray(2 * total + 1) }
-        dp[0][nums[0] + total] = 1
-        dp[0][-nums[0] + total] += 1
+internal val twoDSolution = TargetSum { nums: IntArray, target: Int ->
+    val total: Int = nums.sum()
+    val dp = Array(nums.size) { IntArray(2 * total + 1) }
+    dp[0][nums[0] + total] = 1
+    dp[0][-nums[0] + total] += 1
 
-        for (i in 1 until nums.size) {
-            for (sum in -total..total) {
-                if (dp[i - 1][sum + total] > 0) {
-                    dp[i][sum + nums[i] + total] += dp[i - 1][sum + total]
-                    dp[i][sum - nums[i] + total] += dp[i - 1][sum + total]
-                }
+    for (i in 1 until nums.size) {
+        for (sum in -total..total) {
+            if (dp[i - 1][sum + total] > 0) {
+                dp[i][sum + nums[i] + total] += dp[i - 1][sum + total]
+                dp[i][sum - nums[i] + total] += dp[i - 1][sum + total]
             }
         }
-        return if (abs(target) > total) 0 else dp[nums.size - 1][target + total]
     }
+    if (abs(target) > total) 0 else dp[nums.size - 1][target + total]
 }
 
 /**
@@ -145,27 +140,22 @@ data object TwoDdynamicProgramming : TargetSum {
  * Time complexity: O(t⋅n)
  * Space complexity: O(t)
  */
-data object OneDdynamicProgramming : TargetSum {
-    override fun invoke(
-        nums: IntArray,
-        target: Int,
-    ): Int {
-        val total: Int = nums.sum()
-        var dp = IntArray(2 * total + 1)
-        dp[nums[0] + total] = 1
-        dp[-nums[0] + total] += 1
+internal val oneDSolution = TargetSum { nums: IntArray, target: Int ->
+    val total: Int = nums.sum()
+    var dp = IntArray(2 * total + 1)
+    dp[nums[0] + total] = 1
+    dp[-nums[0] + total] += 1
 
-        for (i in 1 until nums.size) {
-            val next = IntArray(2 * total + 1)
-            for (sum in -total..total) {
-                if (dp[sum + total] > 0) {
-                    next[sum + nums[i] + total] += dp[sum + total]
-                    next[sum - nums[i] + total] += dp[sum + total]
-                }
+    for (i in 1 until nums.size) {
+        val next = IntArray(2 * total + 1)
+        for (sum in -total..total) {
+            if (dp[sum + total] > 0) {
+                next[sum + nums[i] + total] += dp[sum + total]
+                next[sum - nums[i] + total] += dp[sum + total]
             }
-            dp = next
         }
-
-        return if (abs(target) > total) 0 else dp[target + total]
+        dp = next
     }
+
+    if (abs(target) > total) 0 else dp[target + total]
 }

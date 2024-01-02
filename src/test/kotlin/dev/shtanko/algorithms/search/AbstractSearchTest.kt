@@ -24,14 +24,13 @@
 
 package dev.shtanko.algorithms.search
 
+import java.util.stream.Stream
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
-
-import java.util.stream.Stream
 
 @Suppress("ArrayPrimitive")
 abstract class AbstractSearchTest<out T : AbstractSearchStrategy<Int>>(private val strategy: T) {
@@ -40,7 +39,7 @@ abstract class AbstractSearchTest<out T : AbstractSearchStrategy<Int>>(private v
     fun `int array test`(
         arr: Array<Int>,
         element: Int,
-        expected: Int
+        expected: Int,
     ) {
         val actual = strategy(arr, element)
         assertEquals(expected, actual)
