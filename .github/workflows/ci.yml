@@ -57,6 +57,13 @@ jobs:
       - name: Build with Gradle and test
         run: ./gradlew build -x koverVerify  # Skipping koverVerify to avoid failure if coverage has lowered
 
+      - name: Run Codacy Analysis CLI
+        uses: codacy/codacy-analysis-cli-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          upload: true
+          max-allowed-issues: 10
+
       - name: Generate Test Coverage Xml Report
         run: ./gradlew koverXmlReport
 
