@@ -64,7 +64,8 @@ jobs:
         uses: coverallsapp/github-action@v2
         with:
           parallel: true
-          file: ./build/reports/kover/report.xml
+          #file: ./build/reports/kover/report.xml
+          file: ./build/reports/jacoco/test/jacocoTestReport.xml
           debug: true
 
       - name: Upload coverage to Codecov
