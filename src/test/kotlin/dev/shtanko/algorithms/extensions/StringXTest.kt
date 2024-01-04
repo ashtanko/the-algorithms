@@ -33,7 +33,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class StringExtTest {
+class StringXTest {
     @ParameterizedTest
     @ArgumentsSource(CountZeroesArgumentsProvider::class)
     fun `count zeroes ones test`(str: String, expected: IntArray) {

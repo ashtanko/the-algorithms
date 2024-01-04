@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 
-class ArrayExtensionTest {
+class ArrayXTest {
     @Test
     fun `simple swap test`() {
         val arr = arrayOf(4, 8)

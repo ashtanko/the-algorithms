@@ -106,7 +106,7 @@ class PerformanceTest {
     private fun executionTimeReport(strategy: AbstractSortStrategy, array: IntArray) {
         val arr = array.toTypedArray()
         measureTime(strategy, array) {
-            strategy.invoke(arr)
+            strategy(arr)
         }
         assertTrue(arr.isSorted())
     }

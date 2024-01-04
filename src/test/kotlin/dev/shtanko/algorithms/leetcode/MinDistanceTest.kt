@@ -70,8 +70,8 @@ abstract class MinDistanceTest<out T : MinDistance>(private val strategy: T) {
     }
 }
 
-class MinDistanceLcsTest : MinDistanceTest<MinDistance>(MinDistanceLcs)
-class MinDistanceLcsMemoTest : MinDistanceTest<MinDistance>(MinDistanceLcsMemo)
+class MinDistanceLcsTest : MinDistanceTest<MinDistance>(minDistanceLcs)
+class MinDistanceLcsMemoTest : MinDistanceTest<MinDistance>(minDistanceLcsMemo)
 class MinDistanceLcsDpTest : MinDistanceTest<MinDistance>(minDistanceLcsDp)
 class MinDistanceDpTest : MinDistanceTest<MinDistance>(minDistanceDp)
 class MinDistance1DdpTest : MinDistanceTest<MinDistance>(minDistance1Ddp)

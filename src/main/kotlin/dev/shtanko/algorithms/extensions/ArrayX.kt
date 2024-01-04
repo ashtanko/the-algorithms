@@ -58,9 +58,9 @@ fun IntArray.swap(
  * Reverses the elements in the array in place.
  */
 fun <T> Array<T>.reverse() {
-    val n = this.size
-    for (i in 0 until n / 2) {
-        this.swap(i, n - 1 - i)
+    val arraySize = this.size
+    for (startIndex in 0 until arraySize / 2) {
+        this.swap(startIndex, arraySize - 1 - startIndex)
     }
 }
 
@@ -84,13 +84,13 @@ fun <T> Array<T>.reverse2() {
  * @param right The ending index (inclusive) of the portion to flip.
  */
 fun <T> Array<T>.flip(
-    left: Int,
-    right: Int,
+    leftIndex: Int,
+    rightIndex: Int,
 ) {
-    var l = left
-    var r = right
-    while (l <= r) {
-        swap(l++, r--)
+    var left = leftIndex
+    var right = rightIndex
+    while (left <= right) {
+        swap(left++, right--)
     }
 }
 

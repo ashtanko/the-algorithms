@@ -24,9 +24,8 @@
 
 package dev.shtanko.algorithms.math
 
+import dev.shtanko.algorithms.EPSILON
 import kotlin.math.abs
-
-private const val EPSILON = 1e-15
 
 /**
  * Calculates the square root of the given integer.

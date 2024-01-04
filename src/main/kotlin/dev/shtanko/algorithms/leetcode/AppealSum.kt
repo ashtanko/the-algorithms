@@ -24,7 +24,7 @@
 
 package dev.shtanko.algorithms.leetcode
 
-private const val LIMIT = 26
+import dev.shtanko.algorithms.ALPHABET_LETTERS_COUNT
 
 /**
  * 2262. Total Appeal of A String
@@ -49,7 +49,7 @@ fun interface AppealSum {
  */
 val appealSumDp = AppealSum { s: String ->
     var cur: Long = 0
-    val prev = LongArray(LIMIT)
+    val prev = LongArray(ALPHABET_LETTERS_COUNT)
     s.mapIndexed { index, c ->
         cur += index + 1 - prev[c - 'a']
         prev[c - 'a'] = index.toLong() + 1

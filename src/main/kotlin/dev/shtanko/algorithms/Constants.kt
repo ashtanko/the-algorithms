@@ -35,3 +35,4 @@ internal const val MILLISECOND = 1000L
 internal const val EPSILON = 1e-5
 internal const val BIN_FORMAT = "%.1f %cB"
 internal const val SI_FORMAT = "%.1f %ciB"
+internal const val ALPHABET_LETTERS_COUNT = 26

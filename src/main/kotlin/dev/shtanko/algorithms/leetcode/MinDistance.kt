@@ -43,13 +43,9 @@ fun interface MinDistance {
  * Time complexity : O(2^{max(m,n)}).
  * Space complexity : O(max (m,n))).
  */
-object MinDistanceLcs : MinDistance {
-    override operator fun invoke(
-        word1: String,
-        word2: String,
-    ): Int = word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length)
+val minDistanceLcs = MinDistance { word1: String, word2: String ->
 
-    private fun lcs(
+    fun lcs(
         s1: String,
         s2: String,
         m: Int,
@@ -64,6 +60,8 @@ object MinDistanceLcs : MinDistance {
             max(lcs(s1, s2, m, n - 1), lcs(s1, s2, m - 1, n))
         }
     }
+
+    return@MinDistance word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length)
 }
 
 /**
@@ -71,21 +69,8 @@ object MinDistanceLcs : MinDistance {
  * Time complexity : O(m*n).
  * Space complexity : O(m*n).
  */
-object MinDistanceLcsMemo : MinDistance {
-    override operator fun invoke(
-        word1: String,
-        word2: String,
-    ): Int {
-        val memo =
-            Array(word1.length + 1) {
-                IntArray(
-                    word2.length + 1,
-                )
-            }
-        return word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length, memo)
-    }
-
-    private fun lcs(
+val minDistanceLcsMemo = MinDistance { word1: String, word2: String ->
+    fun lcs(
         s1: String,
         s2: String,
         m: Int,
@@ -105,6 +90,14 @@ object MinDistanceLcsMemo : MinDistance {
         }
         return memo[m][n]
     }
+
+    val memo =
+        Array(word1.length + 1) {
+            IntArray(
+                word2.length + 1,
+            )
+        }
+    return@MinDistance word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length, memo)
 }
 
 /**

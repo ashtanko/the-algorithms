@@ -31,10 +31,7 @@ import kotlin.math.abs
  * @link https://leetcode.com/problems/target-sum/
  */
 fun interface TargetSum {
-    operator fun invoke(
-        nums: IntArray,
-        target: Int,
-    ): Int
+    operator fun invoke(nums: IntArray, target: Int): Int
 }
 
 /**
@@ -75,20 +72,10 @@ class TargetSumBruteForce : TargetSum {
  * Time complexity: O(t⋅n)
  * Space complexity: O(t⋅n)
  */
-data object TargetSumMemoization : TargetSum {
-    private var total = 0
+val targetSumMemoization = TargetSum { nums: IntArray, target: Int ->
+    var total = 0
 
-    override fun invoke(
-        nums: IntArray,
-        target: Int,
-    ): Int {
-        total = nums.sum()
-
-        val memo = Array(nums.size) { IntArray(2 * total + 1) { Int.MIN_VALUE } }
-        return calculate(nums, 0, 0, target, memo)
-    }
-
-    private fun calculate(
+    fun calculate(
         nums: IntArray,
         i: Int,
         sum: Int,
@@ -111,6 +98,11 @@ data object TargetSumMemoization : TargetSum {
             memo[i][sum + total]
         }
     }
+
+    total = nums.sum()
+
+    val memo = Array(nums.size) { IntArray(2 * total + 1) { Int.MIN_VALUE } }
+    return@TargetSum calculate(nums, 0, 0, target, memo)
 }
 
 /**

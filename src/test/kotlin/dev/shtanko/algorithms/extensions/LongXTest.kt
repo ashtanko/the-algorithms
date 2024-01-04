@@ -26,124 +26,109 @@ package dev.shtanko.algorithms.extensions
 
 import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-class IntExtensionTest {
+class LongXTest {
     @ParameterizedTest
-    @ArgumentsSource(InputPrimeArgumentsProvider::class)
-    fun `is prime test`(num: Int, expected: Boolean) {
-        val actual = num.isPrime()
+    @ArgumentsSource(ToReverseInputArgumentsProvider::class)
+    fun `reverse long test`(n: Long, expected: Long) {
+        val actual = n.reverse()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
-    @ArgumentsSource(InputIsEvenArgumentsProvider::class)
-    fun `is even test`(n: Int, expected: Boolean) {
-        val actual = n.isEven
+    @ArgumentsSource(InputPalindromeArgumentsProvider::class)
+    fun `is palindrome test`(n: Long, expected: Boolean) {
+        val actual = n.isSuperPalindrome()
         assertThat(actual).isEqualTo(expected)
     }
 
     @ParameterizedTest
-    @ArgumentsSource(InputIsEvenArgumentsProvider::class)
-    fun `is even fun interface test`(n: Int, expected: Boolean) {
-        val actual = isEven.accept(n)
+    @ArgumentsSource(InputArgumentsProvider::class)
+    fun `is super palindrome test`(n: Long, expected: Boolean) {
+        val actual = n.isSuperPalindrome()
         assertThat(actual).isEqualTo(expected)
     }
 
-    @Test
-    fun `random array test`() {
-        assertEquals(3, 3.generateRandomArray().size)
-    }
-
-    @Test
-    fun `less than zero test`() {
-        assertTrue((-1).lessThanZero())
-    }
-
-    @Test
-    fun `more than zero test`() {
-        assertFalse(1.lessThanZero())
-    }
-
-    class InputIsEvenArgumentsProvider : ArgumentsProvider {
+    class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(2, true),
-            Arguments.of(3, false),
-            Arguments.of(4, true),
-            Arguments.of(6, true),
-            Arguments.of(8, true),
-            Arguments.of(9, false),
-            Arguments.of(11, false),
-            Arguments.of(100, true),
-            Arguments.of(Int.MAX_VALUE, false),
+            Arguments.of(
+                4L,
+                true,
+            ),
+            Arguments.of(
+                12L,
+                false,
+            ),
+            Arguments.of(
+                24L,
+                false,
+            ),
+            Arguments.of(
+                484L,
+                true,
+            ),
+            Arguments.of(
+                676L,
+                false,
+            ),
+            Arguments.of(
+                1156L,
+                false,
+            ),
+            Arguments.of(
+                686,
+                true,
+            ),
         )
     }
 
-    class InputPrimeArgumentsProvider : ArgumentsProvider {
+    class ToReverseInputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
-                0,
+                1L,
+                1L,
+            ),
+            Arguments.of(
+                12L,
+                21L,
+            ),
+            Arguments.of(
+                121L,
+                121L,
+            ),
+            Arguments.of(
+                242L,
+                242L,
+            ),
+            Arguments.of(
+                484L,
+                484L,
+            ),
+        )
+    }
+
+    class InputPalindromeArgumentsProvider : ArgumentsProvider {
+        override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
+            Arguments.of(
+                0L,
+                true,
+            ),
+            Arguments.of(
+                34L,
                 false,
             ),
             Arguments.of(
-                2,
+                11L,
                 true,
             ),
             Arguments.of(
-                3,
-                true,
-            ),
-            Arguments.of(
-                4,
+                879L,
                 false,
-            ),
-            Arguments.of(
-                5,
-                true,
-            ),
-            Arguments.of(
-                7,
-                true,
-            ),
-            Arguments.of(
-                11,
-                true,
-            ),
-            Arguments.of(
-                13,
-                true,
-            ),
-            Arguments.of(
-                17,
-                true,
-            ),
-            Arguments.of(
-                19,
-                true,
-            ),
-            Arguments.of(
-                23,
-                true,
-            ),
-            Arguments.of(
-                29,
-                true,
-            ),
-            Arguments.of(
-                31,
-                true,
-            ),
-            Arguments.of(
-                37,
-                true,
             ),
         )
     }

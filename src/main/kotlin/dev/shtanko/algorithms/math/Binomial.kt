@@ -31,17 +31,17 @@ package dev.shtanko.algorithms.math
  * that k objects can be chosen from among n objects; more formally, the number of k-element subsets
  * (or k-combinations) of an n-element set.
  *
- * @param n The total number of items.
- * @param k The number of items to choose.
+ * @param numOfItems The total number of items.
+ * @param itemsToChoose The number of items to choose.
  * @return The binomial coefficient.
  */
 fun binomial(
-    n: Int,
-    k: Int,
+    numOfItems: Int,
+    itemsToChoose: Int,
 ): Long {
-    var j = n - k + 1
+    var j = numOfItems - itemsToChoose + 1
     var binomial = 1L
-    for (i in 1 until k + 1) {
+    for (i in 1 until itemsToChoose + 1) {
         binomial = binomial * j / i
         j++
     }

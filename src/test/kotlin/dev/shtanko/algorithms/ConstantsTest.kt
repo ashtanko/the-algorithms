@@ -41,5 +41,6 @@ class ConstantsTest {
         assertEquals(1000L, MILLISECOND)
         assertEquals("%.1f %cB", BIN_FORMAT)
         assertEquals("%.1f %ciB", SI_FORMAT)
+        assertEquals(26, ALPHABET_LETTERS_COUNT)
     }
 }
