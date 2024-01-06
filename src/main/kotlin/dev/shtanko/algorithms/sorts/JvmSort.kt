@@ -27,7 +27,7 @@ package dev.shtanko.algorithms.sorts
 /**
  * Implementation of the sorting strategy using the built-in array sort function.
  */
-class ArraySort : AbstractSortStrategy {
+data object JvmSort : AbstractSortStrategy {
     /**
      * Performs the sorting operation on the given array using the built-in array sort function.
      *

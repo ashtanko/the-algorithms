@@ -28,17 +28,47 @@ import dev.shtanko.algorithms.BIN_FORMAT
 import dev.shtanko.algorithms.SI_FORMAT
 import java.util.Locale
 
+/**
+ * Functional interface for formatting byte values.
+ */
 fun interface ByteFormatter {
+    /**
+     * Formats the given bytes using the specified current unit.
+     *
+     * @param bytes the number of bytes to be formatted.
+     * @param current the unit of the current byte value (e.g., 'B' for bytes, 'iB' for binary bytes).
+     * @return a formatted string representing the byte value.
+     */
     operator fun invoke(bytes: Double, current: Char): String
 }
 
+/**
+ * Implementation of ByteFormatter for formatting byte values in binary format.
+ */
 class BinByteFormatter : ByteFormatter {
+    /**
+     * Formats the given bytes in binary format using the specified current unit.
+     *
+     * @param bytes the number of bytes to be formatted.
+     * @param current the unit of the current byte value (e.g., 'B' for bytes, 'iB' for binary bytes).
+     * @return a formatted string representing the byte value in binary format.
+     */
     override fun invoke(bytes: Double, current: Char): String {
         return String.format(Locale.getDefault(), BIN_FORMAT, bytes, current)
     }
 }
 
+/**
+ * Implementation of ByteFormatter for formatting byte values in SI format.
+ */
 class SiByteFormatter : ByteFormatter {
+    /**
+     * Formats the given bytes in SI format using the specified current unit.
+     *
+     * @param bytes the number of bytes to be formatted.
+     * @param current the unit of the current byte value (e.g., 'B' for bytes, 'iB' for binary bytes).
+     * @return a formatted string representing the byte value in SI format.
+     */
     override fun invoke(bytes: Double, current: Char): String {
         return String.format(Locale.getDefault(), SI_FORMAT, bytes, current)
     }

@@ -39,7 +39,7 @@ package dev.shtanko.algorithms.sorts
  * Average performance:          O(n log n)
  * Worst-case space complexity:  O(n)
  */
-class MergeSort : AbstractSortStrategy {
+data object MergeSort : AbstractSortStrategy {
     /**
      * Performs the merge sort operation on the given array.
      *

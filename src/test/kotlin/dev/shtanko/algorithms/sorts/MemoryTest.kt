@@ -49,17 +49,17 @@ class MemoryTest {
 
     class InputArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(BubbleSort()),
-            Arguments.of(SimpleBubbleSort()),
-            Arguments.of(InsertionSort()),
-            Arguments.of(InsertionSort2()),
-            Arguments.of(MergeSort()),
-            Arguments.of(QuickSort()),
-            Arguments.of(SelectionSort()),
+            Arguments.of(BubbleSort),
+            Arguments.of(SimpleBubbleSort),
+            Arguments.of(InsertionSort),
+            Arguments.of(InsertionSort2),
+            Arguments.of(MergeSort),
+            Arguments.of(QuickSort),
+            Arguments.of(SelectionSort),
             Arguments.of(ShellSort()),
-            Arguments.of(HeapSort()),
-            Arguments.of(ArraySort()),
-            Arguments.of(PancakeSort()),
+            Arguments.of(HeapSort),
+            Arguments.of(JvmSort),
+            Arguments.of(PancakeSort),
             Arguments.of(GnomeSort()),
         )
     }

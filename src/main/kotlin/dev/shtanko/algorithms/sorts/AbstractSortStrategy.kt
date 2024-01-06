@@ -27,7 +27,7 @@ package dev.shtanko.algorithms.sorts
 /**
  * Interface representing an abstract sorting strategy.
  */
-interface AbstractSortStrategy {
+sealed interface AbstractSortStrategy {
     /**
      * Performs the sorting operation on the given array.
      *

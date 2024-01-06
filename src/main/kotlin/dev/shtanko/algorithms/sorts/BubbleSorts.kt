@@ -39,7 +39,7 @@ import dev.shtanko.algorithms.extensions.swap
  * Average performance:          O(n^2)
  * Worst-case space complexity:  O(1)
  */
-class BubbleSort : AbstractSortStrategy {
+data object BubbleSort : AbstractSortStrategy {
     /**
      * Performs the bubble sort operation on the given array.
      *
@@ -71,7 +71,7 @@ class BubbleSort : AbstractSortStrategy {
  * Average performance:          O(n^2)
  * Worst-case space complexity:  O(1)
  */
-class SimpleBubbleSort : AbstractSortStrategy {
+data object SimpleBubbleSort : AbstractSortStrategy {
     /**
      * Performs the simple bubble sort operation on the given array.
      *

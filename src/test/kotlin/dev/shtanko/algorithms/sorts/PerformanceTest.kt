@@ -55,15 +55,15 @@ class PerformanceTest {
     fun `slow strategies performance test`(n: Int, expected: Boolean) {
         val arr = n.generateRandomArray().toTypedArray()
         val fastStrategies = listOf(
-            BubbleSort(),
-            SimpleBubbleSort(),
-            ArraySort(),
-            PancakeSort(),
+            BubbleSort,
+            SimpleBubbleSort,
+            JvmSort,
+            PancakeSort,
             GnomeSort(),
-            InsertionSort(),
-            InsertionSort2(),
-            SelectionSort(),
-            StableSelectionSort(),
+            InsertionSort,
+            InsertionSort2,
+            SelectionSort,
+            StableSelectionSort,
         )
         strategiesPerformanceTest(arr, fastStrategies, expected)
     }
@@ -73,8 +73,8 @@ class PerformanceTest {
     fun `fast strategies performance test`(n: Int, expected: Boolean) {
         val arr = n.generateRandomArray().toTypedArray()
         val fastStrategies = listOf(
-            MergeSort(),
-            QuickSort(),
+            MergeSort,
+            QuickSort,
             ShellSort(),
             ShellSort(),
         )
@@ -116,39 +116,39 @@ class PerformanceTest {
         private val fiveHundred = 500.generateRandomArray()
         private val eightHundred = 800.generateRandomArray()
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(BubbleSort(), hundred),
-            Arguments.of(BubbleSort(), fiveHundred),
-            Arguments.of(BubbleSort(), eightHundred),
-            Arguments.of(SimpleBubbleSort(), hundred),
-            Arguments.of(SimpleBubbleSort(), fiveHundred),
-            Arguments.of(SimpleBubbleSort(), eightHundred),
-            Arguments.of(ArraySort(), hundred),
-            Arguments.of(ArraySort(), fiveHundred),
-            Arguments.of(ArraySort(), eightHundred),
-            Arguments.of(PancakeSort(), hundred),
-            Arguments.of(PancakeSort(), fiveHundred),
-            Arguments.of(PancakeSort(), eightHundred),
+            Arguments.of(BubbleSort, hundred),
+            Arguments.of(BubbleSort, fiveHundred),
+            Arguments.of(BubbleSort, eightHundred),
+            Arguments.of(SimpleBubbleSort, hundred),
+            Arguments.of(SimpleBubbleSort, fiveHundred),
+            Arguments.of(SimpleBubbleSort, eightHundred),
+            Arguments.of(JvmSort, hundred),
+            Arguments.of(JvmSort, fiveHundred),
+            Arguments.of(JvmSort, eightHundred),
+            Arguments.of(PancakeSort, hundred),
+            Arguments.of(PancakeSort, fiveHundred),
+            Arguments.of(PancakeSort, eightHundred),
             Arguments.of(GnomeSort(), hundred),
             Arguments.of(GnomeSort(), fiveHundred),
             Arguments.of(GnomeSort(), eightHundred),
-            Arguments.of(InsertionSort(), hundred),
-            Arguments.of(InsertionSort(), fiveHundred),
-            Arguments.of(InsertionSort(), eightHundred),
-            Arguments.of(InsertionSort2(), hundred),
-            Arguments.of(InsertionSort2(), fiveHundred),
-            Arguments.of(InsertionSort2(), eightHundred),
-            Arguments.of(SelectionSort(), hundred),
-            Arguments.of(SelectionSort(), fiveHundred),
-            Arguments.of(SelectionSort(), eightHundred),
-            Arguments.of(StableSelectionSort(), hundred),
-            Arguments.of(StableSelectionSort(), fiveHundred),
-            Arguments.of(StableSelectionSort(), eightHundred),
+            Arguments.of(InsertionSort, hundred),
+            Arguments.of(InsertionSort, fiveHundred),
+            Arguments.of(InsertionSort, eightHundred),
+            Arguments.of(InsertionSort2, hundred),
+            Arguments.of(InsertionSort2, fiveHundred),
+            Arguments.of(InsertionSort2, eightHundred),
+            Arguments.of(SelectionSort, hundred),
+            Arguments.of(SelectionSort, fiveHundred),
+            Arguments.of(SelectionSort, eightHundred),
+            Arguments.of(StableSelectionSort, hundred),
+            Arguments.of(StableSelectionSort, fiveHundred),
+            Arguments.of(StableSelectionSort, eightHundred),
         )
     }
 
     class FastSortsArgumentsProvider : ArgumentsProvider {
-        private val mergeSortStrategy = MergeSort()
-        private val quickSortStrategy = QuickSort()
+        private val mergeSortStrategy = MergeSort
+        private val quickSortStrategy = QuickSort
         private val shellSortStrategy = ShellSort()
         private val heapSortStrategy = ShellSort()
         private val thirtyK = 30_000.generateRandomArray()

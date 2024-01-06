@@ -26,11 +26,22 @@ package dev.shtanko.algorithms.extensions
 
 import kotlin.random.Random
 
+/**
+ * Generates a random string of the specified length consisting of characters within the closed range.
+ *
+ * @param length the length of the generated random string.
+ * @return a random string of the specified length.
+ */
 fun ClosedRange<Char>.randomString(length: Int) =
     (1..length)
         .map { (Random.nextInt(endInclusive.code - start.code) + start.code).toChar() }
         .joinToString("")
 
+/**
+ * Checks if the character is a vowel (a, e, i, o, u).
+ *
+ * @return true if the character is a vowel, false otherwise.
+ */
 fun Char.isVowel(): Boolean {
     val ae = this == 'a' || this == 'e'
     val io = this == 'i' || this == 'o'
