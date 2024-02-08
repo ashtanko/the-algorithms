@@ -1,16 +1,16 @@
 [versions]
 coroutines = "1.7.3"        # https://github.com/Kotlin/kotlinx.coroutines
-junit = "5.8.0"            # https://junit.org/junit5/
-kotlin = "1.9.21"           # https://github.com/JetBrains/kotlin
+junit = "5.8.0"             # https://junit.org/junit5/
+kotlin = "2.0.0-Beta3"      # https://github.com/JetBrains/kotlin
 mockk = "1.13.8"            # https://mockk.io/
-detekt = "1.23.4"           # https://github.com/detekt/detekt
-dokka = "1.8.20"            # https://github.com/Kotlin/dokka
-spotless = "6.23.3"         # https://github.com/diffplug/spotless
-dependency = "1.28.0"       # https://github.com/autonomousapps/dependency-analysis-gradle-plugin
+detekt = "1.23.5"           # https://github.com/detekt/detekt
+dokka = "1.9.10"            # https://github.com/Kotlin/dokka
+spotless = "6.25.0"         # https://github.com/diffplug/spotless
+dependency = "1.29.0"       # https://github.com/autonomousapps/dependency-analysis-gradle-plugin
 pitest = "1.15.0"           # https://plugins.gradle.org/plugin/info.solidsoft.pitest
 pinterestKtlint = "0.49.0"  # https://github.com/pinterest/ktlint
-ktlint = "12.0.3"           # https://github.com/JLLeitschuh/ktlint-gradle
-assertj = "3.24.2"          # https://mvnrepository.com/artifact/org.assertj/assertj-core
+ktlint = "12.1.0"           # https://github.com/JLLeitschuh/ktlint-gradle
+assertj = "3.25.3"          # https://mvnrepository.com/artifact/org.assertj/assertj-core
 kover = "0.7.5"             # https://github.com/Kotlin/kotlinx-kover
 diktat = "2.0.0"            # https://github.com/saveourtool/diktat
 
