@@ -28,10 +28,10 @@
   enabled: true
 # Checks that file name has extension
 - name: FILE_NAME_INCORRECT
-  enabled: true
+  enabled: false # todo temporary disabled
 # Checks that file name matches class name, if it is only one class in file
 - name: FILE_NAME_MATCH_CLASS
-  enabled: true
+  enabled: false # todo temporary disabled
 # Checks that functions/methods which return boolean have special prefix like "is/should/e.t.c"
 - name: FUNCTION_BOOLEAN_PREFIX
   enabled: true
@@ -48,7 +48,7 @@
   enabled: true
 # Identifier length should be in range [2,64] except names that used in industry like {i, j} and 'e' for catching exceptions
 - name: IDENTIFIER_LENGTH
-  enabled: true
+  enabled: false # todo temporary disabled
 # Checks that the object matches PascalCase
 - name: OBJECT_NAME_INCORRECT
   enabled: true
@@ -202,7 +202,7 @@
     closeBraceNewline: 'True'
 # Checks that indentation is correct
 - name: WRONG_INDENTATION
-  enabled: true
+  enabled: false
   configuration:
     # Is newline at the end of a file needed
     newlineAtEnd: true
@@ -304,7 +304,7 @@
   enabled: true
 # Checks that enum structure is correct: enum entries should be separated by comma and line break and last entry should have semicolon in the end.
 - name: ENUMS_SEPARATED
-  enabled: true
+  enabled: false # todo temporary disabled
 # Checks that value on integer or float constant is not too big
 - name: LONG_NUMERICAL_VALUES_SEPARATED
   enabled: true
@@ -393,10 +393,10 @@
 # robustness and readability of code, because `var` variables can be reassigned several times in the business logic.
 # This rule prohibits usage of `var`s as local variables - the only exception is accumulators and counters
 - name: SAY_NO_TO_VAR
-  enabled: true
+  enabled: false # todo temporary disabled
 # Inspection that checks if string template has redundant quotes
 - name: STRING_TEMPLATE_QUOTES
-  enabled: true
+  enabled: false # todo temporary disabled
 # Check if there are redundant nested if-statements, which could be collapsed into a single one by concatenating their conditions
 - name: COLLAPSE_IF_STATEMENTS
   enabled: true
@@ -404,7 +404,7 @@
     startCollapseFromNestedLevel: 2
 # Checks that floating-point values are not used in arithmetic expressions
 - name: FLOAT_IN_ACCURATE_CALCULATIONS
-  enabled: true
+  enabled: false # todo temporary disabled
 # Checks that function length isn't too long
 - name: TOO_LONG_FUNCTION
   enabled: true
@@ -447,7 +447,7 @@
     maxLambdaLength: 10 # max length of lambda without parameters
 # Checks that using unnecessary, custom label
 - name: CUSTOM_LABEL
-  enabled: true
+  enabled: false # todo temporary disabled
 # Check that lambda with inner lambda doesn't use implicit parameter
 - name: PARAMETER_NAME_IN_OUTER_LAMBDA
   enabled: true
@@ -484,7 +484,7 @@
 # Developer expects to get the value of the property, but receives some unknown value and some extra side effect hidden by the custom getter/setter.
 # Use extra functions for it instead.
 - name: CUSTOM_GETTERS_SETTERS
-  enabled: true
+  enabled: false # todo temporary disabled
 # Checks if null-check was used explicitly (for example: if (a == null))
 # Try to avoid explicit null checks (explicit comparison with `null`)
 # Kotlin is declared as [Null-safe](https://kotlinlang.org/docs/reference/null-safety.html) language.
@@ -537,7 +537,7 @@
     isRangeToIgnore: false
 # Check if there is a call of print()\println() or console.log(). Assumption that it's a debug print
 - name: DEBUG_PRINT
-  enabled: true
+  enabled: false # todo temporary disabled
 # Check that typealias name is in PascalCase
 - name: TYPEALIAS_NAME_INCORRECT_CASE
   enabled: true

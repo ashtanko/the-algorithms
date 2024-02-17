@@ -40,7 +40,7 @@ class LinearSearch<T> : AbstractSearchStrategy<T> {
     /**
      * Performs the linear search operation on the given array to find the index of the specified element.
      *
-     * @param arr The array to search.
+     * @param array The array to search.
      * @param element The element to search for.
      * @return The index of the element in the array, or -1 if the element is not found.
      */
@@ -48,9 +48,9 @@ class LinearSearch<T> : AbstractSearchStrategy<T> {
         arr: Array<T>,
         element: T,
     ): Int {
-        for ((i, a) in arr.withIndex()) {
-            if (a == element) {
-                return i
+        for ((index, item) in arr.withIndex()) {
+            if (item == element) {
+                return index
             }
         }
         return -1

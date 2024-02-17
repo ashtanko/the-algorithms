@@ -33,7 +33,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
+abstract class TwoSumTest<out T : TwoSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `two sum test`(
@@ -88,7 +88,7 @@ abstract class TwoSumTest<out T : TwoSumStrategy>(private val strategy: T) {
     }
 }
 
-class TwoSumBruteForceTest : TwoSumTest<TwoSumStrategy>(twoSumBruteForce)
-class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSumStrategy>(twoSumTwoPassHashTable)
-class TwoSumOnePassHashTableTest : TwoSumTest<TwoSumStrategy>(twoSumOnePassHashTable)
-class TwoSumOneHashMapTest : TwoSumTest<TwoSumStrategy>(twoSumOneHashMap)
+class TwoSumBruteForceTest : TwoSumTest<TwoSum>(twoSumBruteForce)
+class TwoSumTwoPassHashTableTest : TwoSumTest<TwoSum>(twoSumTwoPassHashTable)
+class TwoSumOnePassHashTableTest : TwoSumTest<TwoSum>(twoSumOnePassHashTable)
+class TwoSumOneHashMapTest : TwoSumTest<TwoSum>(twoSumOneHashMap)

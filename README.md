@@ -46,27 +46,27 @@ optimizations.
 
 ## Metrics
 
-* 250 number of properties
+* 251 number of properties
 
-* 218 number of functions
+* 216 number of functions
 
-* 138 number of classes
+* 136 number of classes
 
 * 8 number of packages
 
-* 80 number of kt files
+* 81 number of kt files
 
 ## Complexity Report
 
-* 6,662 lines of code (loc)
+* 6,698 lines of code (loc)
 
-* 3,469 source lines of code (sloc)
+* 3,480 source lines of code (sloc)
 
-* 2,644 logical lines of code (lloc)
+* 2,655 logical lines of code (lloc)
 
-* 2,680 comment lines of code (cloc)
+* 2,689 comment lines of code (cloc)
 
-* 404 cyclomatic complexity (mcc)
+* 402 cyclomatic complexity (mcc)
 
 * 205 cognitive complexity
 
@@ -74,10 +74,10 @@ optimizations.
 
 * 77% comment source ratio
 
-* 152 mcc per 1,000 lloc
+* 151 mcc per 1,000 lloc
 
 * 0 code smells per 1,000 lloc
 
 ## Findings (0)
 
-generated with [detekt version 1.23.5](https://detekt.dev/) on 2024-02-08 00:14:59 UTC
+generated with [detekt version 1.23.5](https://detekt.dev/) on 2024-02-17 19:50:36 UTC

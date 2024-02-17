@@ -30,4 +30,6 @@ package dev.shtanko.algorithms.extensions
  * @return `true` if the Double value is even, `false` otherwise.
  */
 val Double.isEven: Boolean
-    get() = this % 2 == 0.0
+    get() = this % TWO == 0.0
+
+const val TWO = 2.0

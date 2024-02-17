@@ -59,31 +59,31 @@ data object HeapSort : AbstractSortStrategy {
     /**
      * Performs heapify operation on the array.
      *
-     * @param arr The array to heapify.
+     * @param array The array to heapify.
      * @param size The size of the heap.
-     * @param i The index of the current element in the heap.
+     * @param index The index of the current element in the heap.
      * @param T The type of elements in the array, must be comparable.
      */
     private fun <T : Comparable<T>> heapify(
-        arr: Array<T>,
+        array: Array<T>,
         size: Int,
-        i: Int,
+        index: Int,
     ) {
-        var largest = i
-        val l = 2 * i + 1
-        val r = 2 * i + 2
+        var largest = index
+        val left = 2 * index + 1
+        val right = 2 * index + 2
 
-        if (l < size && arr[l] > arr[largest]) {
-            largest = l
+        if (left < size && array[left] > array[largest]) {
+            largest = left
         }
 
-        if (r < size && arr[r] > arr[largest]) {
-            largest = r
+        if (right < size && array[right] > array[largest]) {
+            largest = right
         }
 
-        if (largest != i) {
-            arr.swap(i, largest)
-            heapify(arr, size, largest)
+        if (largest != index) {
+            array.swap(index, largest)
+            heapify(array, size, largest)
         }
     }
 }

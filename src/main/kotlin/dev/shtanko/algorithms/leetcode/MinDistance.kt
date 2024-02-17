@@ -45,23 +45,31 @@ fun interface MinDistance {
  */
 val minDistanceLcs = MinDistance { word1: String, word2: String ->
 
-    fun lcs(
-        s1: String,
-        s2: String,
-        m: Int,
-        n: Int,
+    fun longestCommonSubsequenceLength(
+        word1: String,
+        word2: String,
+        length1: Int,
+        length2: Int,
     ): Int {
-        if (m == 0 || n == 0) {
+        if (length1 == 0 || length2 == 0) {
             return 0
         }
-        return if (s1[m - 1] == s2[n - 1]) {
-            1 + lcs(s1, s2, m - 1, n - 1)
+        return if (word1[length1 - 1] == word2[length2 - 1]) {
+            1 + longestCommonSubsequenceLength(word1, word2, length1 - 1, length2 - 1)
         } else {
-            max(lcs(s1, s2, m, n - 1), lcs(s1, s2, m - 1, n))
+            max(
+                longestCommonSubsequenceLength(word1, word2, length1, length2 - 1),
+                longestCommonSubsequenceLength(word1, word2, length1 - 1, length2),
+            )
         }
     }
 
-    return@MinDistance word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length)
+    return@MinDistance word1.length + word2.length - 2 * longestCommonSubsequenceLength(
+        word1,
+        word2,
+        word1.length,
+        word2.length,
+    )
 }
 
 /**
@@ -70,25 +78,28 @@ val minDistanceLcs = MinDistance { word1: String, word2: String ->
  * Space complexity : O(m*n).
  */
 val minDistanceLcsMemo = MinDistance { word1: String, word2: String ->
-    fun lcs(
-        s1: String,
-        s2: String,
-        m: Int,
-        n: Int,
+    fun longestCommonSubsequenceLength(
+        word1: String,
+        word2: String,
+        length1: Int,
+        length2: Int,
         memo: Array<IntArray>,
     ): Int {
-        if (m == 0 || n == 0) {
+        if (length1 == 0 || length2 == 0) {
             return 0
         }
-        if (memo[m][n] > 0) {
-            return memo[m][n]
+        if (memo[length1][length2] > 0) {
+            return memo[length1][length2]
         }
-        if (s1[m - 1] == s2[n - 1]) {
-            memo[m][n] = 1 + lcs(s1, s2, m - 1, n - 1, memo)
+        if (word1[length1 - 1] == word2[length2 - 1]) {
+            memo[length1][length2] = 1 + longestCommonSubsequenceLength(word1, word2, length1 - 1, length2 - 1, memo)
         } else {
-            memo[m][n] = max(lcs(s1, s2, m, n - 1, memo), lcs(s1, s2, m - 1, n, memo))
+            memo[length1][length2] = max(
+                longestCommonSubsequenceLength(word1, word2, length1, length2 - 1, memo),
+                longestCommonSubsequenceLength(word1, word2, length1 - 1, length2, memo),
+            )
         }
-        return memo[m][n]
+        return memo[length1][length2]
     }
 
     val memo =
@@ -97,7 +108,13 @@ val minDistanceLcsMemo = MinDistance { word1: String, word2: String ->
                 word2.length + 1,
             )
         }
-    return@MinDistance word1.length + word2.length - 2 * lcs(word1, word2, word1.length, word2.length, memo)
+    return@MinDistance word1.length + word2.length - 2 * longestCommonSubsequenceLength(
+        word1,
+        word2,
+        word1.length,
+        word2.length,
+        memo,
+    )
 }
 
 /**

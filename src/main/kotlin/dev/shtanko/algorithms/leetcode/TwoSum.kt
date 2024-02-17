@@ -28,7 +28,7 @@ package dev.shtanko.algorithms.leetcode
  * 1. Two Sum
  * @link https://leetcode.com/problems/two-sum/
  */
-fun interface TwoSumStrategy {
+fun interface TwoSum {
     /**
      * Performs the two-sum operation on the given array of integers.
      *
@@ -47,15 +47,15 @@ fun interface TwoSumStrategy {
  * Time complexity: O(n^2).
  * Space complexity: O(1).
  */
-val twoSumBruteForce = TwoSumStrategy { nums: IntArray, target: Int ->
+val twoSumBruteForce = TwoSum { nums: IntArray, target: Int ->
     for (i in nums.indices) {
         for (j in i + 1 until nums.size) {
             if (nums[j] == target - nums[i]) {
-                return@TwoSumStrategy intArrayOf(i, j)
+                return@TwoSum intArrayOf(i, j)
             }
         }
     }
-    return@TwoSumStrategy intArrayOf()
+    return@TwoSum intArrayOf()
 }
 
 /**
@@ -63,7 +63,7 @@ val twoSumBruteForce = TwoSumStrategy { nums: IntArray, target: Int ->
  * Time complexity: O(n).
  * Space complexity: O(n).
  */
-val twoSumTwoPassHashTable = TwoSumStrategy { nums: IntArray, target: Int ->
+val twoSumTwoPassHashTable = TwoSum { nums: IntArray, target: Int ->
     val map: MutableMap<Int, Int> = HashMap()
     for (i in nums.indices) {
         map[nums[i]] = i
@@ -71,10 +71,10 @@ val twoSumTwoPassHashTable = TwoSumStrategy { nums: IntArray, target: Int ->
     for (i in nums.indices) {
         val complement = target - nums[i]
         if (map.containsKey(complement) && map[complement] != i) {
-            return@TwoSumStrategy intArrayOf(i, map.getOrDefault(complement, 0))
+            return@TwoSum intArrayOf(i, map.getOrDefault(complement, 0))
         }
     }
-    return@TwoSumStrategy intArrayOf()
+    return@TwoSum intArrayOf()
 }
 
 /**
@@ -82,16 +82,16 @@ val twoSumTwoPassHashTable = TwoSumStrategy { nums: IntArray, target: Int ->
  * Time complexity: O(n).
  * Space complexity: O(n).
  */
-val twoSumOnePassHashTable = TwoSumStrategy { nums: IntArray, target: Int ->
+val twoSumOnePassHashTable = TwoSum { nums: IntArray, target: Int ->
     val map: MutableMap<Int, Int> = HashMap()
     for (i in nums.indices) {
         val complement = target - nums[i]
         if (map.containsKey(complement)) {
-            return@TwoSumStrategy intArrayOf(map.getOrDefault(complement, 0), i)
+            return@TwoSum intArrayOf(map.getOrDefault(complement, 0), i)
         }
         map[nums[i]] = i
     }
-    return@TwoSumStrategy intArrayOf()
+    return@TwoSum intArrayOf()
 }
 
 /**
@@ -99,11 +99,11 @@ val twoSumOnePassHashTable = TwoSumStrategy { nums: IntArray, target: Int ->
  * Time complexity: O(n).
  * Space complexity: O(n).
  */
-val twoSumOneHashMap = TwoSumStrategy { nums: IntArray, target: Int ->
+val twoSumOneHashMap = TwoSum { nums: IntArray, target: Int ->
     val map: MutableMap<Int, Int> = HashMap()
     nums.forEachIndexed { index, i ->
-        map[i]?.let { return@TwoSumStrategy intArrayOf(it, index) }
+        map[i]?.let { return@TwoSum intArrayOf(it, index) }
         map[target - i] = index
     }
-    return@TwoSumStrategy intArrayOf()
+    return@TwoSum intArrayOf()
 }

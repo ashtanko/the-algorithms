@@ -40,24 +40,24 @@ private const val UNITS = "KMGTPE"
  *
  * @return The human-readable byte count representation.
  */
-fun Long.toHumanReadableByteCountBin(formatter: ByteFormatter = SiByteFormatter()): String {
+fun Long.toHumanReadableByteCountBin(formatter: ByteFormatter = siByteFormatter): String {
     val bytes = this
-    val absB = if (bytes == Long.MIN_VALUE) Long.MAX_VALUE else abs(bytes)
-    if (absB < BYTE) {
+    val absBytes = if (bytes == Long.MIN_VALUE) Long.MAX_VALUE else abs(bytes)
+    if (absBytes < BYTE) {
         return String.format(Locale.getDefault(), "%d B", bytes)
     }
-    var value = absB
+    var value = absBytes
     val ci: CharacterIterator = StringCharacterIterator(UNITS)
     var i = MAX_LOOP_INDEX
-    while (i >= 0 && absB > BIT_MASK shr i) {
+    while (i >= 0 && absBytes > BIT_MASK shr i) {
         value = value shr DECIMAL
         ci.next()
         i -= DECIMAL
     }
     value *= java.lang.Long.signum(bytes)
         .toLong()
-    val kBytes = value / BYTE.toDouble()
+    val kiloBytes = value / BYTE.toDouble()
     val current = ci.current()
 
-    return formatter.invoke(kBytes, current)
+    return formatter.invoke(kiloBytes, current)
 }

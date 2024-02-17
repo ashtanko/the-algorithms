@@ -36,7 +36,7 @@ private const val UNITS = "kMGTPE"
  *
  * @return The human-readable byte count representation.
  */
-fun Long.toHumanReadableByteCountSi(formatter: ByteFormatter = BinByteFormatter()): String {
+fun Long.toHumanReadableByteCountSi(formatter: ByteFormatter = binByteFormatter): String {
     var bytes = this
 
     if (-THOUSAND < bytes && bytes < THOUSAND) {
@@ -48,8 +48,8 @@ fun Long.toHumanReadableByteCountSi(formatter: ByteFormatter = BinByteFormatter(
         bytes /= THOUSAND
         ci.next()
     }
-    val kBytes = bytes / THOUSAND.toDouble()
+    val kiloBytes = bytes / THOUSAND.toDouble()
     val current = ci.current()
 
-    return formatter.invoke(kBytes, current)
+    return formatter.invoke(kiloBytes, current)
 }

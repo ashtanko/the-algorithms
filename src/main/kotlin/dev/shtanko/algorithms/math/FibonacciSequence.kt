@@ -40,20 +40,20 @@ fun Int.toFibonacciSequence(): Int {
 /**
  * Calculates the Fibonacci number at the given index using iteration.
  *
- * @param n The index of the Fibonacci number.
+ * @param num The index of the Fibonacci number.
  * @return The Fibonacci number at the given index.
  */
-fun fibonacciAt(n: Int) =
+fun fibonacciAt(num: Int) =
     run {
         tailrec fun fibonacciAcc(
-            n: Int,
-            a: Long,
-            b: Long,
-        ): Long = when (n == 0) {
-            true -> b
-            false -> fibonacciAcc(n - 1, a + b, a)
+            count: Int,
+            prev: Long,
+            curr: Long,
+        ): Long = when (count == 0) {
+            true -> curr
+            false -> fibonacciAcc(count - 1, prev + curr, prev)
         }
-        fibonacciAcc(n, 1, 0)
+        fibonacciAcc(num, 1, 0)
     }
 
 /**
@@ -61,31 +61,30 @@ fun fibonacciAt(n: Int) =
  */
 enum class Fibonacci {
     ITERATIVE {
-        override fun invoke(n: Long) =
-            if (n < 2) {
-                n
+        override fun invoke(index: Long): Long =
+            if (index < 2) {
+                index
             } else {
-                var n1 = 0L
-                var n2 = 1L
-                var i = n
+                var previous = 0L
+                var current = 1L
+                var remainingSteps = index
                 do {
-                    val sum = n1 + n2
-                    n1 = n2
-                    n2 = sum
-                } while (i-- > 1)
-                n1
+                    val sum = previous + current
+                    previous = current
+                    current = sum
+                } while (remainingSteps-- > 1)
+                previous
             }
     },
     RECURSIVE {
-        override fun invoke(n: Long): Long = if (n < 2) n else this(n - 1) + this(n - 2)
-    },
-    ;
+        override fun invoke(index: Long): Long = if (index < 2) index else this(index - 1) + this(index - 2)
+    };
 
     /**
      * Calculates the Fibonacci number at the given index using the specified strategy.
      *
-     * @param n The index of the Fibonacci number.
+     * @param index The index of the Fibonacci number.
      * @return The Fibonacci number at the given index.
      */
-    abstract operator fun invoke(n: Long): Long
+    abstract operator fun invoke(index: Long): Long
 }

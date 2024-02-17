@@ -50,13 +50,13 @@ class BinarySearch<T : Comparable<T>> : AbstractSearchStrategy<T> {
         arr: Array<T>,
         element: T,
     ): Int {
-        var lo = 0
-        var hi = arr.size - 1
-        while (lo <= hi) {
-            val mid = (lo + hi) / 2
+        var low = 0
+        var high = arr.size - 1
+        while (low <= high) {
+            val mid = (low + high) / 2
             when {
-                element < arr[mid] -> hi = mid - 1
-                element > arr[mid] -> lo = mid + 1
+                element < arr[mid] -> high = mid - 1
+                element > arr[mid] -> low = mid + 1
                 else -> return mid
             }
         }

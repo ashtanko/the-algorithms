@@ -71,14 +71,14 @@ data object InsertionSort2 : AbstractSortStrategy {
      * @param T The type of elements in the array, must be comparable.
      */
     override fun <T : Comparable<T>> invoke(arr: Array<T>) {
-        for (i in 1 until arr.size) {
-            val x = arr[i]
-            var j = i
-            while (j > 0 && arr[j - 1] > x) {
+        for (currentIndex in 1 until arr.size) {
+            val currentValue = arr[currentIndex]
+            var j = currentIndex
+            while (j > 0 && arr[j - 1] > currentValue) {
                 arr[j] = arr[j - 1]
                 j--
             }
-            arr[j] = x
+            arr[j] = currentValue
         }
     }
 }

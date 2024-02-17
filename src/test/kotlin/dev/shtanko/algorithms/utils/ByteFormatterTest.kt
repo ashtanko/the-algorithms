@@ -29,28 +29,25 @@ import org.junit.jupiter.api.Test
 
 class ByteFormatterTest {
 
-    private val binFormatter = BinByteFormatter()
-    private val siFormatter = SiByteFormatter()
-
     @Test
     fun testBinByteFormatter() {
-        assertEquals("0.0 BB", binFormatter(0.0, 'B'))
-        assertEquals("-1023.0 BB", binFormatter(-1023.0, 'B'))
-        assertEquals("1023.0 BB", binFormatter(1023.0, 'B'))
-        assertEquals("1024.0 iB", binFormatter(1024.0, 'i'))
-        assertEquals("1572864.0 iB", binFormatter(1.5 * 1024 * 1024, 'i'))
-        assertEquals("1073741824.0 iB", binFormatter(1.0 * 1024 * 1024 * 1024, 'i'))
-        assertEquals("1099511627776.0 iB", binFormatter(1.0 * 1024 * 1024 * 1024 * 1024, 'i'))
+        assertEquals("0.0 BB", binByteFormatter(0.0, 'B'))
+        assertEquals("-1023.0 BB", binByteFormatter(-1023.0, 'B'))
+        assertEquals("1023.0 BB", binByteFormatter(1023.0, 'B'))
+        assertEquals("1024.0 iB", binByteFormatter(1024.0, 'i'))
+        assertEquals("1572864.0 iB", binByteFormatter(1.5 * 1024 * 1024, 'i'))
+        assertEquals("1073741824.0 iB", binByteFormatter(1.0 * 1024 * 1024 * 1024, 'i'))
+        assertEquals("1099511627776.0 iB", binByteFormatter(1.0 * 1024 * 1024 * 1024 * 1024, 'i'))
     }
 
     @Test
     fun testSiByteFormatter() {
-        assertEquals("0.0 BiB", siFormatter(0.0, 'B'))
-        assertEquals("-999.0 BiB", siFormatter(-999.0, 'B'))
-        assertEquals("999.0 BiB", siFormatter(999.0, 'B'))
-        assertEquals("1000.0 BiB", siFormatter(1000.0, 'B'))
-        assertEquals("1500000.0 BiB", siFormatter(1.5 * 1000 * 1000, 'B'))
-        assertEquals("1000000000.0 BiB", siFormatter(1.0 * 1000 * 1000 * 1000, 'B'))
-        assertEquals("1000000000000.0 BiB", siFormatter(1.0 * 1000 * 1000 * 1000 * 1000, 'B'))
+        assertEquals("0.0 BiB", siByteFormatter(0.0, 'B'))
+        assertEquals("-999.0 BiB", siByteFormatter(-999.0, 'B'))
+        assertEquals("999.0 BiB", siByteFormatter(999.0, 'B'))
+        assertEquals("1000.0 BiB", siByteFormatter(1000.0, 'B'))
+        assertEquals("1500000.0 BiB", siByteFormatter(1.5 * 1000 * 1000, 'B'))
+        assertEquals("1000000000.0 BiB", siByteFormatter(1.0 * 1000 * 1000 * 1000, 'B'))
+        assertEquals("1000000000000.0 BiB", siByteFormatter(1.0 * 1000 * 1000 * 1000 * 1000, 'B'))
     }
 }

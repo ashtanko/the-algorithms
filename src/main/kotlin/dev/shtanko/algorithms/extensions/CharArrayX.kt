@@ -47,13 +47,13 @@ fun CharArray.reverse(
  * Swaps the characters at the given indices in this CharArray.
  *
  * @param i the index of the first character to swap.
- * @param i1 the index of the second character to swap.
+ * @param j the index of the second character to swap.
  */
 fun CharArray.swap(
     i: Int,
-    i1: Int,
+    j: Int,
 ) {
     val temp = this[i]
-    this[i] = this[i1]
-    this[i1] = temp
+    this[i] = this[j]
+    this[j] = temp
 }

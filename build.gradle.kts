@@ -1,5 +1,5 @@
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_1
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 val projectJvmTarget = 17
@@ -9,7 +9,7 @@ val isK2Enabled = true
 val k2CompilerArg = if (isK2Enabled) listOf("-Xuse-k2") else emptyList()
 val outputDir = "${project.layout.buildDirectory}/reports/ktlint/"
 val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
-val kotlinVersion = KOTLIN_1_9
+val kotlinVersion = KOTLIN_2_1
 
 fun isLinux(): Boolean {
     val osName = System.getProperty("os.name").lowercase()
@@ -69,6 +69,13 @@ configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
     filter {
         exclude("**/generated/**")
         include("**/kotlin/**")
+    }
+}
+
+diktat {
+    inputs {
+        include("src/main/**/*.kt")
+        exclude("**/generated/**")
     }
 }
 

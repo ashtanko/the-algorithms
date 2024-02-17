@@ -26,9 +26,6 @@ package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.generateRandomArray
 import dev.shtanko.algorithms.utils.measureTime
-import java.util.Locale
-import java.util.stream.Stream
-import kotlin.system.measureTimeMillis
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -36,6 +33,9 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.Locale
+import java.util.stream.Stream
+import kotlin.system.measureTimeMillis
 
 class PerformanceTest {
     @ParameterizedTest

@@ -54,7 +54,7 @@ class IntXTest {
     @ParameterizedTest
     @ArgumentsSource(InputIsEvenArgumentsProvider::class)
     fun `is even fun interface test`(n: Int, expected: Boolean) {
-        val actual = isEven.accept(n)
+        val actual = isEven.invoke(n)
         assertThat(actual).isEqualTo(expected)
     }
 
@@ -65,12 +65,12 @@ class IntXTest {
 
     @Test
     fun `less than zero test`() {
-        assertTrue((-1).lessThanZero())
+        assertTrue((-1).isLessThanZero())
     }
 
     @Test
     fun `more than zero test`() {
-        assertFalse(1.lessThanZero())
+        assertFalse(1.isLessThanZero())
     }
 
     class InputIsEvenArgumentsProvider : ArgumentsProvider {

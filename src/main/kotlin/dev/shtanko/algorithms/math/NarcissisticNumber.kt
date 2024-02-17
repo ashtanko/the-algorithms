@@ -72,10 +72,10 @@ data object NarcissisticNumberImpl : NarcissisticNumber {
      * @return The number of digits in the given number.
      */
     private fun numberOfDigits(num: Int): Int {
-        var n = num
+        var res = num
         var totalDigits = 0
-        while (n > 0) {
-            n /= DECIMAL
+        while (res > 0) {
+            res /= DECIMAL
             totalDigits++
         }
         return totalDigits

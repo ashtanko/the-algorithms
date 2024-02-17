@@ -110,7 +110,7 @@ val targetSumMemoization = TargetSum { nums: IntArray, target: Int ->
  * Time complexity: O(t⋅n)
  * Space complexity: O(t⋅n)
  */
-internal val twoDSolution = TargetSum { nums: IntArray, target: Int ->
+internal val twoPassSolution = TargetSum { nums: IntArray, target: Int ->
     val total: Int = nums.sum()
     val dp = Array(nums.size) { IntArray(2 * total + 1) }
     dp[0][nums[0] + total] = 1
@@ -132,7 +132,7 @@ internal val twoDSolution = TargetSum { nums: IntArray, target: Int ->
  * Time complexity: O(t⋅n)
  * Space complexity: O(t)
  */
-internal val oneDSolution = TargetSum { nums: IntArray, target: Int ->
+internal val onePassSolution = TargetSum { nums: IntArray, target: Int ->
     val total: Int = nums.sum()
     var dp = IntArray(2 * total + 1)
     dp[nums[0] + total] = 1

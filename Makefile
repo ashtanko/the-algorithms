@@ -1,7 +1,7 @@
 .PHONY: default check test report treport lines md all kover diktat
 
 check:
-	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck --profile --daemon
+	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck diktatCheck --profile --daemon
 
 default:
 	 make check && make md

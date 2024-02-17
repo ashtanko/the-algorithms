@@ -31,10 +31,10 @@ import java.math.BigInteger
  * Given two binary strings a and b, return their sum as a binary string.
  * @link https://leetcode.com/problems/add-binary/
  */
-fun interface AddBinaryStrategy {
+fun interface AddBinary {
     operator fun invoke(
-        a: String,
-        b: String,
+        left: String,
+        right: String,
     ): String
 }
 
@@ -42,18 +42,18 @@ fun interface AddBinaryStrategy {
  * Time complexity: O(max(N,M)), where N and M are lengths of the input strings a and b.
  * Space complexity: O(max(N,M)) to keep the answer.
  */
-val addBinaryBitByBitComputation = AddBinaryStrategy { a: String, b: String ->
+val addBinaryBitByBitComputation = AddBinary { left: String, right: String ->
     val sb = StringBuilder()
-    var i: Int = a.lastIndex
-    var j: Int = b.lastIndex
+    var i: Int = left.lastIndex
+    var j: Int = right.lastIndex
     var carry = 0
     while (i >= 0 || j >= 0) {
         var sum = carry
         if (j >= 0) {
-            sum += b[j--] - '0'
+            sum += right[j--] - '0'
         }
         if (i >= 0) {
-            sum += a[i--] - '0'
+            sum += left[i--] - '0'
         }
         sb.append(sum % 2)
         carry = sum / 2
@@ -68,24 +68,24 @@ val addBinaryBitByBitComputation = AddBinaryStrategy { a: String, b: String ->
  * Time complexity : O(N+M), where N and M are lengths of the input strings a and b.
  * Space complexity: O(max(N,M)) to keep the answer.
  */
-val addBinaryBitManipulation = AddBinaryStrategy { a: String, b: String ->
+val addBinaryBitManipulation = AddBinary { left: String, right: String ->
     when {
-        a.isBlank() && b.isNotBlank() -> b
-        a.isNotBlank() && b.isBlank() -> a
-        a.isBlank() && b.isBlank() -> ""
+        left.isBlank() && right.isNotBlank() -> right
+        left.isNotBlank() && right.isBlank() -> left
+        left.isBlank() && right.isBlank() -> ""
         else -> {
-            var x = BigInteger(a, 2)
-            var y = BigInteger(b, 2)
-            val zero = BigInteger("0", 2)
+            var firstNum = BigInteger(left, 2)
+            var secondNum = BigInteger(right, 2)
+            val zero = BigInteger.ZERO
             var carry: BigInteger
-            var answer: BigInteger
-            while (y.compareTo(zero) != 0) {
-                answer = x.xor(y)
-                carry = x.and(y).shiftLeft(1)
-                x = answer
-                y = carry
+            var result: BigInteger
+            while (secondNum != zero) {
+                result = firstNum.xor(secondNum)
+                carry = firstNum.and(secondNum).shiftLeft(1)
+                firstNum = result
+                secondNum = carry
             }
-            x.toString(2)
+            firstNum.toString(2)
         }
     }
 }

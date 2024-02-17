@@ -33,7 +33,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 
-abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T) {
+abstract class AddBinaryTest<out T : AddBinary>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `add binary test`(
@@ -108,5 +108,5 @@ abstract class AddBinaryTest<out T : AddBinaryStrategy>(private val strategy: T)
     }
 }
 
-class AddBinaryBitByBitComputationTest : AddBinaryTest<AddBinaryStrategy>(addBinaryBitByBitComputation)
-class AddBinaryBitManipulationTest : AddBinaryTest<AddBinaryStrategy>(addBinaryBitManipulation)
+class AddBinaryBitByBitComputationTest : AddBinaryTest<AddBinary>(addBinaryBitByBitComputation)
+class AddBinaryBitManipulationTest : AddBinaryTest<AddBinary>(addBinaryBitManipulation)

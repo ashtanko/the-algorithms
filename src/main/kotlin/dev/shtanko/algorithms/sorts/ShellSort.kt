@@ -46,21 +46,21 @@ class ShellSort : AbstractSortStrategy {
      * @param T The type of elements in the array, must be comparable.
      */
     override fun <T : Comparable<T>> invoke(arr: Array<T>) {
-        val n = arr.size
-        var h = 1
-        while (h < n / GAP) {
-            h = h * GAP + 1
+        val size = arr.size
+        var gap = 1
+        while (gap < size / GAP) {
+            gap = gap * GAP + 1
         }
 
-        while (h >= 1) {
-            for (i in h until n) {
+        while (gap >= 1) {
+            for (i in gap until size) {
                 var j = i
-                while (j >= h && arr[j - h] > arr[j]) {
-                    arr.swap(j, j - h)
-                    j -= h
+                while (j >= gap && arr[j - gap] > arr[j]) {
+                    arr.swap(j, j - gap)
+                    j -= gap
                 }
             }
-            h /= GAP
+            gap /= GAP
         }
     }
 

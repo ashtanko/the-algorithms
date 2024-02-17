@@ -107,5 +107,5 @@ abstract class TargetSumTest<out T : TargetSum>(private val strategy: T) {
 
 class TargetSumBruteForceTest : TargetSumTest<TargetSum>(TargetSumBruteForce())
 class TargetSumMemoizationTest : TargetSumTest<TargetSum>(targetSumMemoization)
-class TwoDTest : TargetSumTest<TargetSum>(twoDSolution)
-class OneDTest : TargetSumTest<TargetSum>(oneDSolution)
+class TwoDTest : TargetSumTest<TargetSum>(twoPassSolution)
+class OneDTest : TargetSumTest<TargetSum>(onePassSolution)
