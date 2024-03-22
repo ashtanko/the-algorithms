@@ -1,6 +1,6 @@
 [versions]
-coroutines = "1.7.3"        # https://github.com/Kotlin/kotlinx.coroutines
-junit = "5.8.0"             # https://junit.org/junit5/
+coroutines = "1.8.0"        # https://github.com/Kotlin/kotlinx.coroutines
+junit = "5.10.2"            # https://junit.org/junit5/
 kotlin = "2.0.0-Beta4"      # https://github.com/JetBrains/kotlin
 mockk = "1.13.8"            # https://mockk.io/
 detekt = "1.23.5"           # https://github.com/detekt/detekt
