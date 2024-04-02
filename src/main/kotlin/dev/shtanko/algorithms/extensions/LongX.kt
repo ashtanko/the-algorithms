@@ -24,7 +24,7 @@
 
 package dev.shtanko.algorithms.extensions
 
-import dev.shtanko.algorithms.DECIMAL
+import dev.shtanko.algorithms.Constants.DECIMAL
 
 /**
  * Checks if a Long number is a super palindrome.

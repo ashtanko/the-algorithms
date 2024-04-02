@@ -24,15 +24,67 @@
 
 package dev.shtanko.algorithms
 
-internal const val DECIMAL = 10
-internal const val OCTAL = 8
-internal const val HEXADECIMAL = 16
-internal const val SHUFFLE = 0xFFFF
-internal const val MOD = 1_000_000_007
-internal const val BILLION = 1e9
-internal const val BYTE = 1024
-internal const val MILLISECOND = 1000L
-internal const val EPSILON = 1e-5
-internal const val BIN_FORMAT = "%.1f %cB"
-internal const val SI_FORMAT = "%.1f %ciB"
-internal const val ALPHABET_LETTERS_COUNT = 26
+/**
+ * Constants used across the application.
+ */
+internal data object Constants {
+    /**
+     * Base for decimal numbers.
+     */
+    const val DECIMAL = 10
+
+    /**
+     * Base for octal numbers.
+     */
+    const val OCTAL = 8
+
+    /**
+     * Base for hexadecimal numbers.
+     */
+    const val HEXADECIMAL = 16
+
+    /**
+     * Constant used for shuffling.
+     */
+    const val SHUFFLE = 0xFFFF
+
+    /**
+     * Modulus constant.
+     */
+    const val MOD = 1_000_000_007
+
+    /**
+     * Constant representing one billion.
+     */
+    const val BILLION = 1e9
+
+    /**
+     * Constant representing a byte (1024 bits).
+     */
+    const val BYTE = 1024
+
+    /**
+     * Constant representing a millisecond.
+     */
+    const val MILLISECOND = 1000L
+
+    /**
+     * Small constant used for floating point comparisons.
+     */
+    const val EPSILON = 1e-5
+
+    /**
+     * Format for binary size representation.
+     */
+    const val BIN_FORMAT = "%.1f %cB"
+
+    /**
+     * Format for SI size representation.
+     */
+    const val SI_FORMAT = "%.1f %ciB"
+
+    /**
+     * Number of letters in the English alphabet.
+     */
+    const val ALPHABET_LETTERS_COUNT = 26
+}

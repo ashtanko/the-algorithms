@@ -24,7 +24,7 @@
 
 package dev.shtanko.algorithms.utils
 
-import dev.shtanko.algorithms.MILLISECOND
+import dev.shtanko.algorithms.Constants.MILLISECOND
 import java.util.concurrent.TimeUnit
 
 /**

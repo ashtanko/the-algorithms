@@ -24,7 +24,7 @@
 
 package dev.shtanko.algorithms.math
 
-import dev.shtanko.algorithms.DECIMAL
+import dev.shtanko.algorithms.Constants.DECIMAL
 import kotlin.math.pow
 
 /**

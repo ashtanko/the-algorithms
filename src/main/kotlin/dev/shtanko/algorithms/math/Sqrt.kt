@@ -24,7 +24,7 @@
 
 package dev.shtanko.algorithms.math
 
-import dev.shtanko.algorithms.EPSILON
+import dev.shtanko.algorithms.Constants.EPSILON
 import kotlin.math.abs
 
 /**

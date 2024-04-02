@@ -24,6 +24,18 @@
 
 package dev.shtanko.algorithms
 
+import dev.shtanko.algorithms.Constants.ALPHABET_LETTERS_COUNT
+import dev.shtanko.algorithms.Constants.BILLION
+import dev.shtanko.algorithms.Constants.BIN_FORMAT
+import dev.shtanko.algorithms.Constants.BYTE
+import dev.shtanko.algorithms.Constants.DECIMAL
+import dev.shtanko.algorithms.Constants.EPSILON
+import dev.shtanko.algorithms.Constants.HEXADECIMAL
+import dev.shtanko.algorithms.Constants.MILLISECOND
+import dev.shtanko.algorithms.Constants.MOD
+import dev.shtanko.algorithms.Constants.OCTAL
+import dev.shtanko.algorithms.Constants.SHUFFLE
+import dev.shtanko.algorithms.Constants.SI_FORMAT
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
