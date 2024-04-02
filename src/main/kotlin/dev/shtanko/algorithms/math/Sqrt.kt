@@ -30,32 +30,32 @@ import kotlin.math.abs
 /**
  * Calculates the square root of the given integer.
  *
- * @param c The integer to calculate the square root of.
- * @param e The tolerance value for convergence (default: EPSILON).
+ * @param number The integer to calculate the square root of.
+ * @param tolerance The tolerance value for convergence (default: EPSILON).
  * @return The square root of the given integer.
  */
 fun sqrt(
-    c: Int,
-    e: Double = EPSILON,
-): Double = sqrt(c.toDouble(), e)
+    number: Int,
+    tolerance: Double = EPSILON,
+): Double = sqrt(number.toDouble(), tolerance)
 
 /**
  * Calculates the square root of the given double.
  *
- * @param c The double to calculate the square root of.
- * @param e The tolerance value for convergence (default: EPSILON).
+ * @param number The double to calculate the square root of.
+ * @param tolerance The tolerance value for convergence (default: EPSILON).
  * @return The square root of the given double.
  */
 fun sqrt(
-    c: Double,
-    e: Double = EPSILON,
+    number: Double,
+    tolerance: Double = EPSILON,
 ): Double {
-    if (c < 0) {
+    if (number < 0) {
         return Double.NaN
     }
-    var t = c
-    while (abs(t - c / t) > e * t) {
-        t = (c / t + t) / 2.0
+    var approximation = number
+    while (abs(approximation - number / approximation) > tolerance * approximation) {
+        approximation = (number / approximation + approximation) / 2.0
     }
-    return t
+    return approximation
 }
