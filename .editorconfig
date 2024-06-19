@@ -107,7 +107,7 @@ ij_kotlin_wrap_elvis_expressions = 1
 ij_kotlin_wrap_expression_body_functions = 1
 ij_kotlin_wrap_first_method_in_call_chain = false
 
-ktlint_standard = enabled
+ktlint_standard = disabled
 ktlint_experimental = disabled
 ktlint_custom-rule-set = disabled
 

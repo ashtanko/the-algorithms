@@ -24,10 +24,10 @@
 
 package dev.shtanko.algorithms.utils
 
-import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import kotlin.time.DurationUnit
+import kotlin.time.ExperimentalTime
 
 class MeasureTimeTest {
     @ExperimentalTime

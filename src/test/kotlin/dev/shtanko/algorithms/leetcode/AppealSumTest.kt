@@ -24,19 +24,19 @@
 
 package dev.shtanko.algorithms.leetcode
 
-import java.util.stream.Stream
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
+import java.util.stream.Stream
 
 abstract class AppealSumTest<out T : AppealSum>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `appeal sum test`(s: String, expected: Long) {
-        val actual = strategy(s)
+    fun `appeal sum test`(str: String, expected: Long) {
+        val actual = strategy(str)
         assertThat(actual).isEqualTo(expected)
     }
 

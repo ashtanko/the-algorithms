@@ -35,22 +35,22 @@ fun interface AppealSum {
     /**
      * Performs an appeal sum operation on the given String.
      *
-     * @param s The input String to perform the appeal sum on.
+     * @param str The input String to perform the appeal sum on.
      * @return The result of the appeal sum operation.
      */
-    operator fun invoke(s: String): Long
+    operator fun invoke(str: String): Long
 }
 
 /**
  * Performs the appeal sum operation on the given String using dynamic programming.
  *
- * @param s The input String to perform the appeal sum on.
+ * @param str The input String to perform the appeal sum on.
  * @return The result of the appeal sum operation.
  */
-val appealSumDp = AppealSum { s: String ->
+val appealSumDp = AppealSum { str: String ->
     var cur: Long = 0
     val prev = LongArray(ALPHABET_LETTERS_COUNT)
-    s.mapIndexed { index, c ->
+    str.mapIndexed { index, c ->
         cur += index + 1 - prev[c - 'a']
         prev[c - 'a'] = index.toLong() + 1
         cur

@@ -1,15 +1,13 @@
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_1
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 val projectJvmTarget = 17
 val satisfyingNumberOfCores = Runtime.getRuntime().availableProcessors().div(2).takeIf { it > 0 } ?: 1
 val ktLintConfig: Configuration by configurations.creating
-val isK2Enabled = true
-val k2CompilerArg = if (isK2Enabled) listOf("-Xuse-k2") else emptyList()
 val outputDir = "${project.layout.buildDirectory}/reports/ktlint/"
 val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
-val kotlinVersion = KOTLIN_2_1
+val kotlinVersion = KOTLIN_2_0
 
 fun isLinux(): Boolean {
     val osName = System.getProperty("os.name").lowercase()
@@ -200,14 +198,13 @@ tasks {
                 html,
                 xml,
                 csv,
-            ).map { it.required }.forEach { it.set(true) }
+            ).forEach { it.required.set(true) }
         }
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = "$projectJvmTarget"
-            freeCompilerArgs = freeCompilerArgs + k2CompilerArg
+        compilerOptions {
+            apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
         }
     }
 
@@ -231,9 +228,7 @@ tasks {
 
         reports {
             reports.apply {
-                listOf(xml, html, txt, md).map { it.required }.forEach {
-                    it.set(true)
-                }
+                listOf(xml, html, txt, md).forEach { it.required.set(true) }
             }
         }
     }
@@ -254,22 +249,20 @@ tasks {
         useJUnitPlatform()
         finalizedBy(withType(JacocoReport::class.java))
     }
-
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = "$projectJvmTarget"
-        }
-    }
 }
 
 dependencies {
     libs.apply {
-        implementation(kotlin.stdlib)
-        implementation(kotlin.reflect)
-        implementation(kotlin.coroutines)
+        kotlin.apply {
+            implementation(stdlib)
+            implementation(reflect)
+            implementation(coroutines)
+        }
 
         testImplementation(mockk)
         testImplementation(junit)
         testImplementation(assertj)
+        testImplementation(mockito)
+        testImplementation(mockito.kotlin)
     }
 }

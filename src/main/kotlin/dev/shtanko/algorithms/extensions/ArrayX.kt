@@ -80,8 +80,8 @@ fun <T> Array<T>.reverse2() {
 /**
  * Flips the elements in the array between the specified indices in place.
  *
- * @param left The starting index (inclusive) of the portion to flip.
- * @param right The ending index (inclusive) of the portion to flip.
+ * @param leftIndex The starting index (inclusive) of the portion to flip.
+ * @param rightIndex The ending index (inclusive) of the portion to flip.
  */
 fun <T> Array<T>.flip(
     leftIndex: Int,
