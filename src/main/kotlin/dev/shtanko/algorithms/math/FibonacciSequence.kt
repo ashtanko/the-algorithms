@@ -77,7 +77,11 @@ enum class Fibonacci {
             }
     },
     RECURSIVE {
-        override fun invoke(index: Long): Long = if (index < 2) index else this(index - 1) + this(index - 2)
+        override fun invoke(index: Long): Long = if (index < 2) {
+            index
+        } else {
+            this(index - 1) + this(index - 2)
+        }
     };
 
     /**

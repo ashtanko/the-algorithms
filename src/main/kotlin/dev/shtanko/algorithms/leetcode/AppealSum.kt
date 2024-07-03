@@ -28,7 +28,8 @@ import dev.shtanko.algorithms.Constants.ALPHABET_LETTERS_COUNT
 
 /**
  * 2262. Total Appeal of A String
- * @link https://leetcode.com/problems/total-appeal-of-a-string/
+ * @see <a href="https://leetcode.com/problems/total-appeal-of-a-string">
+ *     Source</a>
  * Functional interface representing an appeal sum operation on a String.
  */
 fun interface AppealSum {
@@ -42,10 +43,31 @@ fun interface AppealSum {
 }
 
 /**
- * Performs the appeal sum operation on the given String using dynamic programming.
+ * # Intuition
+ * The problem is to calculate the sum of the appeal of all substrings of a
+ * given string. The appeal of a string is defined as the number of distinct
+ * characters in it. The challenge is to efficiently compute this for all
+ * substrings.
  *
- * @param str The input String to perform the appeal sum on.
- * @return The result of the appeal sum operation.
+ * # Approach
+ * We can use dynamic programming to solve this problem. The key idea is to keep
+ * track of the last position where each character appeared. For each character
+ * in the string, we can calculate the contribution to the total appeal based on
+ * its position and the previous positions of the same character. We maintain an
+ * array `prev` where `prev[c - 'a']` keeps the last index of character `c`. For
+ * each character at index `i`, the contribution to the appeal is calculated as
+ * `i + 1 - prev[c - 'a']`. We then update the `prev` array with the current
+ * index.
+ *
+ * # Complexity
+ * - Time complexity: O(n)
+ * The time complexity is linear with respect to the length of the string, since
+ * we process each character exactly once.
+ *
+ * - Space complexity: O(1)
+ * The space complexity is constant, as we use a fixed-size array of length 26
+ * to keep track of the last positions of each
+ * character (assuming only lowercase English letters).
  */
 val appealSumDp = AppealSum { str: String ->
     var cur: Long = 0

@@ -102,23 +102,34 @@ data object QuickSort : AbstractSortStrategy {
     ): Int {
         var left = low
         var right = high
-        val pivot = array[(left + right) / 2]  // Pivot point
+        // Choose the middle element as the pivot
+        val pivot = array[(left + right) / 2]
+
+        // Continue partitioning until the left and right pointers meet
         while (left <= right) {
+            // Move the left pointer to the right until an element greater than
+            // the pivot is found
             while (array[left] < pivot) {
                 left++
-            }  // Find the elements on the left that should be on the right
+            }
 
+            // Move the right pointer to the left until an element less
+            // than the pivot is found
             while (array[right] > pivot) {
                 right--
-            }  // Find the elements on the right that should be on the left
+            }
 
-            // Swap elements, and move left and right indices
+            // If the left pointer is still to the left of the right pointer,
+            // swap the elements
             if (left <= right) {
+                // Swap elements so that smaller ones are on the left and larger
+                // ones are on the right of the pivot
                 array.swap(left, right)
                 left++
                 right--
             }
         }
+        // Return the partition point where the left pointer ended up
         return left
     }
 }

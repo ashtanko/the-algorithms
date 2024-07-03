@@ -31,14 +31,14 @@ package dev.shtanko.algorithms.math
  * @return The greatest common divisor of the two integers.
  */
 fun Pair<Int, Int>.gcd(): Int {
-    var a = first
-    var b = second
-    while (b != 0) {
-        val temp = a % b
-        a = b
-        b = temp
+    var largerNumber = first
+    var smallerNumber = second
+    while (smallerNumber != 0) {
+        val remainder = largerNumber % smallerNumber
+        largerNumber = smallerNumber
+        smallerNumber = remainder
     }
-    return a
+    return largerNumber
 }
 
 /**
@@ -49,6 +49,6 @@ fun Pair<Int, Int>.gcd(): Int {
  * @return The greatest common divisor of the two integers.
  */
 fun gcd(
-    a: Int,
-    b: Int,
-): Int = if (b == 0) a else gcd(b, a % b)
+    number1: Int,
+    number2: Int
+): Int = if (number2 == 0) number1 else gcd(number2, number1 % number2)

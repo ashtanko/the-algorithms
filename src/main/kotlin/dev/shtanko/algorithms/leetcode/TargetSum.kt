@@ -35,9 +35,31 @@ fun interface TargetSum {
 }
 
 /**
- * Approach 1: Brute Force
- * Time complexity: O(2^n)
- * Space complexity: O(n)
+ * # Approach 1: Brute Force
+ *
+ * # Intuition
+ * The problem requires finding the number of ways to assign `+` or `-` signs
+ * to each element in the array such that the resulting sum equals the target.
+ * The brute force approach explores all possible combinations.
+ *
+ * # Approach
+ * The approach involves a recursive function that tries both adding and
+ * subtracting each number in the array:
+ * 1. Start from the first element and recursively try both adding and
+ * subtracting the current number to/from the sum.
+ * 2. Move to the next element and repeat the process.
+ * 3. If the end of the array is reached and the sum equals the target,
+ * increment the count.
+ * 4. The base case is when the index reaches the end of the array. If the sum
+ * at this point equals the target, increment the count.
+ *
+ * # Complexity
+ * - Time complexity: O(2^n)
+ *   - Each element in the array has two possibilities (add or subtract),
+ *   resulting in 2^n possible combinations.
+ *
+ * - Space complexity: O(n)
+ *   - The maximum depth of the recursion stack is n.
  */
 class TargetSumBruteForce : TargetSum {
     private var count = 0
@@ -68,9 +90,35 @@ class TargetSumBruteForce : TargetSum {
 }
 
 /**
- * Approach 2: Recursion with Memoization
- * Time complexity: O(t⋅n)
- * Space complexity: O(t⋅n)
+ * # Approach 2: Recursion with Memoization
+ *
+ * # Intuition
+ * The problem requires finding the number of ways to assign `+` or `-` signs to
+ * each element in the array such that the resulting sum equals the target.
+ * Using memoization helps to optimize the brute force approach by storing intermediate results.
+ *
+ * # Approach
+ * The approach involves a recursive function that tries both adding and
+ * subtracting each number in the array:
+ * 1. Start from the first element and recursively try both adding and
+ * subtracting the current number to/from the sum.
+ * 2. Use a memoization array to store results of subproblems to avoid redundant
+ * calculations.
+ * 3. If the end of the array is reached and the sum equals the target, return 1
+ * as a valid way is found.
+ * 4. If the end of the array is reached and the sum does not equal the target,
+ * return 0.
+ * 5. Before returning, store the result of the current state in the memoization
+ * array.
+ *
+ * # Complexity
+ * - Time complexity: O(n * t)
+ *   - The time complexity is reduced from O(2^n) to O(n * t), where `n` is the
+ *   number of elements and `t` is the total sum of elements.
+ *
+ * - Space complexity: O(n * t)
+ *   - The space complexity is due to the memoization array which stores the
+ *   results of sub-problems.
  */
 val targetSumMemoization = TargetSum { nums: IntArray, target: Int ->
     var total = 0
@@ -106,9 +154,39 @@ val targetSumMemoization = TargetSum { nums: IntArray, target: Int ->
 }
 
 /**
- * Approach 3: 2D Dynamic Programming
- * Time complexity: O(t⋅n)
- * Space complexity: O(t⋅n)
+ * # Approach 3: 2D Dynamic Programming
+ *
+ * # Intuition
+ * The problem requires finding the number of ways to assign `+` or `-` signs
+ * to each element in the array such that the
+ * resulting sum equals the target. Using dynamic programming helps to
+ * efficiently calculate the number of ways by keeping track of possible sums
+ * at each step.
+ *
+ * # Approach
+ * The approach involves using a dynamic programming table:
+ * 1. Calculate the total sum of the array to determine the range of possible
+ * sums.
+ * 2. Initialize a DP table where `dp[i][j]` represents the number of ways to
+ * achieve the sum `j - total` using the first `i` elements.
+ * 3. For the first element, initialize the DP table with two possible sums
+ * (adding and subtracting the first element).
+ * 4. Iterate through the array, updating the DP table based on the possible
+ * sums from the previous element.
+ * 5. At each step, for each possible sum, update the DP table by adding the
+ * current element and subtracting the current element.
+ * 6. Finally, check the DP table for the number of ways to achieve the target
+ * sum.
+ *
+ * # Complexity
+ * - Time complexity: O(n * t)
+ *   - The algorithm iterates through the array and updates the DP table for
+ *   each possible sum, where `n` is the number of elements and `t` is the total
+ *   sum of elements.
+ *
+ * - Space complexity: O(n * t)
+ *   - The space complexity is due to the DP table which stores the results for
+ *   each possible sum for each element.
  */
 internal val twoPassSolution = TargetSum { nums: IntArray, target: Int ->
     val total: Int = nums.sum()
@@ -128,9 +206,39 @@ internal val twoPassSolution = TargetSum { nums: IntArray, target: Int ->
 }
 
 /**
- * Approach 4: 1D Dynamic Programming
- * Time complexity: O(t⋅n)
- * Space complexity: O(t)
+ * # Approach 4: 1D Dynamic Programming
+ *
+ * # Intuition
+ * The problem requires finding the number of ways to assign `+` or `-` signs to
+ * each element in the array such that the resulting sum equals the target.
+ * Using dynamic programming with a space-optimized approach helps to
+ * efficiently calculate the number of ways by keeping track of possible sums at
+ * each step.
+ *
+ * # Approach
+ * The approach involves using a dynamic programming array:
+ * 1. Calculate the total sum of the array to determine the range of possible
+ * sums.
+ * 2. Initialize a DP array where `dp[j]` represents the number of ways to
+ * achieve the sum `j - total` using the current element.
+ * 3. For the first element, initialize the DP array with two possible
+ * sums (adding and subtracting the first element).
+ * 4. Iterate through the array, updating the DP array based on the possible
+ * sums from the previous element.
+ * 5. At each step, for each possible sum, update the DP array by adding the
+ * current element and subtracting the current element.
+ * 6. Finally, check the DP array for the number of ways to achieve the target
+ * sum.
+ *
+ * # Complexity
+ * - Time complexity: O(n * t)
+ *   - The algorithm iterates through the array and updates the DP array for
+ *   each possible sum, where `n` is the number of elements and `t` is the total
+ *   sum of elements.
+ *
+ * - Space complexity: O(t)
+ *   - The space complexity is reduced to O(t) due to the single DP array which
+ *   stores the results for each possible sum at each step.
  */
 internal val onePassSolution = TargetSum { nums: IntArray, target: Int ->
     val total: Int = nums.sum()

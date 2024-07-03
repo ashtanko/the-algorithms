@@ -36,7 +36,7 @@ mockito-kotlin = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", versio
 
 [plugins]
 kt-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kt-serializatin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kt-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

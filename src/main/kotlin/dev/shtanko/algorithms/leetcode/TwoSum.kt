@@ -43,9 +43,32 @@ fun interface TwoSum {
 }
 
 /**
- * Approach 1: Brute Force
- * Time complexity: O(n^2).
- * Space complexity: O(1).
+ * # Approach 1: Brute Force
+ *
+ * # Intuition
+ * The problem is to find two numbers in an array that add up to a specific
+ * target. A straightforward way to solve this is by checking every pair of
+ * numbers to see if they sum to the target.
+ *
+ * # Approach
+ * The brute force approach involves iterating over each element and checking it
+ * against every other element to find a pair that sums to the target:
+ *
+ * 1. Use a nested loop where the outer loop iterates over each element `i` in
+ * the array.
+ * 2. The inner loop starts from `i + 1` and iterates over the remaining
+ * elements `j` to check if the sum of `nums[i]` and `nums[j]` equals the target
+ * 3. If such a pair is found, return their indices as an array.
+ * 4. If no such pair is found after all iterations, return an empty array.
+ *
+ * # Complexity
+ * - Time complexity: O(n^2)
+ * The time complexity is quadratic because for each element, we check every
+ * other element in the array.
+ *
+ * - Space complexity: O(1)
+ * The space complexity is constant because we only use a fixed amount of
+ * additional space for variables.
  */
 val twoSumBruteForce = TwoSum { nums: IntArray, target: Int ->
     for (i in nums.indices) {
@@ -59,9 +82,30 @@ val twoSumBruteForce = TwoSum { nums: IntArray, target: Int ->
 }
 
 /**
- * Approach 2: Two-pass Hash Table
- * Time complexity: O(n).
- * Space complexity: O(n).
+ * # Approach 2: Two-pass Hash Table
+ *
+ * # Intuition
+ * The problem requires finding two numbers in an array that sum up to a given
+ * target. Using a hash table allows us to efficiently track and check for the
+ * required complement of each number in the array.
+ *
+ * # Approach
+ * The approach involves two passes:
+ * 1. First, we iterate through the array and store each number and its index in
+ * a hash table.
+ * 2. In the second pass, we iterate through the array again and for each
+ * number, calculate its complement (target - number). We then check if this
+ * complement exists in the hash table and ensure that it is not the same index
+ * as the current number. If found, we return the indices of the current number
+ * and its complement.
+ *
+ * # Complexity
+ * - Time complexity: O(n)
+ *   - The algorithm iterates through the array twice, each pass taking O(n)
+ *   time.
+ *
+ * - Space complexity: O(n)
+ *   - The hash table stores each of the n elements in the array.
  */
 val twoSumTwoPassHashTable = TwoSum { nums: IntArray, target: Int ->
     val map: MutableMap<Int, Int> = HashMap()
@@ -78,9 +122,29 @@ val twoSumTwoPassHashTable = TwoSum { nums: IntArray, target: Int ->
 }
 
 /**
- * Approach 3: One-pass Hash Table
- * Time complexity: O(n).
- * Space complexity: O(n).
+ * # Approach 3: One-pass Hash Table
+ *
+ * # Intuition
+ * The problem requires finding two numbers in an array that sum up to a given
+ * target. Using a hash table allows us to efficiently track the numbers we have
+ * seen so far and quickly check for the required complement of the current
+ * number.
+ *
+ * # Approach
+ * The approach involves a single pass through the array:
+ * 1. Iterate through the array, for each number, calculate its complement
+ * (target - number).
+ * 2. Check if this complement exists in the hash table.
+ *    - If it does, we have found the two numbers whose indices are to be
+ *    returned.
+ *    - If it does not, add the current number and its index to the hash table.
+ *
+ * # Complexity
+ * - Time complexity: O(n)
+ *   - The algorithm iterates through the array once, taking O(n) time.
+ *
+ * - Space complexity: O(n)
+ *   - The hash table stores each of the n elements in the array.
  */
 val twoSumOnePassHashTable = TwoSum { nums: IntArray, target: Int ->
     val map: MutableMap<Int, Int> = HashMap()
@@ -95,9 +159,28 @@ val twoSumOnePassHashTable = TwoSum { nums: IntArray, target: Int ->
 }
 
 /**
- * Approach 4: Kotlin style One-pass Hash Table
- * Time complexity: O(n).
- * Space complexity: O(n).
+ * # Approach 4: Kotlin style One-pass Hash Table
+ *
+ * # Intuition
+ * The problem requires finding two numbers in an array that sum up to a given
+ * target. Using a hash table allows us to efficiently track the indices of the
+ * numbers we need to find.
+ *
+ * # Approach
+ * The approach involves a single pass through the array:
+ * 1. Iterate through the array with both index and value using `forEachIndexed`
+ * 2. For each number, check if it exists in the hash table.
+ *    - If it does, it means we have already encountered the complement of the
+ *    current number, and we can return the indices of these two numbers.
+ *    - If it does not, add the difference between the target and the current
+ *    number as the key, and the current index as the value in the hash table.
+ *
+ * # Complexity
+ * - Time complexity: O(n)
+ *   - The algorithm iterates through the array once, taking O(n) time.
+ *
+ * - Space complexity: O(n)
+ *   - The hash table stores each of the n elements in the array.
  */
 val twoSumOneHashMap = TwoSum { nums: IntArray, target: Int ->
     val map: MutableMap<Int, Int> = HashMap()
