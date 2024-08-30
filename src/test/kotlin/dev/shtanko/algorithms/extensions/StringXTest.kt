@@ -26,6 +26,7 @@ package dev.shtanko.algorithms.extensions
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -34,7 +35,8 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 class StringXTest {
-    @ParameterizedTest
+    @DisplayName("Should correctly count the number of zeroes and ones in the string")
+    @ParameterizedTest(name = "{0} should return {1}")
     @ArgumentsSource(CountZeroesArgumentsProvider::class)
     fun `count zeroes ones test`(str: String, expected: IntArray) {
         val actual = str.countZeroesOnes()
@@ -42,14 +44,16 @@ class StringXTest {
         assertThat(actual).isEqualTo(expected)
     }
 
-    @ParameterizedTest
+    @DisplayName("Should return true if the string contains only '0' and '1' characters, false otherwise")
+    @ParameterizedTest(name = "{0} should return {1}")
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is binary test`(str: String, expected: Boolean) {
         val actual = str.isBinary()
         assertThat(actual).isEqualTo(expected)
     }
 
-    @ParameterizedTest
+    @DisplayName("Should return the common prefix of two strings in a pair")
+    @ParameterizedTest(name = "{0} should return {1}")
     @ArgumentsSource(InputPrefixArgumentsProvider::class)
     fun `common prefix test`(
         left: String,
@@ -60,14 +64,19 @@ class StringXTest {
         assertThat(actual).isEqualTo(expected)
     }
 
-    @ParameterizedTest
+    @DisplayName(
+        "Should return the number representation of the string based on the position of " +
+                "each character in the alphabet",
+    )
+    @ParameterizedTest(name = "{0} should return {1}")
     @ArgumentsSource(IntArgumentsProvider::class)
     fun `int or string test`(s: String, expected: Int) {
         val actual = s.getNumberOfLetter()
         assertThat(actual).isEqualTo(expected)
     }
 
-    @ParameterizedTest
+    @DisplayName("Should correctly remove leading zeroes from the string")
+    @ParameterizedTest(name = "{0} should return {1}")
     @ArgumentsSource(RemoveZeroesArgumentsProvider::class)
     fun `remove zeroes in begin test`(s: String, expected: String) {
         val actual = s.removeZeroesInBegin()

@@ -28,32 +28,13 @@ import kotlin.math.min
 
 private val alphabet =
     charArrayOf(
-        'a',
-        'b',
-        'c',
-        'd',
-        'e',
-        'f',
-        'g',
-        'h',
-        'i',
-        'j',
-        'k',
-        'l',
-        'm',
-        'n',
-        'o',
-        'p',
-        'q',
-        'r',
-        's',
-        't',
-        'u',
-        'v',
-        'w',
-        'x',
-        'y',
-        'z',
+        'a', 'b', 'c', 'd',
+        'e', 'f', 'g', 'h',
+        'i', 'j', 'k', 'l',
+        'm', 'n', 'o', 'p',
+        'q', 'r', 's', 't',
+        'u', 'v', 'w', 'x',
+        'y', 'z',
     )
 
 /**
@@ -65,10 +46,9 @@ fun String.isBinary(): Boolean {
     if (this.isBlank()) {
         return false
     }
-    val set =
-        toSet().toMutableSet().apply {
-            removeAll(listOf('0', '1'))
-        }
+    val set = toSet().toMutableSet().apply {
+        removeAll(listOf('0', '1'))
+    }
     return set.isEmpty()
 }
 
@@ -94,11 +74,11 @@ fun Pair<String, String>.commonPrefix(): String {
  * @return An IntArray with the count of '0's and '1's respectively.
  */
 fun String.countZeroesOnes(): IntArray {
-    val c = IntArray(2)
-    for (element in this) {
-        c[element - '0']++
+    val counts = IntArray(2)
+    for (char in this) {
+        counts[char - '0']++
     }
-    return c
+    return counts
 }
 
 /**
@@ -108,8 +88,8 @@ fun String.countZeroesOnes(): IntArray {
  */
 fun String.getNumberOfLetter(): Int {
     val sb = StringBuilder()
-    for (c in this) {
-        sb.append("${alphabet.indexOf(c)}")
+    for (char in this) {
+        sb.append("${alphabet.indexOf(char)}")
     }
     return sb.toString().removeZeroesInBegin().toInt()
 }
@@ -120,23 +100,13 @@ fun String.getNumberOfLetter(): Int {
  * @return The modified String without leading zeroes.
  */
 fun String.removeZeroesInBegin(): String {
-    if (this.isEmpty()) {
-        return ""
+    return when {
+        isEmpty() -> ""
+        length == 1 && this == "0" -> this
+        isFirstZero().not() -> this
+        isAllZeroes() -> "0"
+        else -> return this.toInt().toString()
     }
-    if (this.length == 1 && this == "0") {
-        return this
-    }
-    if (this.toCharArray()
-            .first()
-            .isZero()
-            .not()
-    ) {
-        return this
-    }
-    if (this.isAllZeroes()) {
-        return "0"
-    }
-    return this.toInt().toString()
 }
 
 /**
@@ -145,6 +115,17 @@ fun String.removeZeroesInBegin(): String {
  * @return `true` if the String consists of all zeroes, `false` otherwise.
  */
 fun String.isAllZeroes(): Boolean = this.none { it.isZero().not() }
+
+/**
+ * Checks if the first character of the String is '0'.
+ *
+ * @return `true` if the first character is '0', `false` otherwise.
+ */
+fun String.isFirstZero(): Boolean = if (isEmpty()) {
+    false
+} else {
+    this.first().isZero()
+}
 
 /**
  * Checks if a Char is equal to '0'.

@@ -1,7 +1,7 @@
 .PHONY: default check test report treport lines md all kover diktat
 
 check:
-	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck diktatCheck --profile --daemon
+	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck diktatCheck buildHealth --profile --daemon
 
 default:
 	 make check && make md
@@ -29,5 +29,8 @@ kover:
 
 diktat:
 	./gradlew diktatCheck
+
+health:
+	./gradlew buildHealth
 
 .DEFAULT_GOAL := default

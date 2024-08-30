@@ -26,12 +26,14 @@ package dev.shtanko.algorithms.extensions
 
 import kotlin.random.Random
 
+private const val EVEN_DIVISOR = 2
+
 /**
  * Checks if an Int value is even.
  *
  * @return `true` if the Int value is even, `false` otherwise.
  */
-val isEven = IntPredicate { it % 2 == 0 }
+val isEven = IntPredicate { it % EVEN_DIVISOR == 0 }
 
 /**
  * Checks if an Int value is even.
@@ -39,7 +41,7 @@ val isEven = IntPredicate { it % 2 == 0 }
  * @return `true` if the Int value is even, `false` otherwise.
  */
 val Int.isEven: Boolean
-    get() = this % 2 == 0
+    get() = this % EVEN_DIVISOR == 0
 
 /**
  * Generates an IntArray of the specified size with random values.
@@ -71,7 +73,7 @@ fun Int.isPrime(): Boolean {
         return false
     }
     val root = kotlin.math.sqrt(this.toDouble()).toInt()
-    for (divisor in 2..root) {
+    for (divisor in EVEN_DIVISOR..root) {
         if (this % divisor == 0) {
             return false
         }

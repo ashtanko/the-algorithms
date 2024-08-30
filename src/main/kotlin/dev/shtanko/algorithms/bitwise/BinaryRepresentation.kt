@@ -29,9 +29,11 @@ private const val BITS_COUNT = 32
 /**
  * Converts a 32-bit unsigned integer to its binary representation.
  *
- * The method takes a 32-bit unsigned integer and returns its binary representation as a string.
- * It starts from the most significant bit (bit 31) and iterates through each bit, appending "1" if the bit is ON (1),
- * or "0" if the bit is OFF (0). The resulting binary representation is returned as a string.
+ * The method takes a 32-bit unsigned integer and returns its binary
+ * representation as a string.
+ * It starts from the most significant bit (bit 31) and iterates through each
+ * bit, appending "1" if the bit is ON (1), or "0" if the bit is OFF (0).
+ * The resulting binary representation is returned as a string.
  *
  * Time Complexity: O(1)
  * Auxiliary Space: O(1)
@@ -43,16 +45,19 @@ fun Long.bin(): String {
     sb.append("0")
 
     val mostSignificantBit = BITS_COUNT - 2
-    val bitMask = 1L shl mostSignificantBit
+    // Create the initial bitmask with a 1 at the most significant bit position
+    val initialBitMask = 1L shl mostSignificantBit
 
-    var i: Long = bitMask
-    while (i > 0) {
-        if (this and i != 0L) {
+    var currentBitMask: Long = initialBitMask
+    while (currentBitMask > 0) {
+        // Check if the current bit is set (1) or not (0)
+        if (this and currentBitMask != 0L) {
             sb.append("1")
         } else {
             sb.append("0")
         }
-        i /= 2
+        // Shift the bitmask to the right to check the next bit
+        currentBitMask /= 2
     }
     return sb.toString()
 }

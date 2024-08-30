@@ -117,10 +117,12 @@ subprojects {
     apply<com.diffplug.gradle.spotless.SpotlessPlugin>()
 }
 
-koverReport {
-    verify {
-        rule {
-            minBound(80)
+kover {
+    reports {
+        verify {
+            rule {
+                minBound(80)
+            }
         }
     }
 }
@@ -255,14 +257,18 @@ dependencies {
     libs.apply {
         kotlin.apply {
             implementation(stdlib)
-            implementation(reflect)
-            implementation(coroutines)
+            runtimeOnly(reflect)
+            compileOnly(coroutines)
         }
-
         testImplementation(mockk)
-        testImplementation(junit)
         testImplementation(assertj)
-        testImplementation(mockito)
-        testImplementation(mockito.kotlin)
+        junit.apply {
+            testImplementation(api)
+            testImplementation(params)
+        }
+        mockito.apply {
+            // testImplementation(mockito) // not under usage for now
+            // testImplementation(mockito.kotlin) // not under usage for now
+        }
     }
 }

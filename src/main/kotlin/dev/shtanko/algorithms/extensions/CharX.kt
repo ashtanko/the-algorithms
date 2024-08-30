@@ -34,7 +34,11 @@ import kotlin.random.Random
  */
 fun ClosedRange<Char>.randomString(length: Int) =
     (1..length)
-        .map { (Random.nextInt(endInclusive.code - start.code) + start.code).toChar() }
+        .map {
+            val randomLimit = endInclusive.code - start.code
+            val randomCode = Random.nextInt(until = randomLimit) + start.code
+            randomCode.toChar()
+        }
         .joinToString("")
 
 /**

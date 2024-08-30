@@ -34,16 +34,16 @@ import dev.shtanko.algorithms.Constants.DECIMAL
  * @return `true` if the number is a super palindrome, `false` otherwise.
  */
 fun Long.isSuperPalindrome(): Boolean {
-    var x = this
-    var isSuper = false
+    var currentNumber = this
+    var isSuperPalindrome = false
     repeat(2) {
-        isSuper = x.isPalindrome()
-        x /= 2
-        if (isSuper.not()) {
+        isSuperPalindrome = currentNumber.isPalindrome()
+        currentNumber /= 2
+        if (!isSuperPalindrome) {
             return false
         }
     }
-    return isSuper
+    return isSuperPalindrome
 }
 
 /**
@@ -60,11 +60,11 @@ fun Long.isPalindrome(): Boolean = this == this.reverse()
  * @return The reversed Long number.
  */
 fun Long.reverse(): Long {
-    var ans = 0L
-    var x = this
-    while (x > 0) {
-        ans = DECIMAL * ans + x % DECIMAL
-        x /= DECIMAL
+    var reversedNumber = 0L
+    var currentNumber = this
+    while (currentNumber > 0) {
+        reversedNumber = DECIMAL * reversedNumber + currentNumber % DECIMAL
+        currentNumber /= DECIMAL
     }
-    return ans
+    return reversedNumber
 }
