@@ -32,7 +32,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-abstract class AbstractStringSearchTest<out T : AbstractSearchStrategy<String>>(private val strategy: T) {
+abstract class AbstractStringSearchTest<out T : Searchable<String>>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputStringArrayArgumentsProvider::class)
     fun `string array test`(

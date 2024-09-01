@@ -36,7 +36,7 @@ import dev.shtanko.algorithms.extensions.swap
  * Average performance:          O(n^2)
  * Worst-case space complexity:  O(1)
  */
-data object InsertionSort : AbstractSortStrategy {
+data object InsertionSort : Sortable {
     /**
      * Performs the insertion sort operation on the given array.
      *
@@ -63,7 +63,7 @@ data object InsertionSort : AbstractSortStrategy {
  * Average performance:          O(n^2)
  * Worst-case space complexity:  O(1)
  */
-data object InsertionSort2 : AbstractSortStrategy {
+data object InsertionSort2 : Sortable {
     /**
      * Performs the insertion sort operation on the given array.
      *

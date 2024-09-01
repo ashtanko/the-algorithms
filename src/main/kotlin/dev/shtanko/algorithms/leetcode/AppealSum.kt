@@ -54,10 +54,10 @@ fun interface AppealSum {
  * track of the last position where each character appeared. For each character
  * in the string, we can calculate the contribution to the total appeal based on
  * its position and the previous positions of the same character. We maintain an
- * array `prev` where `prev[c - 'a']` keeps the last index of character `c`. For
- * each character at index `i`, the contribution to the appeal is calculated as
- * `i + 1 - prev[c - 'a']`. We then update the `prev` array with the current
- * index.
+ * array `prev` where `prev[char - 'a']` keeps the last index of character
+ * `char`. For each character at index `i`, the contribution to the appeal
+ * is calculated as `i + 1 - prev[char - 'a']`. We then update the `prev` array
+ * with the current index.
  *
  * # Complexity
  * - Time complexity: O(n)
@@ -72,9 +72,9 @@ fun interface AppealSum {
 val appealSumDp = AppealSum { str: String ->
     var cur: Long = 0
     val prev = LongArray(ALPHABET_LETTERS_COUNT)
-    str.mapIndexed { index, c ->
-        cur += index + 1 - prev[c - 'a']
-        prev[c - 'a'] = index.toLong() + 1
+    str.mapIndexed { index, char ->
+        cur += index + 1 - prev[char - 'a']
+        prev[char - 'a'] = index.toLong() + 1
         cur
     }.sum()
 }

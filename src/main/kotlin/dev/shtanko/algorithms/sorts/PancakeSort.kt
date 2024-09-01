@@ -37,7 +37,7 @@ import dev.shtanko.algorithms.extensions.flip
  * Average performance:          O(n^2)
  * Worst-case space complexity:  O(1)
  */
-data object PancakeSort : AbstractSortStrategy {
+data object PancakeSort : Sortable {
     /**
      * Performs the pancake sort operation on the given array.
      *

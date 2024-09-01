@@ -38,7 +38,7 @@ package dev.shtanko.algorithms.search
  *
  * @param T The type of elements in the array, must be comparable.
  */
-class BinarySearch<T : Comparable<T>> : AbstractSearchStrategy<T> {
+class BinarySearch<T : Comparable<T>> : Searchable<T> {
     /**
      * Performs the binary search operation on the given array to find the index of the specified element.
      *

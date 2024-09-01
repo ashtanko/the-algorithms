@@ -36,7 +36,7 @@ package dev.shtanko.algorithms.search
  *
  * @param T The type of elements in the array.
  */
-class LinearSearch<T> : AbstractSearchStrategy<T> {
+class LinearSearch<T> : Searchable<T> {
     /**
      * Performs the linear search operation on the given array to find the index of the specified element.
      *

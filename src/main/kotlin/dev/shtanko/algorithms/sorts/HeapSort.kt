@@ -37,7 +37,7 @@ import dev.shtanko.algorithms.extensions.swap
  * Average performance:          O(n log n)
  * Worst-case space complexity:  O(1)
  */
-data object HeapSort : AbstractSortStrategy {
+data object HeapSort : Sortable {
     /**
      * Performs the heap sort operation on the given array.
      *

@@ -36,11 +36,11 @@ import java.util.stream.Stream
 class MemoryTest {
     @ParameterizedTest
     @ArgumentsSource(InputArgumentsProvider::class)
-    fun `sorts test`(testCase: AbstractSortStrategy) {
+    fun `sorts test`(testCase: Sortable) {
         execute(testCase, getSortedArray())
     }
 
-    private fun execute(strategy: AbstractSortStrategy, array: IntArray) {
+    private fun execute(strategy: Sortable, array: IntArray) {
         measureTime(strategy, array) {
             strategy.invoke(array.toTypedArray())
         }

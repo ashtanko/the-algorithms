@@ -40,13 +40,13 @@ import kotlin.system.measureTimeMillis
 class PerformanceTest {
     @ParameterizedTest
     @ArgumentsSource(SlowSortsArgumentsProvider::class)
-    fun `slow sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
+    fun `slow sorts test`(strategy: Sortable, arr: IntArray) {
         executionTimeReport(strategy, arr)
     }
 
     @ParameterizedTest
     @ArgumentsSource(FastSortsArgumentsProvider::class)
-    fun `fast sorts test`(strategy: AbstractSortStrategy, arr: IntArray) {
+    fun `fast sorts test`(strategy: Sortable, arr: IntArray) {
         executionTimeReport(strategy, arr)
     }
 
@@ -83,7 +83,7 @@ class PerformanceTest {
 
     private fun strategiesPerformanceTest(
         arr: Array<Int>,
-        strategies: List<AbstractSortStrategy>,
+        strategies: List<Sortable>,
         expected: Boolean,
     ) {
         val totalTime = measureTimeMillis {
@@ -103,7 +103,7 @@ class PerformanceTest {
         assertThat(arr.isSorted()).isEqualTo(expected)
     }
 
-    private fun executionTimeReport(strategy: AbstractSortStrategy, array: IntArray) {
+    private fun executionTimeReport(strategy: Sortable, array: IntArray) {
         val arr = array.toTypedArray()
         measureTime(strategy, array) {
             strategy(arr)

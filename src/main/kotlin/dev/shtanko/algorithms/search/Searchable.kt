@@ -22,17 +22,23 @@
  * SOFTWARE.
 */
 
-package dev.shtanko.algorithms.sorts
+package dev.shtanko.algorithms.search
 
 /**
- * Interface representing an abstract sorting strategy.
+ * Functional interface representing an abstract search strategy.
+ *
+ * @param T The type of elements in the array.
  */
-sealed interface AbstractSortStrategy {
+fun interface Searchable<T> {
     /**
-     * Performs the sorting operation on the given array.
+     * Performs the search operation on the given array to find the index of the specified element.
      *
-     * @param arr The array to sort.
-     * @param T The type of elements in the array, must be comparable.
+     * @param arr The array to search.
+     * @param element The element to search for.
+     * @return The index of the element in the array, or -1 if the element is not found.
      */
-    operator fun <T : Comparable<T>> invoke(arr: Array<T>)
+    operator fun invoke(
+        arr: Array<T>,
+        element: T,
+    ): Int
 }

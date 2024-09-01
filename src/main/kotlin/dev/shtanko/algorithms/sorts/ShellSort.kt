@@ -38,7 +38,7 @@ import dev.shtanko.algorithms.extensions.swap
  * Worst-case space complexity:  O(1)
  * Stable: No
  */
-class ShellSort : AbstractSortStrategy {
+class ShellSort : Sortable {
     /**
      * Performs the Shell sort operation on the given array.
      *

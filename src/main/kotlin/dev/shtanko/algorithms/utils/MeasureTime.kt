@@ -24,7 +24,7 @@
 
 package dev.shtanko.algorithms.utils
 
-import dev.shtanko.algorithms.sorts.AbstractSortStrategy
+import dev.shtanko.algorithms.sorts.Sortable
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.system.measureNanoTime
@@ -52,7 +52,7 @@ fun measureTime(
  * @param task The task to measure the execution time of.
  */
 fun measureTime(
-    strategy: AbstractSortStrategy,
+    strategy: Sortable,
     array: IntArray,
     task: () -> Unit,
 ) {

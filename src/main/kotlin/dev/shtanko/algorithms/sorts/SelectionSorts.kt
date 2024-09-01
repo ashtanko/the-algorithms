@@ -38,7 +38,7 @@ import dev.shtanko.algorithms.extensions.swap
  * Average performance:          O(n^2)
  * Worst-case space complexity:  O(1)
  */
-data object SelectionSort : AbstractSortStrategy {
+data object SelectionSort : Sortable {
     /**
      * Performs the selection sort operation on the given array.
      *
@@ -65,7 +65,7 @@ data object SelectionSort : AbstractSortStrategy {
  * Average performance:          O(n^2)
  * Worst-case space complexity:  O(1)
  */
-data object StableSelectionSort : AbstractSortStrategy {
+data object StableSelectionSort : Sortable {
     /**
      * Performs the stable selection sort operation on the given array.
      *

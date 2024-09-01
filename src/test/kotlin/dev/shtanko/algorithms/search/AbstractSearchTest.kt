@@ -33,7 +33,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 @Suppress("ArrayPrimitive")
-abstract class AbstractSearchTest<out T : AbstractSearchStrategy<Int>>(private val strategy: T) {
+abstract class AbstractSearchTest<out T : Searchable<Int>>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputIntArrayArgumentsProvider::class)
     fun `int array test`(

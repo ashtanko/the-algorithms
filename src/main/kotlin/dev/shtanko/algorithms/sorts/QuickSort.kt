@@ -46,7 +46,7 @@ import dev.shtanko.algorithms.extensions.swap
  * Average performance:          O(n log n)
  * Worst-case space complexity:  O(log n)
  */
-data object QuickSort : AbstractSortStrategy {
+data object QuickSort : Sortable {
     /**
      * Performs the quick sort operation on the given array.
      *

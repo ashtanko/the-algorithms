@@ -36,7 +36,7 @@ package dev.shtanko.algorithms.sorts
  * Average performance:          O(n log n)
  * Worst-case space complexity:  O(log n)
  */
-data object QuickSortRecursive : AbstractSortStrategy {
+data object QuickSortRecursive : Sortable {
     /**
      * Performs the recursive quick sort operation on the given array.
      *

@@ -35,7 +35,7 @@ import java.util.stream.Stream
 import kotlin.random.Random
 
 @Suppress("ArrayPrimitive")
-abstract class AbstractSortTest<out T : AbstractSortStrategy>(private val strategy: T) {
+abstract class AbstractSortTest<out T : Sortable>(private val strategy: T) {
     @ParameterizedTest
     @ArgumentsSource(InputArrayArgumentsProvider::class)
     fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
