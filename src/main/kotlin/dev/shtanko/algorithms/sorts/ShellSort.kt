@@ -38,7 +38,10 @@ import dev.shtanko.algorithms.extensions.swap
  * Worst-case space complexity:  O(1)
  * Stable: No
  */
-class ShellSort : Sortable {
+data object ShellSort : Sortable {
+    // Constant used to calculate the gap sequence
+    const val GAP = 3
+
     /**
      * Performs the Shell sort operation on the given array.
      *
@@ -60,11 +63,8 @@ class ShellSort : Sortable {
                     j -= gap
                 }
             }
+            // Reduce the gap for the next iteration
             gap /= GAP
         }
-    }
-
-    companion object {
-        const val GAP = 3
     }
 }

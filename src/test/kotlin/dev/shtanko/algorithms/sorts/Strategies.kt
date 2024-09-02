@@ -24,30 +24,32 @@
 
 package dev.shtanko.algorithms.sorts
 
-class SelectionSortTest : AbstractSortTest<SelectionSort>(SelectionSort)
+class SelectionSortTest : SortTest<SelectionSort>(SelectionSort)
 
-class StableSelectionSortTest : AbstractSortTest<StableSelectionSort>(StableSelectionSort)
+class StableSelectionSortTest : SortTest<StableSelectionSort>(StableSelectionSort)
 
-class ShellSortTest : AbstractSortTest<ShellSort>(ShellSort())
+class ShellSortTest : SortTest<ShellSort>(ShellSort)
 
-class QuickSortTest : AbstractSortTest<QuickSort>(QuickSort)
+class QuickSortTest : SortTest<QuickSort>(QuickSort)
 
-class MergeSortTest : AbstractSortTest<MergeSort>(MergeSort)
+class MergeSortTest : SortTest<MergeSort>(MergeSort)
 
-class InsertionSortTest : AbstractSortTest<InsertionSort>(InsertionSort)
+class BottomUpMergeSortTest : SortTest<Sortable>(BottomUpMergeSort)
 
-class InsertionSort2Test : AbstractSortTest<InsertionSort2>(InsertionSort2)
+class InsertionSortTest : SortTest<InsertionSort>(InsertionSort)
 
-class HeapSortTest : AbstractSortTest<HeapSort>(HeapSort)
+class InsertionSort2Test : SortTest<InsertionSort2>(InsertionSort2)
 
-class BubbleSortTest : AbstractSortTest<BubbleSort>(BubbleSort)
+class HeapSortTest : SortTest<HeapSort>(HeapSort)
 
-class SimpleBubbleSortTest : AbstractSortTest<SimpleBubbleSort>(SimpleBubbleSort)
+class BubbleSortTest : SortTest<BubbleSort>(BubbleSort)
 
-class JvmSortTest : AbstractSortTest<JvmSort>(JvmSort)
+class SimpleBubbleSortTest : SortTest<SimpleBubbleSort>(SimpleBubbleSort)
 
-class PancakeSortTest : AbstractSortTest<PancakeSort>(PancakeSort)
+class JvmSortTest : SortTest<JvmSort>(JvmSort)
 
-class GnomeSortTest : AbstractSortTest<GnomeSort>(GnomeSort())
+class PancakeSortTest : SortTest<PancakeSort>(PancakeSort)
 
-class QuickSortRecursiveTest2 : AbstractSortTest<QuickSortRecursive>(QuickSortRecursive)
+class GnomeSortTest : SortTest<GnomeSort>(GnomeSort)
+
+class QuickSortRecursiveTest2 : SortTest<QuickSortRecursive>(QuickSortRecursive)

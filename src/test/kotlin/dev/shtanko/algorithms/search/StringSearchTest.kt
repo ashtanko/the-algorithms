@@ -25,6 +25,7 @@
 package dev.shtanko.algorithms.search
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -32,34 +33,27 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
-@Suppress("ArrayPrimitive")
-abstract class AbstractSearchTest<out T : Searchable<Int>>(private val strategy: T) {
-    @ParameterizedTest
-    @ArgumentsSource(InputIntArrayArgumentsProvider::class)
-    fun `int array test`(
-        arr: Array<Int>,
-        element: Int,
+abstract class StringSearchTest<out T : Searchable<String>>(private val strategy: T) {
+    @DisplayName("String Array Search Test")
+    @ParameterizedTest(name = "Array: {0}, Element: {1} -> Expected: {2}")
+    @ArgumentsSource(InputStringArrayArgumentsProvider::class)
+    fun `string array test`(
+        arr: Array<String>,
+        element: String,
         expected: Int,
     ) {
         val actual = strategy(arr, element)
         assertEquals(expected, actual)
     }
 
-    private class InputIntArrayArgumentsProvider : ArgumentsProvider {
+    private class InputStringArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(arrayOf<Int>(), 1, -1),
-            Arguments.of(arrayOf(1), 1, 0),
-            Arguments.of(arrayOf(1), 2, -1),
-            Arguments.of(arrayOf(4, 8), 4, 0),
-            Arguments.of(arrayOf(4, 8), 8, 1),
-            Arguments.of(arrayOf(4, 8), 9, -1),
-            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 4, 0),
-            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 8, 1),
-            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 15, 2),
-            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 16, 3),
-            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 23, 4),
-            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 42, 5),
-            Arguments.of(arrayOf(4, 8, 15, 16, 23, 42), 43, -1),
+            Arguments.of(arrayOf<String>(), "A", -1),
+            Arguments.of(arrayOf("A"), "A", 0),
+            Arguments.of(arrayOf("A"), "B", -1),
+            Arguments.of(arrayOf("A", "B"), "A", 0),
+            Arguments.of(arrayOf("A", "B"), "B", 1),
+            Arguments.of(arrayOf("A", "B"), "C", -1),
         )
     }
 }

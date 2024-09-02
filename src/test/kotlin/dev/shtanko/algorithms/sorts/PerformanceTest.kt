@@ -26,8 +26,10 @@ package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.extensions.generateRandomArray
 import dev.shtanko.algorithms.utils.measureTime
+import dev.shtanko.algorithms.utils.toHumanReadableByteCountBin
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -38,13 +40,16 @@ import java.util.stream.Stream
 import kotlin.system.measureTimeMillis
 
 class PerformanceTest {
-    @ParameterizedTest
+
+    @DisplayName("On Slow Sorts")
+    @ParameterizedTest(name = "Strategy: {0} Array: {1}")
     @ArgumentsSource(SlowSortsArgumentsProvider::class)
     fun `slow sorts test`(strategy: Sortable, arr: IntArray) {
         executionTimeReport(strategy, arr)
     }
 
-    @ParameterizedTest
+    @DisplayName("On Fast Sorts")
+    @ParameterizedTest(name = "Strategy: {0} Array: {1}")
     @ArgumentsSource(FastSortsArgumentsProvider::class)
     fun `fast sorts test`(strategy: Sortable, arr: IntArray) {
         executionTimeReport(strategy, arr)
@@ -59,7 +64,7 @@ class PerformanceTest {
             SimpleBubbleSort,
             JvmSort,
             PancakeSort,
-            GnomeSort(),
+            GnomeSort,
             InsertionSort,
             InsertionSort2,
             SelectionSort,
@@ -68,15 +73,17 @@ class PerformanceTest {
         strategiesPerformanceTest(arr, fastStrategies, expected)
     }
 
-    @ParameterizedTest
+    @DisplayName("Fast Strategies High Load On Random Array")
+    @ParameterizedTest(name = "Array size: {0} Expected: {1}")
     @ArgumentsSource(FastScopeStrategiesInputArgumentsProvider::class)
     fun `fast strategies performance test`(n: Int, expected: Boolean) {
         val arr = n.generateRandomArray().toTypedArray()
         val fastStrategies = listOf(
             MergeSort,
+            BottomUpMergeSort,
             QuickSort,
-            ShellSort(),
-            ShellSort(),
+            ShellSort,
+            HeapSort,
         )
         strategiesPerformanceTest(arr, fastStrategies, expected)
     }
@@ -91,13 +98,17 @@ class PerformanceTest {
                 it.invoke(arr)
             }
         }
+        val availableProcessors = Runtime.getRuntime().availableProcessors()
+        val totalMemory = Runtime.getRuntime().totalMemory()
         println(
             String.format(
                 Locale.getDefault(),
-                "Given arrays of length %d %s Consumed time: %d ms",
+                "Given arrays of length %d %s Consumed time: %d ms | CPU Cores: %d | Memory: %s",
                 arr.size,
                 "Fast strategies",
                 totalTime,
+                availableProcessors,
+                totalMemory.toHumanReadableByteCountBin(),
             ),
         )
         assertThat(arr.isSorted()).isEqualTo(expected)
@@ -112,67 +123,74 @@ class PerformanceTest {
     }
 
     class SlowSortsArgumentsProvider : ArgumentsProvider {
-        private val hundred = 100.generateRandomArray()
-        private val fiveHundred = 500.generateRandomArray()
-        private val eightHundred = 800.generateRandomArray()
+        private val extraExtraSmallBatch = 100.generateRandomArray()
+        private val extraSmallBatch = 500.generateRandomArray()
+        private val smallBatch = 800.generateRandomArray()
+
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(BubbleSort, hundred),
-            Arguments.of(BubbleSort, fiveHundred),
-            Arguments.of(BubbleSort, eightHundred),
-            Arguments.of(SimpleBubbleSort, hundred),
-            Arguments.of(SimpleBubbleSort, fiveHundred),
-            Arguments.of(SimpleBubbleSort, eightHundred),
-            Arguments.of(JvmSort, hundred),
-            Arguments.of(JvmSort, fiveHundred),
-            Arguments.of(JvmSort, eightHundred),
-            Arguments.of(PancakeSort, hundred),
-            Arguments.of(PancakeSort, fiveHundred),
-            Arguments.of(PancakeSort, eightHundred),
-            Arguments.of(GnomeSort(), hundred),
-            Arguments.of(GnomeSort(), fiveHundred),
-            Arguments.of(GnomeSort(), eightHundred),
-            Arguments.of(InsertionSort, hundred),
-            Arguments.of(InsertionSort, fiveHundred),
-            Arguments.of(InsertionSort, eightHundred),
-            Arguments.of(InsertionSort2, hundred),
-            Arguments.of(InsertionSort2, fiveHundred),
-            Arguments.of(InsertionSort2, eightHundred),
-            Arguments.of(SelectionSort, hundred),
-            Arguments.of(SelectionSort, fiveHundred),
-            Arguments.of(SelectionSort, eightHundred),
-            Arguments.of(StableSelectionSort, hundred),
-            Arguments.of(StableSelectionSort, fiveHundred),
-            Arguments.of(StableSelectionSort, eightHundred),
+            Arguments.of(BubbleSort, extraExtraSmallBatch),
+            Arguments.of(BubbleSort, extraSmallBatch),
+            Arguments.of(BubbleSort, smallBatch),
+            Arguments.of(SimpleBubbleSort, extraExtraSmallBatch),
+            Arguments.of(SimpleBubbleSort, extraSmallBatch),
+            Arguments.of(SimpleBubbleSort, smallBatch),
+            Arguments.of(JvmSort, extraExtraSmallBatch),
+            Arguments.of(JvmSort, extraSmallBatch),
+            Arguments.of(JvmSort, smallBatch),
+            Arguments.of(PancakeSort, extraExtraSmallBatch),
+            Arguments.of(PancakeSort, extraSmallBatch),
+            Arguments.of(PancakeSort, smallBatch),
+            Arguments.of(GnomeSort, extraExtraSmallBatch),
+            Arguments.of(GnomeSort, extraSmallBatch),
+            Arguments.of(GnomeSort, smallBatch),
+            Arguments.of(InsertionSort, extraExtraSmallBatch),
+            Arguments.of(InsertionSort, extraSmallBatch),
+            Arguments.of(InsertionSort, smallBatch),
+            Arguments.of(InsertionSort2, extraExtraSmallBatch),
+            Arguments.of(InsertionSort2, extraSmallBatch),
+            Arguments.of(InsertionSort2, smallBatch),
+            Arguments.of(SelectionSort, extraExtraSmallBatch),
+            Arguments.of(SelectionSort, extraSmallBatch),
+            Arguments.of(SelectionSort, smallBatch),
+            Arguments.of(StableSelectionSort, extraExtraSmallBatch),
+            Arguments.of(StableSelectionSort, extraSmallBatch),
+            Arguments.of(StableSelectionSort, smallBatch),
         )
     }
 
     class FastSortsArgumentsProvider : ArgumentsProvider {
         private val mergeSortStrategy = MergeSort
+        private val bottomUpMergeSortStrategy = BottomUpMergeSort
         private val quickSortStrategy = QuickSort
-        private val shellSortStrategy = ShellSort()
-        private val heapSortStrategy = ShellSort()
-        private val thirtyK = 30_000.generateRandomArray()
-        private val fiftyK = 50_000.generateRandomArray()
-        private val hundredK = 100_000.generateRandomArray()
-        private val fiveHundredK = 500_000.generateRandomArray()
+        private val shellSortStrategy = ShellSort
+        private val heapSortStrategy = HeapSort
+
+        private val smallBatch = 30_000.generateRandomArray()
+        private val mediumBatch = 50_000.generateRandomArray()
+        private val largeBatch = 100_000.generateRandomArray()
+        private val extraLargeBatch = 500_000.generateRandomArray()
 
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(mergeSortStrategy, thirtyK),
-            Arguments.of(mergeSortStrategy, fiftyK),
-            Arguments.of(mergeSortStrategy, hundredK),
-            Arguments.of(mergeSortStrategy, fiveHundredK),
-            Arguments.of(quickSortStrategy, thirtyK),
-            Arguments.of(quickSortStrategy, fiftyK),
-            Arguments.of(quickSortStrategy, hundredK),
-            Arguments.of(quickSortStrategy, fiveHundredK),
-            Arguments.of(shellSortStrategy, thirtyK),
-            Arguments.of(shellSortStrategy, fiftyK),
-            Arguments.of(shellSortStrategy, hundredK),
-            Arguments.of(shellSortStrategy, fiveHundredK),
-            Arguments.of(heapSortStrategy, thirtyK),
-            Arguments.of(heapSortStrategy, fiftyK),
-            Arguments.of(heapSortStrategy, hundredK),
-            Arguments.of(heapSortStrategy, fiveHundredK),
+            Arguments.of(mergeSortStrategy, smallBatch),
+            Arguments.of(mergeSortStrategy, mediumBatch),
+            Arguments.of(mergeSortStrategy, largeBatch),
+            Arguments.of(mergeSortStrategy, extraLargeBatch),
+            Arguments.of(bottomUpMergeSortStrategy, smallBatch),
+            Arguments.of(bottomUpMergeSortStrategy, mediumBatch),
+            Arguments.of(bottomUpMergeSortStrategy, largeBatch),
+            Arguments.of(bottomUpMergeSortStrategy, extraLargeBatch),
+            Arguments.of(quickSortStrategy, smallBatch),
+            Arguments.of(quickSortStrategy, mediumBatch),
+            Arguments.of(quickSortStrategy, largeBatch),
+            Arguments.of(quickSortStrategy, extraLargeBatch),
+            Arguments.of(shellSortStrategy, smallBatch),
+            Arguments.of(shellSortStrategy, mediumBatch),
+            Arguments.of(shellSortStrategy, largeBatch),
+            Arguments.of(shellSortStrategy, extraLargeBatch),
+            Arguments.of(heapSortStrategy, smallBatch),
+            Arguments.of(heapSortStrategy, mediumBatch),
+            Arguments.of(heapSortStrategy, largeBatch),
+            Arguments.of(heapSortStrategy, extraLargeBatch),
         )
     }
 

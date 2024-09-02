@@ -25,6 +25,7 @@
 package dev.shtanko.algorithms.math
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -33,7 +34,8 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 class BinomialTest {
-    @ParameterizedTest
+    @DisplayName("Binomial Test")
+    @ParameterizedTest(name = "n: {0}, k: {1} -> Expected: {2}")
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `binomial test`(
         n: Int,

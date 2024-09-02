@@ -25,6 +25,7 @@
 package dev.shtanko.algorithms.utils
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -33,7 +34,8 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 class HumanReadableDurationTest {
-    @ParameterizedTest
+    @DisplayName("Human Readable Duration")
+    @ParameterizedTest(name = "Duration: {0} -> Expected: {1}")
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `to human readable duration test`(duration: Long, expected: String) {
         val actual = duration.toHumanReadableDuration()

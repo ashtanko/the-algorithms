@@ -25,6 +25,7 @@
 package dev.shtanko.algorithms.math
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -35,7 +36,8 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 class ComputeFactorialTest {
-    @ParameterizedTest
+    @DisplayName("Compute Factorial")
+    @ParameterizedTest(name = "n: {0} -> {1}")
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `factorial test`(n: Int, expected: Long) {
         val actual = computeFactorial(n)

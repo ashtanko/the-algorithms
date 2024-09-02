@@ -1,36 +1,49 @@
-.PHONY: default check test report treport lines md all kover diktat
+# Phony targets to avoid conflicts with files of the same name
+.PHONY: default check test report treport lines md all kover diktat c m a t re r l d h
 
-check:
+# Run code quality checks and apply formatting
+check c:
 	./gradlew spotlessApply spotlessCheck spotlessKotlin detekt ktlintCheck diktatCheck buildHealth --profile --daemon
 
+# Default target: run checks and update README.md
 default:
-	 make check && make md
+	make check && make md
 
-md:
+# Update README.md with main and detekt report content
+md m:
 	truncate -s0 README.md && cat config/main.md >> README.md && cat build/reports/detekt/detekt.md >> README.md
 
-all:
+# Run checks, build the project, and update README.md
+all a:
 	make check && ./gradlew build && md
 
-test:
+# Run tests
+test t:
 	./gradlew test
 
-report:
+# Generate JaCoCo test coverage report
+report re:
 	./gradlew jacocoTestReport
 
-treport:
+# Run tests and generate JaCoCo test coverage report
+treport r:
 	make test & make report
 
-lines:
+# Count lines of Kotlin code
+lines l:
 	find . -name '*.kt' | xargs wc -l
 
+# Generate Kover HTML report
 kover:
 	./gradlew koverHtmlReport
 
-diktat:
+# Run Diktat code style checks
+diktat d:
 	./gradlew diktatCheck
 
-health:
+# Run build health checks
+health h:
 	./gradlew buildHealth
 
+# Set the default target
 .DEFAULT_GOAL := default

@@ -26,6 +26,7 @@ package dev.shtanko.algorithms.sorts
 
 import dev.shtanko.algorithms.utils.measureTime
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -34,7 +35,8 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 class MemoryTest {
-    @ParameterizedTest
+    @DisplayName("Sorts Memory Test")
+    @ParameterizedTest(name = "Strategy: {0}")
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `sorts test`(testCase: Sortable) {
         execute(testCase, getSortedArray())
@@ -54,13 +56,14 @@ class MemoryTest {
             Arguments.of(InsertionSort),
             Arguments.of(InsertionSort2),
             Arguments.of(MergeSort),
+            Arguments.of(BottomUpMergeSort),
             Arguments.of(QuickSort),
             Arguments.of(SelectionSort),
-            Arguments.of(ShellSort()),
+            Arguments.of(ShellSort),
             Arguments.of(HeapSort),
             Arguments.of(JvmSort),
             Arguments.of(PancakeSort),
-            Arguments.of(GnomeSort()),
+            Arguments.of(GnomeSort),
         )
     }
 

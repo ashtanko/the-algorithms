@@ -25,6 +25,7 @@
 package dev.shtanko.algorithms.utils
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -33,14 +34,16 @@ import org.junit.jupiter.params.provider.ArgumentsSource
 import java.util.stream.Stream
 
 class HumanReadableBytesTest {
-    @ParameterizedTest
+    @DisplayName("Positive Byte Count Binary")
+    @ParameterizedTest(name = "Bytes: {0} -> Expected: {1}")
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `human readable positive byte count binary test`(bytes: Long, expected: String) {
         val actual = bytes.toHumanReadableByteCountBin()
         assertThat(actual).isEqualTo(expected)
     }
 
-    @ParameterizedTest
+    @DisplayName("Negative Byte Count Binary")
+    @ParameterizedTest(name = "Bytes: {0} -> Expected: {1}")
     @ArgumentsSource(InputNegativeArgumentsProvider::class)
     fun `human readable negative byte count binary test`(bytes: Long, expected: String) {
         val actual = bytes.toHumanReadableByteCountBin()

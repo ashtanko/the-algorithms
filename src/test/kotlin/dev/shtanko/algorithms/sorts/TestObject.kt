@@ -24,17 +24,37 @@
 
 package dev.shtanko.algorithms.sorts
 
+fun interface ToStringStrategy {
+    fun invoke(obj: TestObject): String
+}
+
+data object FullToStringStrategy : ToStringStrategy {
+    override fun invoke(obj: TestObject): String = "TestObject(id=${obj.id}, name=${obj.name})"
+}
+
+data object NameToStringStrategy : ToStringStrategy {
+    override fun invoke(obj: TestObject): String = obj.name
+}
+
 /**
  * @property id
  * @property name
  */
-data class TestObject(val id: Int, val name: String) : Comparable<TestObject> {
+data class TestObject(
+    val id: Int,
+    val name: String,
+    val strategy: ToStringStrategy = NameToStringStrategy,
+) : Comparable<TestObject> {
     override fun compareTo(other: TestObject): Int {
         val n = this.name.compareTo(other.name)
         return if (n == 0) this.id.compareTo(other.id) else n
     }
 
     companion object {
-        fun empty(): TestObject = TestObject(0, "")
+        fun empty(
+            strategy: ToStringStrategy = NameToStringStrategy,
+        ): TestObject = TestObject(0, "", strategy)
     }
+
+    override fun toString(): String = strategy.invoke(this)
 }

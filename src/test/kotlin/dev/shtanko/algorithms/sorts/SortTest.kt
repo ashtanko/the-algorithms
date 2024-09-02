@@ -26,6 +26,7 @@ package dev.shtanko.algorithms.sorts
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -35,22 +36,26 @@ import java.util.stream.Stream
 import kotlin.random.Random
 
 @Suppress("ArrayPrimitive")
-abstract class AbstractSortTest<out T : Sortable>(private val strategy: T) {
-    @ParameterizedTest
+abstract class SortTest<out T : Sortable>(private val strategy: T) {
+
+    @DisplayName("Test sort on integer array")
+    @ParameterizedTest(name = "input: {0}, expected: {1}")
     @ArgumentsSource(InputArrayArgumentsProvider::class)
     fun `integer array test`(arr: Array<Int>, expected: Array<Int>) {
         strategy.invoke(arr)
         assertArrayEquals(expected, arr)
     }
 
-    @ParameterizedTest
+    @DisplayName("Test sort on float array")
+    @ParameterizedTest(name = "input: {0}, expected: {1}")
     @ArgumentsSource(InputFloatArgumentsProvider::class)
     fun `float array test`(arr: Array<Float>, expected: Array<Float>) {
         strategy.invoke(arr)
         assertArrayEquals(expected, arr)
     }
 
-    @ParameterizedTest
+    @DisplayName("Test sort on random array")
+    @ParameterizedTest(name = "input: {0}, is sorted: {1}")
     @ArgumentsSource(InputArgumentsProvider::class)
     fun `is sorted test`(arr: Array<Int>, expected: Boolean) {
         strategy.invoke(arr)
@@ -58,14 +63,16 @@ abstract class AbstractSortTest<out T : Sortable>(private val strategy: T) {
         assertEquals(expected, actual)
     }
 
-    @ParameterizedTest
+    @DisplayName("Test sort on string array")
+    @ParameterizedTest(name = "input: {0}, expected: {1}")
     @ArgumentsSource(InputStringArrayArgumentsProvider::class)
     fun `string array test`(arr: Array<String>, expected: Array<String>) {
         strategy.invoke(arr)
         assertArrayEquals(expected, arr)
     }
 
-    @ParameterizedTest
+    @DisplayName("Test sort on an object array")
+    @ParameterizedTest(name = "input: {0}, expected: {1}")
     @ArgumentsSource(InputObjectArrayArgumentsProvider::class)
     fun `object test`(arr: Array<TestObject>, expected: Array<TestObject>) {
         strategy.invoke(arr)
@@ -152,7 +159,18 @@ abstract class AbstractSortTest<out T : Sortable>(private val strategy: T) {
 
     private class InputObjectArrayArgumentsProvider : ArgumentsProvider {
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
-            Arguments.of(arrayOf(TestObject.empty()), arrayOf(TestObject.empty())),
+            Arguments.of(
+                arrayOf(
+                    TestObject.empty(
+                        strategy = FullToStringStrategy,
+                    ),
+                ),
+                arrayOf(
+                    TestObject.empty(
+                        strategy = FullToStringStrategy,
+                    ),
+                ),
+            ),
             Arguments.of(
                 arrayOf(TestObject(0, "Jake"), TestObject(3, "William")),
                 arrayOf(TestObject(0, "Jake"), TestObject(3, "William")),
@@ -178,8 +196,16 @@ abstract class AbstractSortTest<out T : Sortable>(private val strategy: T) {
                 arrayOf(TestObject(2, "A"), TestObject(1, "B"), TestObject(0, "C")),
             ),
             Arguments.of(
-                arrayOf(TestObject(2, ""), TestObject(1, ""), TestObject(0, "")),
-                arrayOf(TestObject(0, ""), TestObject(1, ""), TestObject(2, "")),
+                arrayOf(
+                    TestObject(2, "", strategy = FullToStringStrategy),
+                    TestObject(1, "", strategy = FullToStringStrategy),
+                    TestObject(0, "", strategy = FullToStringStrategy),
+                ),
+                arrayOf(
+                    TestObject(0, "", strategy = FullToStringStrategy),
+                    TestObject(1, "", strategy = FullToStringStrategy),
+                    TestObject(2, "", strategy = FullToStringStrategy),
+                ),
             ),
         )
     }

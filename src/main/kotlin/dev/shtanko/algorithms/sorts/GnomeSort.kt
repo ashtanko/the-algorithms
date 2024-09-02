@@ -38,7 +38,7 @@ import dev.shtanko.algorithms.extensions.swap
  * Average performance:          O(n^2)
  * Worst-case space complexity:  O(1)
  */
-class GnomeSort : Sortable {
+data object GnomeSort : Sortable {
     /**
      * Performs the gnome sort operation on the given array.
      *
