@@ -24,8 +24,8 @@
 
 package dev.shtanko.algorithms.utils
 
-import dev.shtanko.algorithms.Constants.BIN_FORMAT
-import dev.shtanko.algorithms.Constants.SI_FORMAT
+import dev.shtanko.algorithms.BIN_FORMAT
+import dev.shtanko.algorithms.SI_FORMAT
 import java.util.Locale
 
 /**

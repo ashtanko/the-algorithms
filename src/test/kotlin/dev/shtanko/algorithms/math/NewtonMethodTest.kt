@@ -24,7 +24,7 @@
 
 package dev.shtanko.algorithms.math
 
-import dev.shtanko.algorithms.Constants.EPSILON
+import dev.shtanko.algorithms.EPSILON
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test

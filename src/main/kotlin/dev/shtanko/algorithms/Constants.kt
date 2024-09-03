@@ -25,66 +25,61 @@
 package dev.shtanko.algorithms
 
 /**
- * Constants used across the application.
+ * Base for decimal numbers.
  */
-internal data object Constants {
-    /**
-     * Base for decimal numbers.
-     */
-    const val DECIMAL = 10
+const val DECIMAL = 10
 
-    /**
-     * Base for octal numbers.
-     */
-    const val OCTAL = 8
+/**
+ * Base for octal numbers.
+ */
+const val OCTAL = 8
 
-    /**
-     * Base for hexadecimal numbers.
-     */
-    const val HEXADECIMAL = 16
+/**
+ * Base for hexadecimal numbers.
+ */
+const val HEXADECIMAL = 16
 
-    /**
-     * Constant used for shuffling.
-     */
-    const val SHUFFLE = 0xFFFF
+/**
+ * Constant used for shuffling.
+ */
+const val SHUFFLE = 0xFFFF
 
-    /**
-     * Modulus constant.
-     */
-    const val MOD = 1_000_000_007
+/**
+ * Modulus constant.
+ */
+const val MOD = 1_000_000_007
 
-    /**
-     * Constant representing one billion.
-     */
-    const val BILLION = 1e9
+/**
+ * Constant representing one billion.
+ */
+const val BILLION = 1e9
 
-    /**
-     * Constant representing a byte (1024 bits).
-     */
-    const val BYTE = 1024
+/**
+ * Constant representing a byte (1024 bits).
+ */
+const val BYTE = 1024
 
-    /**
-     * Constant representing a millisecond.
-     */
-    const val MILLISECOND = 1000L
+/**
+ * Constant representing a millisecond.
+ */
+const val MILLISECOND = 1000L
 
-    /**
-     * Small constant used for floating point comparisons.
-     */
-    const val EPSILON = 1e-5
+/**
+ * Small constant used for floating point comparisons.
+ */
+const val EPSILON = 1e-5
 
-    /**
-     * Format for binary size representation.
-     */
-    const val BIN_FORMAT = "%.1f %cB"
+/**
+ * Format for binary size representation.
+ */
+const val BIN_FORMAT = "%.1f %cB"
 
-    /**
-     * Format for SI size representation.
-     */
-    const val SI_FORMAT = "%.1f %ciB"
+/**
+ * Format for SI size representation.
+ */
+const val SI_FORMAT = "%.1f %ciB"
 
-    /**
-     * Number of letters in the English alphabet.
-     */
-    const val ALPHABET_LETTERS_COUNT = 26
-}
+/**
+ * Number of letters in the English alphabet.
+ */
+const val ALPHABET_LETTERS_COUNT = 26

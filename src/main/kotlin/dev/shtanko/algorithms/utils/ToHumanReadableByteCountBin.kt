@@ -24,8 +24,8 @@
 
 package dev.shtanko.algorithms.utils
 
-import dev.shtanko.algorithms.Constants.BYTE
-import dev.shtanko.algorithms.Constants.DECIMAL
+import dev.shtanko.algorithms.BYTE
+import dev.shtanko.algorithms.DECIMAL
 import java.text.CharacterIterator
 import java.text.StringCharacterIterator
 import java.util.Locale
