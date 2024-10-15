@@ -1,6 +1,6 @@
-# The Kotlin Algorithms
+# Data structures and algorithms in pure Kotlin
 
-Implementation of different algorithms and data structures using Kotlin lang
+A repository that organizes various data structures, algorithms, and solutions to problems in Kotlin in a structured format
 
 [![Build](https://github.com/ashtanko/the-algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/ashtanko/the-algorithms/actions/workflows/ci.yml)
 

@@ -1,6 +1,6 @@
-# The Kotlin Algorithms
+# Data structures and algorithms in pure Kotlin
 
-Implementation of different algorithms and data structures using Kotlin lang
+A repository that organizes various data structures, algorithms, and solutions to problems in Kotlin in a structured format
 
 [![Build](https://github.com/ashtanko/the-algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/ashtanko/the-algorithms/actions/workflows/ci.yml)
 
@@ -80,4 +80,4 @@ optimizations.
 
 ## Findings (0)
 
-generated with [detekt version 1.23.7](https://detekt.dev/) on 2024-10-15 16:57:19 UTC
+generated with [detekt version 1.23.7](https://detekt.dev/) on 2024-10-15 17:05:30 UTC
