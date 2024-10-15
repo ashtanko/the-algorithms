@@ -112,6 +112,7 @@ class HumanReadableBytesTest {
     }
 
     private class InputNegativeArgumentsProvider : ArgumentsProvider {
+        @Suppress("LongMethod")
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 -0,

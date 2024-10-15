@@ -51,6 +51,7 @@ class HumanReadableByteCountSiTest {
     }
 
     private class InputArgumentsProvider : ArgumentsProvider {
+        @Suppress("LongMethod")
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 0,
@@ -116,6 +117,7 @@ class HumanReadableByteCountSiTest {
     }
 
     private class InputNegativeArgumentsProvider : ArgumentsProvider {
+        @Suppress("LongMethod")
         override fun provideArguments(context: ExtensionContext?): Stream<out Arguments> = Stream.of(
             Arguments.of(
                 -0,

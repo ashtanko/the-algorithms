@@ -45,5 +45,8 @@ diktat d:
 health h:
 	./gradlew buildHealth
 
+detekt:
+	./gradlew detekt
+
 # Set the default target
 .DEFAULT_GOAL := default
